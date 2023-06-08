@@ -13,27 +13,27 @@
       <div class="col-span-6">
         <ul class="flex justify-around">
           <li>
-            <NuxtLink class="text-sm hover:underline hover:cursor-pointer">
+            <NuxtLink class="text-lg hover:underline hover:cursor-pointer">
               Home
             </NuxtLink>
           </li>
           <li class="group">
-            <NuxtLink class="text-sm hover:underline hover:cursor-pointer">
+            <NuxtLink class="text-lg hover:underline hover:cursor-pointer">
               Shop
             </NuxtLink>
           </li>
           <li class="group">
-            <NuxtLink class="text-sm hover:underline hover:cursor-pointer">
+            <NuxtLink class="text-lg hover:underline hover:cursor-pointer">
               Blog
             </NuxtLink>
           </li>
           <li class="group">
-            <NuxtLink class="text-sm hover:underline hover:cursor-pointer">
+            <NuxtLink class="text-lg hover:underline hover:cursor-pointer">
               Contacts
             </NuxtLink>
           </li>
           <li class="group">
-            <NuxtLink class="text-sm hover:underline hover:cursor-pointer">
+            <NuxtLink class="text-lg hover:underline hover:cursor-pointer">
               About us
             </NuxtLink>
           </li>
@@ -42,28 +42,28 @@
       <div class="col-span-3">
         <div class="">
           <ul class="flex justify-end">
-            <li class="w-8 h-8 mx-1">
+            <li class="w-8 h-8 mx-1 mt-[2px]">
               <Icon
                 class="text-lg hover:cursor-pointer"
                 name="uil:search"
                 color="black"
               />
             </li>
-            <li class="w-8 h-8 mx-1">
+            <li class="w-8 h-8 mx-1 mt-[2px]">
               <Icon
                 class="text-lg hover:cursor-pointer"
                 name="uil:heart"
                 color="black"
               />
             </li>
-            <li class="w-8 h-8 mx-1">
+            <li class="w-8 h-8 mx-1 mt-[2px]">
               <Icon
                 class="text-lg hover:cursor-pointer"
                 name="uil:shopping-bag"
                 color="black"
               />
             </li>
-            <li class="w-8 h-8 mx-1">
+            <li class="w-8 h-8 mx-1 mt-[2px]">
               <Icon
                 class="text-lg hover:cursor-pointer"
                 name="uil:user-circle"
