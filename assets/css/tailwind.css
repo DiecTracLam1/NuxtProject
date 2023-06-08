@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    font-family: "Nunito Sans", sans-serif;
+    box-sizing: border-box;
+  }
+}
