@@ -14,7 +14,7 @@ module.exports = {
       sm: "1002px",
       md: "1022px",
       lg: "1092px",
-      xl: "1280px",
+      xl: "1200px",
     },
 
     extend: {
@@ -32,6 +32,10 @@ module.exports = {
           900: "#15202b",
         },
       },
+      gridTemplateRows: {
+        // Simple 8 row grid
+        '7': 'repeat(7, minmax(0, 1fr))',
+      }
     },
   },
   plugins: [],

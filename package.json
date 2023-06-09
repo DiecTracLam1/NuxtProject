@@ -14,6 +14,7 @@
     "nuxt": "^3.5.2"
   },
   "dependencies": {
+    "@ant-design-vue/nuxt": "^1.0.0-alpha.0",
     "@heroicons/vue": "^2.0.18",
     "@vue-hero-icons/outline": "^1.7.2",
     "@vue-hero-icons/solid": "^1.7.2",

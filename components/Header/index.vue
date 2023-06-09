@@ -1,7 +1,7 @@
 <template>
   <header class="bg-white w-full h-[84px] shadow-xl">
     <div
-      class="grid grid-cols-12 lg:max-w-6xl mx-auto h-full items-center lg:gap-5"
+      class="grid grid-cols-12 xl:max-w-[1170px] mx-auto h-full items-center lg:gap-5"
     >
       <div class="col-span-3">
         <div class="h-6">
