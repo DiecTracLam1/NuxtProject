@@ -20,70 +20,73 @@
         class="bg-cover bg-center bg-no-repeat bg-[url('https://preview.colorlib.com/theme/malefashion/img/hero/hero-1.jpg.webp')]"
         loading="lazy"
       >
-        <div class="grid grid-cols-12 lg:max-w-[1170px] mx-auto h-full">
-          <div class="col-span-5">
-            <div class="grid grid-rows-6 h-full">
-              <div class="flex flex-col justify-center row-span-6">
-                <h6 class="text-[#e53638] uppercase font-semibold mb-7">
-                  Summer Collection
-                </h6>
-                <h1 class="text-5xl font-semibold mb-[30px] leading-[54px]">
-                  Fall - Winter Collections 2030
-                </h1>
-                <p class="text-[#3d3d3d] mb-9">
-                  A specialist label creating luxury essentials. Ethically
-                  crafted with an unwavering commitment to exceptional quality.
-                </p>
-                <NuxtLink
-                  class="inline-block bg-black text-white w-36 text-center py-[14px] uppercase font-bold text-[13px] hover:cursor-pointer"
-                >
-                  Shop Now
-                  <span
-                    ><Icon
-                      class="font-medium"
-                      name="uil:arrow-right"
-                      color="white"
-                  /></span>
-                </NuxtLink>
+        <div class="lg:max-w-[1170px] mx-auto h-full">
+          <div class="grid grid-cols-12 h-full">
+            <div class="col-span-5">
+              <div class="grid grid-rows-6 h-full">
+                <div class="flex flex-col justify-center row-span-6">
+                  <h6 class="text-[#e53638] uppercase font-semibold mb-7">
+                    Summer Collection
+                  </h6>
+                  <h1 class="text-5xl font-semibold mb-[30px] leading-[54px]">
+                    Fall - Winter Collections 2030
+                  </h1>
+                  <p class="text-[#3d3d3d] mb-9">
+                    A specialist label creating luxury essentials. Ethically
+                    crafted with an unwavering commitment to exceptional
+                    quality.
+                  </p>
+                  <NuxtLink
+                    class="inline-block bg-black text-white w-36 text-center py-[14px] uppercase font-bold text-[13px] hover:cursor-pointer"
+                  >
+                    Shop Now
+                    <span
+                      ><Icon
+                        class="font-medium"
+                        name="uil:arrow-right"
+                        color="white"
+                    /></span>
+                  </NuxtLink>
+                </div>
+                <ul class="self-end flex">
+                  <li>
+                    <NuxtLink class="mr-8 hover:cursor-pointer">
+                      <Icon
+                        class="font-medium"
+                        name="uil:twitter"
+                        color="#3d3d3d"
+                      />
+                    </NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink class="mr-8 hover:cursor-pointer">
+                      <Icon
+                        class="font-medium"
+                        name="icomoon-free:facebook"
+                        color="#3d3d3d"
+                      />
+                    </NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink class="mr-8 hover:cursor-pointer">
+                      <Icon
+                        class="font-medium"
+                        name="mdi:pinterest"
+                        color="#3d3d3d"
+                      />
+                    </NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink class="mr-8 hover:cursor-pointer"
+                      ><Icon
+                        class="font-medium"
+                        name="fa:instagram"
+                        color="#3d3d3d"
+                      />
+                    </NuxtLink>
+                  </li>
+                </ul>
               </div>
-              <ul class="self-end flex">
-                <li>
-                  <NuxtLink class="mr-8 hover:cursor-pointer">
-                    <Icon
-                      class="font-medium"
-                      name="uil:twitter"
-                      color="#3d3d3d"
-                    />
-                  </NuxtLink>
-                </li>
-                <li>
-                  <NuxtLink class="mr-8 hover:cursor-pointer">
-                    <Icon
-                      class="font-medium"
-                      name="icomoon-free:facebook"
-                      color="#3d3d3d"
-                    />
-                  </NuxtLink>
-                </li>
-                <li>
-                  <NuxtLink class="mr-8 hover:cursor-pointer">
-                    <Icon
-                      class="font-medium"
-                      name="mdi:pinterest"
-                      color="#3d3d3d"
-                    />
-                  </NuxtLink>
-                </li>
-                <li>
-                  <NuxtLink class="mr-8 hover:cursor-pointer"
-                    ><Icon
-                      class="font-medium"
-                      name="fa:instagram"
-                      color="#3d3d3d"
-                    />
-                  </NuxtLink>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
@@ -397,17 +400,32 @@
       </div>
       <div class="grid grid-cols-12 gap-[30px]">
         <div class="col-span-4">
-          <div class="h-[270px] relative">
-            <img class="h-full w-full" src="https://preview.colorlib.com/theme/malefashion/img/blog/blog-1.jpg" alt="" />
-            <div class="absolute bg-white bottom-3 left-1/2 translate-x-[-50%] p-[30px]">
-              <span>16 February 2020</span>
-              <h5>What Curling Irons Are The Best Ones</h5>
-              <p>READ MORE</p>
+          <div class="relative">
+            <div class="h-[270px]">
+              <img
+                class="h-full w-full"
+                src="https://preview.colorlib.com/theme/malefashion/img/blog/blog-1.jpg"
+                alt=""
+              />
+            </div>
+            <div
+              class="bg-white mt-[-15%] mx-auto p-[30px] w-[300px] relative z-10"
+            >
+              <span class="text-[13px] text-[#919191]">
+                <Icon class="mr-1 mb-1" name="tabler:calendar-check" />16
+                February 2020</span
+              >
+              <h5 class="text-lg font-bold my-[6px]">
+                What Curling Irons Are The Best Ones
+              </h5>
+              <p
+                class="font-bold relative text-[13px] tracking-[4px] leading-5 w-fit hover:cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:bg-black after:w-1/2 after:h-[2px] hover:after:w-full hover:after:bg-red-400 after:transition-all after:duration-750"
+              >
+                READ MORE
+              </p>
             </div>
           </div>
         </div>
-        <div class="col-span-4"></div>
-        <div class="col-span-4"></div>
       </div>
     </div>
   </div>
