@@ -13,13 +13,15 @@
           <ul class="flex justify-around my-0">
             <li>
               <NuxtLink
-                class="text-lg no-underline text-black hover:underline hover:cursor-pointer"
+                to="/"
+                class="text-lg no-underline text-black active:bg-slate-500 hover:underline hover:cursor-pointer"
               >
                 Home
               </NuxtLink>
             </li>
             <li class="group">
               <NuxtLink
+                to="/Shop"
                 class="text-lg no-underline text-black hover:underline hover:cursor-pointer"
               >
                 Shop
@@ -27,6 +29,7 @@
             </li>
             <li class="group">
               <NuxtLink
+                to="/Blog"
                 class="text-lg no-underline text-black hover:underline hover:cursor-pointer"
               >
                 Blog
@@ -34,6 +37,7 @@
             </li>
             <li class="group">
               <NuxtLink
+                to="/Contacts"
                 class="text-lg no-underline text-black hover:underline hover:cursor-pointer"
               >
                 Contacts

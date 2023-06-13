@@ -5,6 +5,17 @@
 @layer base {
   * {
     font-family: "Nunito Sans", sans-serif;
-    box-sizing: border-box;
+    @apply box-border;
+    @apply m-0;
+    @apply p-0;
+  }
+  :root {
+    --primary-color: #fff;
+    --secondary-color: #000;
+  }
+}
+@layer components {
+  .anticon-star {
+    @apply font-bold;
   }
 }

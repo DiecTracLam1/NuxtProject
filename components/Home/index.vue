@@ -36,17 +36,15 @@
                     crafted with an unwavering commitment to exceptional
                     quality.
                   </p>
-                  <NuxtLink
-                    class="inline-block bg-black text-white w-36 text-center py-[14px] uppercase font-bold text-[13px] hover:cursor-pointer"
-                  >
-                    Shop Now
-                    <span
-                      ><Icon
-                        class="font-medium"
+                  <UIButton size="xl" text="Shop Now">
+                    <span>
+                      <Icon
+                        class="font-medium text-base"
                         name="uil:arrow-right"
                         color="white"
-                    /></span>
-                  </NuxtLink>
+                      />
+                    </span>
+                  </UIButton>
                 </div>
                 <ul class="self-end flex">
                   <li>

@@ -13,11 +13,11 @@
         <div class="col-span-3">
           <form class="flex border-[#e3e1e8] border-2 px-3 py-2 mb-11">
             <input
-              class="flex-1 text-[15px] text-[#afaeb3] outline-none"
+              class="flex-1 text-[15px] text-blur-grey outline-none"
               type="text"
               placeholder="Search..."
             />
-            <button class="pl-2 text-[#afaeb3]">
+            <button class="pl-2 text-blur-grey">
               <Icon name="heroicons-outline:magnifying-glass" />
             </button>
           </form>
@@ -30,7 +30,7 @@
             <a-collapse-panel key="1" header="CATEGORIES" class="font-bold">
               <div class="border-b-[1px] border-[#e3e1e8] pb-2">
                 <div
-                  class="my-2 text-[#afaeb3] hover:cursor-pointer hover:text-blue-400"
+                  class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
                   v-for="item in list"
                 >
                   {{ item.text }} {{ `(${item.amount})` }}
@@ -41,7 +41,7 @@
             <a-collapse-panel key="2" header="BRANDING" class="font-bold">
               <div class="border-b-[1px] border-[#e3e1e8] pb-2">
                 <div
-                  class="my-2 text-[#afaeb3] hover:cursor-pointer hover:text-blue-400"
+                  class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
                   v-for="item in list"
                 >
                   {{ item.text }}
@@ -52,7 +52,7 @@
             <a-collapse-panel key="3" header="FILTER PRICE" class="font-bold">
               <div class="border-b-[1px] border-[#e3e1e8] pb-2">
                 <div
-                  class="my-2 text-[#afaeb3] hover:cursor-pointer hover:text-blue-400"
+                  class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
                   v-for="item in list"
                 >
                   {{ item.text }}
@@ -63,7 +63,7 @@
             <a-collapse-panel key="4" header="SIZE" class="font-bold">
               <div class="border-b-[1px] border-[#e3e1e8] pb-2">
                 <div
-                  class="my-2 text-[#afaeb3] hover:cursor-pointer hover:text-blue-400"
+                  class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
                   v-for="item in list"
                 >
                   {{ item.text }}
@@ -74,7 +74,7 @@
             <a-collapse-panel key="5" header="COLORS" class="font-bold">
               <div class="border-b-[1px] border-[#e3e1e8] pb-2">
                 <!-- <div
-                  class="my-2 text-[#afaeb3] hover:cursor-pointer"
+                  class="my-2 text-blur-grey hover:cursor-pointer"
                   v-for="item in list"
                 > -->
                 <div
