@@ -20,7 +20,7 @@
         class="bg-cover bg-center bg-no-repeat bg-[url('https://preview.colorlib.com/theme/malefashion/img/hero/hero-1.jpg.webp')]"
         loading="lazy"
       >
-        <div class="lg:max-w-[1170px] mx-auto h-full">
+        <div class="md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto h-full">
           <div class="grid grid-cols-12 h-full">
             <div class="col-span-5">
               <div class="grid grid-rows-6 h-full">
@@ -92,7 +92,7 @@
       <div class="absolute z-10">asd</div>
     </Swiper>
     <!-- <div class="">
-      <div class="grid grid-cols-12 row-span-6 lg:max-w-[1170px] mx-auto gap-5">
+      <div class="grid grid-cols-12 row-span-6 md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto gap-5">
         <div class="col-span-7 col-start-6 row-span-4 row-start-1">
           <div >
             <h1>das</h1>
@@ -106,16 +106,16 @@
     </div> -->
 
     <!-- Product -->
-    <div class="lg:max-w-[1170px] mx-auto my-[100px]">
+    <div class="md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto my-[100px]">
       <ul class="flex justify-center py-24">
         <li class="mr-[92px] font-bold text-2xl"><p>Best Seller</p></li>
         <li class="mr-[92px] font-bold text-2xl"><p>New Arrivals</p></li>
         <li class="font-bold text-2xl"><p>Hot Sales</p></li>
       </ul>
       <div
-        class="grid grid-cols-12 lg:max-w-[1170px] mx-auto gap-x-[30px] gap-y-10"
+        class="grid grid-cols-12 md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto gap-x-[30px] gap-y-10"
       >
-        <div class="col-span-3">
+        <div class="md:col-span-4 xl:col-span-3">
           <div class="flex flex-col overflow-hidden hover:cursor-pointer group">
             <div class="h-[260px] relative">
               <img
@@ -151,7 +151,7 @@
           </div>
         </div>
 
-        <div class="col-span-3">
+        <div class="md:col-span-4 xl:col-span-3">
           <div class="flex flex-col overflow-hidden hover:cursor-pointer group">
             <div class="h-[260px] relative">
               <img
@@ -187,7 +187,7 @@
           </div>
         </div>
 
-        <div class="col-span-3">
+        <div class="md:col-span-4 xl:col-span-3">
           <div class="flex flex-col overflow-hidden hover:cursor-pointer group">
             <div class="h-[260px] relative">
               <img
@@ -223,7 +223,7 @@
           </div>
         </div>
 
-        <div class="col-span-3">
+        <div class="md:col-span-4 xl:col-span-3">
           <div class="flex flex-col overflow-hidden hover:cursor-pointer group">
             <div class="h-[260px] relative">
               <img
@@ -259,7 +259,7 @@
           </div>
         </div>
 
-        <div class="col-span-3">
+        <div class="md:col-span-4 xl:col-span-3">
           <div class="flex flex-col overflow-hidden hover:cursor-pointer group">
             <div class="h-[260px] relative">
               <img
@@ -299,7 +299,7 @@
 
     <!-- Spad -->
     <!-- <div class="bg-[#f3f2ee] py-[150px] relative">
-      <div class="lg:max-w-[1170px] mx-auto z-10">
+      <div class="md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto z-10">
         <div class="grid grid-cols-12">
           <div class="col-span-4">
             <div class="flex flex-col">
@@ -316,7 +316,7 @@
 
     <!-- Intagram -->
     <div
-      class="grid grid-cols-12 row-span-6 lg:max-w-[1170px] mx-auto gap-[15px] mb-[100px]"
+      class="grid grid-cols-12 row-span-6 md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto gap-[15px] mb-[100px]"
     >
       <div class="col-span-8">
         <div class="grid grid-cols-12">
@@ -391,7 +391,7 @@
     </div>
 
     <!-- Latest -->
-    <div class="lg:max-w-[1170px] mx-auto my-[100px]">
+    <div class="md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto my-[100px]">
       <div class="text-center mb-[45px]">
         <h5 class="text-[#E53638] mb-[15px]">LATEST NEWS</h5>
         <h2 class="text-4xl font-bold">Fashion New Trends</h2>

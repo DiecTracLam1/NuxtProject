@@ -1,6 +1,6 @@
 <template>
   <footer class="bg-black py-[50px] text-[#969696]">
-    <div class="xl:max-w-[1170px] mx-auto h-full">
+    <div class="xl:max-w-[1170px] px-[15px] mx-auto h-full">
       <div class="grid grid-cols-12 gap-x-24">
         <div class="col-span-3">
           <div class="flex flex-col">

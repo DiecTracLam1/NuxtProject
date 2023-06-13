@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bg-[#F3F2EE]">
-      <div class="xl:max-w-[1170px] mx-auto">
+      <div class="xl:max-w-[1170px] px-[15px] mx-auto">
         <div class="py-10">
           <div class="text-center">
             <p class="text-sm mb-[30px]">Home > maha > detail</p>
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="xl:max-w-[1170px] mx-auto">
+    <div class="xl:max-w-[1170px] px-[15px] mx-auto">
       <div class="mt-[100px] text-center">
         <h4 class="font-bold leading-7 text-2xl">Hooded thermal anorak</h4>
 

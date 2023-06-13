@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="bg-[#F3F2EE] h-[140px]">
-      <div class="xl:max-w-[1170px] mx-auto h-full">
+      <div class="xl:max-w-[1170px] px-[15px] mx-auto h-full">
         <div class="flex flex-col justify-center h-full">
           <h4 class="text-2xl font-bold mb-2">Shop</h4>
         </div>
       </div>
     </div>
 
-    <div class="xl:max-w-[1170px] mx-auto pt-[100px]">
+    <div class="xl:max-w-[1170px] px-[15px] mx-auto pt-[100px]">
       <div class="grid grid-cols-12 gap-[50px]">
         <div class="col-span-3">
           <form class="flex border-[#e3e1e8] border-2 px-3 py-2 mb-11">
