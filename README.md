@@ -1,42 +1,13 @@
-# Nuxt 3 Minimal Starter
+# Thứ 6
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+- Code giao diện Header , Home( chưa xong ) , Footer 
+- Kiếm API 
+# Thứ 2
 
-## Setup
+- Code giao diện Shop 
+- Code giao diện Item
 
-Make sure to install the dependencies:
+# Thứ 3 
 
-```bash
-# yarn
-yarn install
+- Code giao diện Detail , Cart( chưa xong )
 
-# npm
-npm install
-
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
