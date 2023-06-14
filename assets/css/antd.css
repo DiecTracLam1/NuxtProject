@@ -1,0 +1,6 @@
+.anticon-star {
+  @apply font-bold;
+}
+.ant-collapse-header,.ant-collapse-content-box{
+    @apply px-0 !important;
+}

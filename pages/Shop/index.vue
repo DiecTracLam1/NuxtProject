@@ -1,19 +1,23 @@
 <template>
   <div>
     <div class="bg-[#F3F2EE] h-[140px]">
-      <div class="xl:max-w-[1170px] px-[15px] mx-auto h-full">
+      <div
+        class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto h-full"
+      >
         <div class="flex flex-col justify-center h-full">
           <h4 class="text-2xl font-bold mb-2">Shop</h4>
         </div>
       </div>
     </div>
 
-    <div class="xl:max-w-[1170px] px-[15px] mx-auto pt-[100px]">
-      <div class="grid grid-cols-12 gap-[50px]">
-        <div class="col-span-3">
+    <div
+      class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] w-full px-[15px] mx-auto pt-[100px]"
+    >
+      <div class="grid grid-cols-12 gap-y-[50px] md:gap-[50px]">
+        <div class="col-span-12 md:col-span-3">
           <form class="flex border-[#e3e1e8] border-2 px-3 py-2 mb-11">
             <input
-              class="flex-1 text-[15px] text-blur-grey outline-none"
+              class="flex-1 text-normal text-blur-grey outline-none"
               type="text"
               placeholder="Search..."
             />
@@ -90,22 +94,22 @@
             </a-collapse-panel>
           </a-collapse>
         </div>
-        <div class="col-span-9">
+        <div class="col-span-12 md:col-span-9">
           <div class="flex mb-11">
             <p>Showing 1-12 of 126 results</p>
             <p class="items-end">asdasd</p>
           </div>
-          <div class="grid grid-cols-12 gap-[30px]">
-            <div class="col-span-4">
+          <div class="grid grid-cols-12 sm:gap-7.5">
+            <div class="col-span-12 sm:col-span-6 md:col-span-4">
               <ProductItem />
             </div>
-            <div class="col-span-4">
+            <div class="col-span-12 sm:col-span-6 md:col-span-4">
               <ProductItem />
             </div>
-            <div class="col-span-4">
+            <div class="col-span-12 sm:col-span-6 md:col-span-4">
               <ProductItem />
             </div>
-            <div class="col-span-4">
+            <div class="col-span-12 sm:col-span-6 md:col-span-4">
               <ProductItem />
             </div>
           </div>

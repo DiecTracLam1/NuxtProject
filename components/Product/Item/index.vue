@@ -22,9 +22,9 @@
       </ul>
     </div>
     <div class="relative mt-6">
-      <p class="text-[15px] mb-[5px]">Piqué Biker Jacket</p>
+      <p class="text-[18px] mb-[5px]">Piqué Biker Jacket</p>
       <div class="mb-[6px]"><a-rate /></div>
-      <p class="text-lg font-bold">$67.24</p>
+      <p class="text-[18px] font-bold">$67.24</p>
       <button
         class="absolute text-white bottom-3 right-[-100px] group-hover:right-5 bg-black py-1 px-2 text-xs transition-all duration-[700ms]"
       >
