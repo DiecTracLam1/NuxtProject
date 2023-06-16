@@ -197,7 +197,7 @@
             max="20"
             value="1"
           />
-          <UIButton text="+ADD TO CART" size="xl" />
+          <Button text="+ADD TO CART" size="xl" />
         </div>
 
         <!-- Checkout -->

@@ -115,7 +115,7 @@
           </div>
 
           <div class="my-8 text-center">
-            <a-pagination v-model:current="current" :total="500" />
+            <a-pagination v-model:current="current" :total="500"  />
           </div>
         </div>
       </div>

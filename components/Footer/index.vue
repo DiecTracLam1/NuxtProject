@@ -3,7 +3,7 @@
     <div
       class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] w-full px-[15px] mx-auto h-full"
     >
-      <div class="grid grid-cols-12 lg:gap-x-24 gap-x-7.5">
+      <div class="grid grid-cols-12 lg:gap-x-24 sm:gap-x-7.5">
         <div class="xs:col-span-6 sm:col-span-6 md:col-span-3 col-span-12">
           <div class="flex flex-col mb-[30px]">
             <div class="h-7 mb-[30px]">

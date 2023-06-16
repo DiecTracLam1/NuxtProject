@@ -1,87 +1,130 @@
 <template>
-  <div class="xl:max-w-[1170px] mx-auto pt-[100px]">
-    <div class="grid grid-cols-12 gap-[30px]">
-      <div class="col-span-8">
-        <a-table :columns="columns" :data-source="data">
-          <template #headerCell="{ column }">
-            <template v-if="column.key === 'name'">
-              <span>
-                <smile-outlined />
-                Name
-              </span>
-            </template>
-          </template>
-
+  <div
+    class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] lg:max-w-[1170px] xl:max-w-[1170px] w-full px-[15px] mx-auto mt-24"
+  >
+    <div class="grid grid-cols-12 md:gap-[30px] gap-y-[30px]">
+      <div class="col-span-12 md:col-span-8">
+        <a-table
+          :pagination="false"
+          :columns="columns"
+          :data-source="data"
+          :scroll="{ y: 650 }"
+        >
           <template #bodyCell="{ column, record }">
-            <template v-if="column.key === 'name'">
-              <a>
-                {{ record.name }}
-              </a>
+            <template v-if="column.key === 'product'">
+              <div class="flex sm:items-center sm:flex-row flex-col">
+                <div class="h-[90px]">
+                  <img
+                    class="w-[90px] h-[90px]"
+                    src="https://preview.colorlib.com/theme/malefashion/img/product/product-2.jpg.webp"
+                    alt=""
+                  />
+                </div>
+                <div class="sm:ml-[30px]">
+                  <p class="m-0 text-normal">{{ record.name }}</p>
+                  <div class="flex items-center font-bold text-lg">
+                    <Icon
+                      name="ph:currency-dollar-simple-bold"
+                      color="black"
+                      class="w-fit leading"
+                    />
+                    <p class="m-0 mt-[2px]">68.12</p>
+                  </div>
+                </div>
+              </div>
             </template>
-            <template v-else-if="column.key === 'tags'">
-              <span>
-                <a-tag
-                  v-for="tag in record.tags"
-                  :key="tag"
-                  :color="
-                    tag === 'loser'
-                      ? 'volcano'
-                      : tag.length > 5
-                      ? 'geekblue'
-                      : 'green'
-                  "
-                >
-                  {{ tag.toUpperCase() }}
-                </a-tag>
-              </span>
+
+            <template v-else-if="column.key === 'quantity'"> </template>
+
+            <template v-else-if="column.key === 'total'">
+              <div class="flex items-center font-bold text-lg">
+                <Icon
+                  name="ph:currency-dollar-simple-bold"
+                  color="black"
+                  class="leading"
+                />
+                <p class="m-0 mt-[2px]">{{ record.total }}</p>
+              </div>
             </template>
-            <template v-else-if="column.key === 'action'">
-              <span>
-                <a>Invite 一 {{ record.name }}</a>
-                <a-divider type="vertical" />
-                <a>Delete</a>
-                <a-divider type="vertical" />
-                <a class="ant-dropdown-link">
-                  More actions
-                  <down-outlined />
-                </a>
-              </span>
+
+            <template v-else>
+              <Icon
+                class="box-content p-2 bg-[#F3F2EE] text-2xl rounded-full cursor-pointer"
+                name="typcn:times"
+                color="black"
+              />
             </template>
           </template>
         </a-table>
       </div>
-      <div class="col-span-4"></div>
+      <div class="col-span-12 md:col-span-4">
+        <h3 class="font-bold text-base mb-[35px]">DISCOUNT CODES</h3>
+        <div class="flex mb-[60px]">
+          <input
+            class="flex-1 border-blur-grey border-[2px] pl-5 py-3 pr-2 outline-none w-full"
+            placeholder="Coupon code"
+            type="text"
+          />
+          <Button text="APPLY" size="xl" />
+        </div>
+        <div class="bg-[#F3F2EE] p-10">
+          <h2 class="text-base mb-3">CART TOTAL</h2>
+          <div class="flex items-center">
+            <p class="text-base mb-0">Subtotal</p>
+            <div class="flex items-center font-bold leading-10 text-lg ml-auto">
+              <Icon
+                name="ph:currency-dollar-simple-bold"
+                color="#e53638"
+                class="w-fit leading"
+              />
+              <p class="m-0 mt-[2px] text-[#e53638]">169.00</p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <p class="text-base mb-0">Total</p>
+            <div class="flex items-center font-bold leading-10 text-lg ml-auto">
+              <Icon
+                name="ph:currency-dollar-simple-bold"
+                color="#e53638"
+                class="w-fit leading"
+              />
+              <p class="m-0 mt-[2px] text-[#e53638]">169.00</p>
+            </div>
+          </div>
+          <Button class="mt-6 w-full text-center" text="PROCEED TO ORDER" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { SmileOutlined, DownOutlined } from "@ant-design/icons-vue";
-import { defineComponent } from "vue";
+<script setup lang="ts">
 const columns = [
   {
-    name: "Name",
-    dataIndex: "name",
-    key: "name",
+    title: "PRODUCT",
+    dataIndex: "product",
+    key: "product",
+    width: "xs:w-fit"
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
+    title: "QUANTITY",
+    dataIndex: "quantity",
+    key: "quantity",
+    width: '20%'
+
   },
   {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
+    title: "TOTAL",
+    dataIndex: "total",
+    key: "total",
+    width: '20%'
+
   },
   {
-    title: "Tags",
-    key: "tags",
-    dataIndex: "tags",
-  },
-  {
-    title: "Action",
-    key: "action",
+    title: "",
+    dataIndex: "Delete",
+    key: "Delete",
+    width: '10%'
   },
 ];
 
@@ -89,36 +132,34 @@ const data = [
   {
     key: "1",
     name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
+    imgae:
+      "https://preview.colorlib.com/theme/malefashion/img/shopping-cart/cart-1.jpg.webp",
+    quantity: 32,
+    total: "80.00",
   },
   {
     key: "2",
     name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
+    quantity: 42,
+    total: "80.00",
   },
   {
     key: "3",
     name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
+    quantity: 32,
+    total: "80.00",
+  },
+  {
+    key: "4",
+    name: "Joe Black",
+    quantity: 32,
+    total: "80.00",
+  },
+  {
+    key: "5",
+    name: "Joe Black",
+    quantity: 32,
+    total: "80.00",
   },
 ];
-
-export default defineComponent({
-  components: {
-    SmileOutlined,
-    DownOutlined,
-  },
-  setup() {
-    return {
-      data,
-      columns,
-    };
-  },
-});
 </script>

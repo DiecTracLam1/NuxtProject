@@ -19,7 +19,9 @@ module.exports = {
 
     extend: {
       fontSize: {
-        normal: ["15px"],
+        normal: ["15px" , {
+          lineHeight : '18px'
+        }],
       },
 
       spacing: {

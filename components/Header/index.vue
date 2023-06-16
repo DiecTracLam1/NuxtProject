@@ -1,14 +1,14 @@
 <template>
   <header class="bg-white w-full h-[84px] shadow-xl">
     <div
-      class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto h-full"
+      class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] w-full mx-auto h-full"
     >
       <div class="grid grid-cols-12 h-full items-center gap-5">
         <div class="sm:col-span-3 col-span-6">
           <div class="h-6">
-            <a class="w-full h-full" href="">
+            <NuxtLink class="w-full h-full" to="/">
               <img class="" src="~/assets/images/shop.png" alt="" />
-            </a>
+            </NuxtLink>
           </div>
         </div>
         <div class="sm:col-span-6 hidden sm:block">

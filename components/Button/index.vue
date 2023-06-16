@@ -13,16 +13,16 @@ const props = defineProps({
     type: String,
     default: "md",
   },
-  text:{
+  text: {
     type: String,
-    default:""
-  }
+    default: "",
+  },
 });
 
 const paddingClasses = computed(() => {
   switch (props.size) {
     case "sm":
-      return "py-2 px-3";
+      return "px-3 py-2 ";
     case "lg":
       return "px-4 py-3";
     case "xl":
