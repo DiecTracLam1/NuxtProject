@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bg-[#F3F2EE]">
-      <div class="xl:max-w-[1170px] px-[15px] mx-auto">
+      <div class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] w-full mx-auto">
         <div class="py-10">
           <div class="text-center">
             <p class="text-sm mb-[30px]">Home > maha > detail</p>
@@ -358,16 +358,16 @@
       <div class="py-[60px]">
         <h2 class="font-bold text-3xl mx-auto mb-11 w-fit">Related Product</h2>
         <div class="grid grid-cols-12 gap-[30px]">
-          <div class="col-span-3">
+          <div class="xs:col-span-6 sm:col-span-4 md:col-span-3 col-span-12 ">
             <ProductItem/>
           </div>
-          <div class="col-span-3">
+          <div class="xs:col-span-6 sm:col-span-4 md:col-span-3 col-span-12">
             <ProductItem/>
           </div>
-          <div class="col-span-3">
+          <div class="xs:col-span-6 sm:col-span-4 md:col-span-3 col-span-12">
             <ProductItem/>
           </div>
-          <div class="col-span-3">
+          <div class="xs:col-span-6 sm:col-span-4 md:col-span-3 col-span-12">
             <ProductItem/>
           </div>
         </div>

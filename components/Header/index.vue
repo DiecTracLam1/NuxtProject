@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white w-full h-[84px] shadow-xl">
+  <header class="sticky top-0 bg-white w-full h-headerHeight shadow-xl z-10">
     <div
       class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] w-full mx-auto h-full"
     >
@@ -16,7 +16,7 @@
             <li>
               <NuxtLink
                 to="/"
-                class="text-lg no-underline text-black active:bg-slate-500 hover:underline hover:cursor-pointer"
+                class="text-lg no-underline text-black active:underline hover:underline hover:cursor-pointer"
               >
                 Home
               </NuxtLink>
@@ -190,6 +190,5 @@ function handleChangeCheck(value) {
   checked.value = value;
 }
 
-const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
 const activeKey = ref(["1"]);
 </script>
