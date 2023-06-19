@@ -4,3 +4,16 @@
 .ant-collapse-header,.ant-collapse-content-box{
     @apply px-0 !important;
 }
+/* Tabs */
+.ant-tabs-nav{
+  @apply border-2
+}
+.ant-tabs-nav-wrap , .ant-tabs-nav-list{
+  @apply w-full
+}
+.ant-tabs-tab{
+  @apply flex-1;
+}
+.ant-tabs-tab-btn{
+  @apply mx-auto
+}

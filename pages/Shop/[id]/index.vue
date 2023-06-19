@@ -1,15 +1,19 @@
 <template>
   <div>
     <div class="bg-[#F3F2EE]">
-      <div class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] w-full mx-auto">
+      <div
+        class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] w-full mx-auto"
+      >
         <div class="py-10">
           <div class="text-center">
             <p class="text-sm mb-[30px]">Home > maha > detail</p>
           </div>
 
-          <div class="grid grid-cols-12 gap-[30px]">
-            <div class="col-span-4">
-              <ul class="flex flex-col items-center">
+          <div class="grid grid-cols-12 sm:gap-[30px]">
+            <div class="sm:col-span-4 col-span-12">
+              <ul
+                class="flex sm:flex-col flex-row sm:items-center justify-center"
+              >
                 <li class="mb-2">
                   <span class="">
                     <img src="~/assets/images/thumb-1.png" alt="" />
@@ -31,8 +35,10 @@
                 <li></li>
               </ul>
             </div>
-            <div class="col-span-8">
-              <img src="~/assets/images/product-big-2.png" alt="" />
+            <div class="sm:col-span-8 col-span-12">
+              <div class="mx-auto sm:w-full w-fit">
+                <img src="~/assets/images/product-big-2.png" alt="" />
+              </div>
               <!-- ~/assets/images/product-big-2.png -->
             </div>
           </div>
@@ -40,12 +46,14 @@
       </div>
     </div>
 
-    <div class="xl:max-w-[1170px] px-[15px] mx-auto">
+    <div
+      class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] w-full mx-auto"
+    >
       <div class="mt-[100px] text-center">
         <h4 class="font-bold leading-7 text-2xl">Hooded thermal anorak</h4>
 
         <!-- Rate & Favorite -->
-        <div class="flex justify-center items-center my-2">
+        <div class="flex flex-col xs:flex-row justify-center items-center my-2">
           <a-rate />
           <span class="mx-2"> - </span>
           <span class="font-bold">
@@ -59,7 +67,7 @@
         </div>
 
         <!-- Price -->
-        <div class="flex justify-center items-center">
+        <div class="flex justify-center items-center my-4">
           <p class="font-bold leading-9 text-3xl mr-3 my-0">$270.00</p>
           <p class="text-xl text-blur-grey line-through my-0">70.00</p>
         </div>
@@ -72,14 +80,16 @@
         </p>
 
         <!-- Size & Color -->
-        <form class="flex justify-center items-center mb-[30px]">
-          <div class="flex mr-[50px]">
+        <form
+          class="flex justify-center items-center mb-[30px] sm:flex-row flex-col"
+        >
+          <div class="flex sm:mr-[50px] items-center sm:mb-0 mb-[25px]">
             <span class="text-base">Size: </span>
             <ul class="flex items-center m-0 ml-[10px]">
               <li class="mr-[10px]">
                 <input class="hidden peer" type="radio" name="size" id="XXL" />
                 <label
-                  class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
+                  class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] inline-block peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
                   for="XXL"
                   >XXL</label
                 >
@@ -88,7 +98,7 @@
               <li class="mr-[10px]">
                 <input class="hidden peer" type="radio" name="size" id="XL" />
                 <label
-                  class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
+                  class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] inline-block peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
                   for="XL"
                   >XL</label
                 >
@@ -97,7 +107,7 @@
               <li class="mr-[10px]">
                 <input class="hidden peer" type="radio" name="size" id="L" />
                 <label
-                  class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
+                  class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] inline-block peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
                   for="L"
                   >L</label
                 >
@@ -106,7 +116,7 @@
               <li class="mr-[10px]">
                 <input class="hidden peer" type="radio" name="size" id="M" />
                 <label
-                  class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
+                  class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] inline-block peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
                   for="M"
                   >M</label
                 >
@@ -189,10 +199,12 @@
         </form>
 
         <!-- Amount  -->
-        <div class="flex justify-center items-center mb-10">
+        <div
+          class="flex flex-col xs:flex-row justify-center items-center mb-10"
+        >
           <input
             type="number"
-            class="border-blur-grey border-[1px] font-bold text-center py-[13px] px-[15px] mr-6 outline-none"
+            class="border-blur-grey border-[1px] font-bold text-center py-[13px] px-[15px] mr-6 xs:mb-0 mb-[15px] outline-none"
             min="1"
             max="20"
             value="1"
@@ -202,9 +214,9 @@
 
         <!-- Checkout -->
         <div
-          class="relative mb-5 before:absolute before:w-[460px] before:h-[1px] before:bg-blur-grey before:top-3 before:left-1/2 before:translate-x-[-50%] before:z-[-1]"
+          class="relative mb-5 before:absolute xs:before:w-[460px] before:w-[230px] before:h-[1px] before:bg-blur-grey before:top-3 before:left-1/2 before:translate-x-[-50%] before:z-[-1]"
         >
-          <span class="bg-white text-xl font-bold px-3"
+          <span class="bg-white xs:text-xl text-base font-bold px-3"
             >Guaranteed Safe Checkout</span
           >
         </div>
@@ -213,7 +225,9 @@
 
       <!-- Nav Tab -->
       <div class="pt-[60px]">
-        <ul class="flex justify-center border-b-[1px] border-blur-grey">
+        <ul
+          class="flex flex-wrap justify-center border-b-[1px] border-blur-grey"
+        >
           <li
             class="cursor-pointer pb-[10px] mr-[50px]"
             :class="dtailTab === 'des' ? 'border-b-[2px] border-red-600' : ''"
@@ -357,18 +371,26 @@
       <!-- Related Product -->
       <div class="py-[60px]">
         <h2 class="font-bold text-3xl mx-auto mb-11 w-fit">Related Product</h2>
-        <div class="grid grid-cols-12 gap-[30px]">
-          <div class="xs:col-span-6 sm:col-span-4 md:col-span-3 col-span-12 ">
-            <ProductItem/>
+        <div class="grid grid-cols-12 xs:gap-[30px]">
+          <div
+            class="xs:col-span-6 sm:col-span-6 md:col-span-4 xl:col-span-3 col-span-12"
+          >
+            <ProductItem />
           </div>
-          <div class="xs:col-span-6 sm:col-span-4 md:col-span-3 col-span-12">
-            <ProductItem/>
+          <div
+            class="xs:col-span-6 sm:col-span-6 md:col-span-4 xl:col-span-3 col-span-12"
+          >
+            <ProductItem />
           </div>
-          <div class="xs:col-span-6 sm:col-span-4 md:col-span-3 col-span-12">
-            <ProductItem/>
+          <div
+            class="xs:col-span-6 sm:col-span-6 md:col-span-4 xl:col-span-3 col-span-12"
+          >
+            <ProductItem />
           </div>
-          <div class="xs:col-span-6 sm:col-span-4 md:col-span-3 col-span-12">
-            <ProductItem/>
+          <div
+            class="xs:col-span-6 sm:col-span-6 md:col-span-4 xl:col-span-3 col-span-12"
+          >
+            <ProductItem />
           </div>
         </div>
       </div>

@@ -10,8 +10,10 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@prisma/client": "^4.15.0",
     "@types/node": "^18",
-    "nuxt": "^3.5.2"
+    "nuxt": "^3.5.2",
+    "prisma": "^4.15.0"
   },
   "dependencies": {
     "@ant-design-vue/nuxt": "^1.0.0-alpha.0",
