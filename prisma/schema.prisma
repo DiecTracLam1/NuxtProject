@@ -18,31 +18,31 @@ model User {
   password     String
   profileImage String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Brand {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  products    Product[]
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  products     Product[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Product {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  image       String[]
-  price       Float
-  salePrice   Float
-  description String
-  totalAmount Int 
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  image        String[]
+  price        Float
+  salePrice    Float
+  description  String
+  totalAmount  Int 
 
-  brand       Brand @relation(fields: [brandId], references: [id])
-  brandId     String @db.ObjectId
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  brand        Brand @relation(fields: [brandId], references: [id])
+  brandId      String @db.ObjectId
 }
