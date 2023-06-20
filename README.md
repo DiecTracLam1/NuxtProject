@@ -15,3 +15,21 @@
 # Thứ 4
 
 - Reponsive Header , Footer, Home , Product
+
+# Thứ 5
+
+- Code giao diện Cart
+- Chiều cúp điện
+
+# Thứ 6
+
+- Reponsive Cart , giao diện Đặt hàng (chưa hoàn thành)
+
+# Thứ 2 (19/6)
+
+- Code giao diện và reponsive đặt hàng
+
+# Thứ 3 (20/6)
+
+- Làm db , api server
+- Tìm hiểu về veeValidate
