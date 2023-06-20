@@ -1,4 +1,4 @@
-@import './antd.css';
+@import "./antd.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,13 +6,10 @@
 @layer base {
   * {
     font-family: "Nunito Sans", sans-serif;
-    @apply box-border;
-    @apply m-0;
-    @apply p-0;
+    @apply box-border m-0 p-0;
   }
   :root {
     --primary-color: #fff;
     --secondary-color: #000;
   }
 }
-

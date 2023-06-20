@@ -56,14 +56,7 @@
         </div>
         <div class="sm:col-span-3 hidden sm:block">
           <ul class="flex justify-end my-0">
-            <li class="w-8 h-8 mx-1 mt-[2px] text-end">
-              <Icon
-                class="text-xl hover:cursor-pointer"
-                name="uil:search"
-                color="black"
-              />
-            </li>
-            <li class="w-8 h-8 mx-1 mt-[2px] text-end">
+            <li v-if="loggedIn" class="w-8 h-8 mx-1 mt-[2px] text-end">
               <Icon
                 class="text-xl hover:cursor-pointer"
                 name="uil:heart"
@@ -77,12 +70,43 @@
                 color="black"
               />
             </li>
-            <li class="w-8 h-8 ml-1 mt-[2px] text-end">
-              <Icon
-                class="text-xl hover:cursor-pointer"
-                name="uil:user-circle"
-                color="black"
-              />
+            <li v-if="loggedIn" class="w-8 h-8 mx-1 mt-[2px] text-end">
+              <div class="w-5 h-5">
+                <img class="w-full h-full" :src="store.getImage" alt="" />
+              </div>
+            </li>
+            <li v-if="!loggedIn" class="w-8 h-8 ml-1 mt-[2px] text-end">
+              <div>
+                <Icon
+                  class="text-xl hover:cursor-pointer"
+                  name="uil:user-circle"
+                  color="black"
+                  @click="handleChangeOpenLogin(true)"
+                />
+                <input
+                  type="checkbox"
+                  class="hidden peer"
+                  :checked="openLogin"
+                />
+                <div
+                  class="fixed top-0 left-0 bottom-0 right-0 bg-[#000000] hidden opacity-50 z-10 peer-checked:block"
+                  @click="handleChangeOpenLogin(false)"
+                ></div>
+                <div
+                  class="fixed hidden top-1/2 left-1/2 w-2/5 bg-white transition-all duration-500 text-start translate-x-[-50%] translate-y-[-50%] opacity-0 z-20 peer-checked:block peer-checked:opacity-100"
+                >
+                  <div class="flex justify-center p-6 border-b-[1px] mb-3">
+                    <h1 class="text-lg">Login</h1>
+                    <span
+                      @click="handleChangeOpenLogin(false)"
+                      class="cursor-pointer text-xl justify-items-end"
+                    >
+                      <Icon name="humbleicons:times" />
+                    </span>
+                  </div>
+                  <Form />
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -105,25 +129,20 @@
               </li>
             </ul>
             <div class="border-[1px] border-black p-1 w-fit">
-              <label class="cursor-pointer" @click="handleChangeCheck(true)">
+              <label class="cursor-pointer" @click="handleChangeOpenMenu(true)">
                 <Icon class="text-2xl" name="mingcute:menu-fill" />
               </label>
-              <input
-                type="checkbox"
-                id="btn-check"
-                class="hidden peer"
-                :checked="checked"
-              />
+              <input type="checkbox" class="hidden peer" :checked="openMenu" />
               <label
                 class="fixed top-0 left-0 bottom-0 right-0 bg-[#000000] hidden opacity-50 z-10 peer-checked:block"
-                @click="handleChangeCheck(false)"
+                @click="handleChangeOpenMenu(false)"
               ></label>
               <div
                 class="fixed top-0 left-0 bottom-0 bg-white w-[300px] transition-all duration-500 translate-x-[-100%] opacity-0 z-20 peer-checked:translate-x-0 peer-checked:opacity-100"
               >
                 <span class="absolute top-5 right-5">
                   <label
-                    @click="handleChangeCheck(false)"
+                    @click="handleChangeOpenMenu(false)"
                     class="cursor-pointer text-xl"
                   >
                     <Icon name="humbleicons:times" />
@@ -141,7 +160,7 @@
                       key="1"
                       header="Menu"
                     >
-                      <div class="w-fit" @click="handleChangeCheck(false)">
+                      <div class="w-fit" @click="handleChangeOpenMenu(false)">
                         <NuxtLink
                           class="font-normal text-normal text-black pl-3"
                           to="/"
@@ -149,7 +168,7 @@
                         >
                       </div>
 
-                      <div class="w-fit" @click="handleChangeCheck(false)">
+                      <div class="w-fit" @click="handleChangeOpenMenu(false)">
                         <NuxtLink
                           class="font-normal text-normal text-black pl-3"
                           to="/Shop"
@@ -157,7 +176,7 @@
                         >
                       </div>
 
-                      <div class="w-fit" @click="handleChangeCheck(false)">
+                      <div class="w-fit" @click="handleChangeOpenMenu(false)">
                         <NuxtLink
                           class="font-normal text-normal text-black pl-3"
                           to="/"
@@ -165,7 +184,7 @@
                         >
                       </div>
 
-                      <div class="w-fit" @click="handleChangeCheck(false)">
+                      <div class="w-fit" @click="handleChangeOpenMenu(false)">
                         <NuxtLink
                           class="font-normal text-normal text-black pl-3"
                           to="/"
@@ -183,11 +202,20 @@
     </div>
   </header>
 </template>
-<script setup>
-const checked = ref(false);
+<script setup lang="ts">
+import { useUserStore } from "@/stores/user";
+import { storeToRefs } from "pinia";
+const store = useUserStore();
+const { loggedIn } = storeToRefs(store);
 
-function handleChangeCheck(value) {
-  checked.value = value;
+const openMenu = ref(false);
+const openLogin = ref(false);
+function handleChangeOpenMenu(value: boolean) {
+  openMenu.value = value;
+}
+
+function handleChangeOpenLogin(value: boolean) {
+  openLogin.value = value;
 }
 
 const activeKey = ref(["1"]);
