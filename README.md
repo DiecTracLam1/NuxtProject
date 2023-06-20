@@ -32,4 +32,5 @@
 # Thứ 3 (20/6)
 
 - Làm db , api server
+- Đang bị bug jwt
 - Tìm hiểu về veeValidate
