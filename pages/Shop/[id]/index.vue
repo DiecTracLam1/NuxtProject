@@ -14,32 +14,17 @@
               <ul
                 class="flex sm:flex-col flex-row sm:items-center justify-center"
               >
-                <li class="mb-2">
-                  <span class="">
-                    <img src="~/assets/images/thumb-1.png" alt="" />
-                  </span>
+                <li v-for="image in product.image" class="cursor-pointer mb-2">
+                  <div class="h-[120px]">
+                    <img class="w-full h-full" :src="image" alt="" />
+                  </div>
                 </li>
-                <li class="mb-2">
-                  <span class="">
-                    <img src="~/assets/images/thumb-1.png" alt="" />
-                  </span>
-                </li>
-                <li class="mb-2">
-                  <span class="">
-                    <img
-                      src="https://preview.colorlib.com/theme/malefashion/img/shop-details/thumb-3.png"
-                      alt=""
-                    />
-                  </span>
-                </li>
-                <li></li>
               </ul>
             </div>
             <div class="sm:col-span-8 col-span-12">
               <div class="mx-auto sm:w-full w-fit">
                 <img src="~/assets/images/product-big-2.png" alt="" />
               </div>
-              <!-- ~/assets/images/product-big-2.png -->
             </div>
           </div>
         </div>
@@ -50,7 +35,7 @@
       class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] w-full mx-auto"
     >
       <div class="mt-[100px] text-center">
-        <h4 class="font-bold leading-7 text-2xl">Hooded thermal anorak</h4>
+        <h4 class="font-bold leading-7 text-2xl">{{ product.name }}</h4>
 
         <!-- Rate & Favorite -->
         <div class="flex flex-col xs:flex-row justify-center items-center my-2">
@@ -68,15 +53,13 @@
 
         <!-- Price -->
         <div class="flex justify-center items-center my-4">
-          <p class="font-bold leading-9 text-3xl mr-3 my-0">$270.00</p>
-          <p class="text-xl text-blur-grey line-through my-0">70.00</p>
+          <p class="font-bold leading-9 text-3xl mr-3 my-0">${{ product.salePrice }}</p>
+          <p class="text-xl text-blur-grey line-through my-0">${{ product.price }}</p>
         </div>
 
         <!-- Description -->
         <p class="text-base leading-7 mb-6">
-          Coat with quilted lining and an adjustable hood. Featuring long
-          sleeves with adjustable cuff tabs, adjustable asymmetric hem with
-          elastic side tabs and a front zip fastening with placket
+          {{ product.description }}
         </p>
 
         <!-- Size & Color -->
@@ -408,11 +391,7 @@ function handleChangeDtailTab(value: string) {
 const product: any = ref(null);
 const route = useRoute();
 
-
-  product.value = await (
-    `/api/product/123`
-  );
-  console.log("Into", product.value);
-console.log(product.value)
+const {data} = await useAsyncData("productDetail",()=> $fetch("/api/product/123"));
+product.value = data?.value.data
+console.log(product.value);
 </script>
-
