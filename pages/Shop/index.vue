@@ -136,7 +136,7 @@ export default defineComponent({
     ]);
 
     const activeKey = ref(["1"]);
-    watch(activeKey, (val) => {
+    watchEffect(activeKey, (val) => {
       console.log(val);
     });
     return {

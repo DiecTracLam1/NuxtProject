@@ -47,3 +47,4 @@ model Product {
   brand        Brand @relation(fields: [brandId], references: [id])
   brandId      String @db.ObjectId
 }
+

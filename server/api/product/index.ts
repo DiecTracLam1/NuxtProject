@@ -1,4 +1,4 @@
-import { getProducts } from "../db/product";
+import { getProducts } from "../../db/product";
 
 export default defineEventHandler(async (event) => {
     const products = await getProducts()

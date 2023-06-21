@@ -1,23 +1,41 @@
 <template>
-  <div class="p-6 text-center">
-    <h1 class="text-2xl font-bold">Welcome to Male Fashion</h1>
-    <p class="text-blur-grey text-base">Create an accout</p>
-    <VeeFrom>
-      <Field class="w-5 h-10" name="email" type="email" />
-    </VeeFrom>
-  </div>
+  <a-spin :spinning="store.getLoading">
+    <div class="p-6 text-center">
+      <h1 class="text-2xl font-bold">Welcome to Male Fashion</h1>
+      <p class="text-blur-grey text-base">Create an accout</p>
+      <form @submit="onSubmit">
+        <InputText name="username" type="text" placeholder="Username" />
+        <InputText name="password" type="password" placeholder="Password" />
+        <Button
+          class="w-full"
+          typpe="submit"
+          text="Login"
+          :disabled="isSubmitting"
+        />
+      </form>
+    </div>
+  </a-spin>
 </template>
-<script lang="ts">
-import { Form as VeeFrom, Field } from "vee-validate";
+<script setup lang="ts">
+import { useUserStore } from "@/stores/user";
+import { useForm } from "vee-validate";
 import * as yup from "yup";
 
+// pinia user store
+const store = useUserStore();
+
+// event form
 const schema = yup.object({
-  email: yup.string().required().email(),
-  password: yup.string().required().min(8),
+  username: yup.string().required("Username must be filled"),
+  password: yup.string().required("Password must be filled"),
 });
 
-const onSubmit = (values) => {
-  // Submit to API
-  console.log(values); // { email: 'email@gmail.com' }
-};
+const { handleSubmit, isSubmitting } = useForm({
+  validationSchema: schema,
+});
+
+const onSubmit = handleSubmit(async (values: any) => {
+  const { username, password } = values;
+  await store.loginUser(username, password);
+});
 </script>

@@ -56,29 +56,46 @@
         </div>
         <div class="sm:col-span-3 hidden sm:block">
           <ul class="flex justify-end my-0">
-            <li v-if="loggedIn" class="w-8 h-8 mx-1 mt-[2px] text-end">
+            <li v-if="loggedIn" class="mx-2 mt-[2px] text-end">
               <Icon
-                class="text-xl hover:cursor-pointer"
+                class="text-2xl hover:cursor-pointer"
                 name="uil:heart"
                 color="black"
               />
             </li>
-            <li class="w-8 h-8 mx-1 mt-[2px] text-end">
+            <li class="mx-2 mt-[2px] text-end">
               <Icon
-                class="text-xl hover:cursor-pointer"
+                class="text-2xl hover:cursor-pointer"
                 name="uil:shopping-bag"
                 color="black"
               />
             </li>
-            <li v-if="loggedIn" class="w-8 h-8 mx-1 mt-[2px] text-end">
-              <div class="w-5 h-5">
-                <img class="w-full h-full" :src="store.getImage" alt="" />
-              </div>
+            <li v-if="loggedIn" class="mx-2 mt-[2px] text-end">
+              <a-popover placement="bottom">
+                <template #content>
+                  <p>
+                    <NuxtLink to="account" class="text-black">My Account</NuxtLink>
+                  </p>
+                  <p>
+                    <NuxtLink to="/order" class="text-black">My Purchase</NuxtLink>
+                  </p>
+                  <p>
+                    <NuxtLink class="text-black">Logout</NuxtLink>
+                  </p>
+                </template>
+                <div class="w-6 h-6">
+                  <img
+                    class="border-black border-[px] rounded-full w-full h-full"
+                    :src="getImage"
+                    alt=""
+                  />
+                </div>
+              </a-popover>
             </li>
-            <li v-if="!loggedIn" class="w-8 h-8 ml-1 mt-[2px] text-end">
+            <li v-if="!loggedIn" class="ml-2 mt-[2px] text-end">
               <div>
                 <Icon
-                  class="text-xl hover:cursor-pointer"
+                  class="text-2xl hover:cursor-pointer"
                   name="uil:user-circle"
                   color="black"
                   @click="handleChangeOpenLogin(true)"
@@ -92,20 +109,7 @@
                   class="fixed top-0 left-0 bottom-0 right-0 bg-[#000000] hidden opacity-50 z-10 peer-checked:block"
                   @click="handleChangeOpenLogin(false)"
                 ></div>
-                <div
-                  class="fixed hidden top-1/2 left-1/2 w-2/5 bg-white transition-all duration-500 text-start translate-x-[-50%] translate-y-[-50%] opacity-0 z-20 peer-checked:block peer-checked:opacity-100"
-                >
-                  <div class="flex justify-center p-6 border-b-[1px] mb-3">
-                    <h1 class="text-lg">Login</h1>
-                    <span
-                      @click="handleChangeOpenLogin(false)"
-                      class="cursor-pointer text-xl justify-items-end"
-                    >
-                      <Icon name="humbleicons:times" />
-                    </span>
-                  </div>
-                  <Form />
-                </div>
+                <Login @closeLogin="handleChangeOpenLogin" />
               </div>
             </li>
           </ul>
@@ -113,14 +117,14 @@
         <div class="col-span-6 sm:hidden">
           <div class="flex justify-end items-center">
             <ul class="flex justify-end my-0 mr-2">
-              <li class="w-8 h-8 mx-2 text-end">
+              <li class="mx-2 text-end">
                 <Icon
                   class="text-3xl hover:cursor-pointer"
                   name="uil:heart"
                   color="black"
                 />
               </li>
-              <li class="w-8 h-8 mx-2 text-end">
+              <li class="mx-2 text-end">
                 <Icon
                   class="text-3xl hover:cursor-pointer"
                   name="uil:shopping-bag"
@@ -133,68 +137,11 @@
                 <Icon class="text-2xl" name="mingcute:menu-fill" />
               </label>
               <input type="checkbox" class="hidden peer" :checked="openMenu" />
-              <label
+              <div
                 class="fixed top-0 left-0 bottom-0 right-0 bg-[#000000] hidden opacity-50 z-10 peer-checked:block"
                 @click="handleChangeOpenMenu(false)"
-              ></label>
-              <div
-                class="fixed top-0 left-0 bottom-0 bg-white w-[300px] transition-all duration-500 translate-x-[-100%] opacity-0 z-20 peer-checked:translate-x-0 peer-checked:opacity-100"
-              >
-                <span class="absolute top-5 right-5">
-                  <label
-                    @click="handleChangeOpenMenu(false)"
-                    class="cursor-pointer text-xl"
-                  >
-                    <Icon name="humbleicons:times" />
-                  </label>
-                </span>
-
-                <div class="pt-[70px]">
-                  <a-collapse
-                    v-model:activeKey="activeKey"
-                    expand-icon-position="right"
-                    accordion
-                  >
-                    <a-collapse-panel
-                      class="font-bold text-xl text-white"
-                      key="1"
-                      header="Menu"
-                    >
-                      <div class="w-fit" @click="handleChangeOpenMenu(false)">
-                        <NuxtLink
-                          class="font-normal text-normal text-black pl-3"
-                          to="/"
-                          >Home</NuxtLink
-                        >
-                      </div>
-
-                      <div class="w-fit" @click="handleChangeOpenMenu(false)">
-                        <NuxtLink
-                          class="font-normal text-normal text-black pl-3"
-                          to="/Shop"
-                          >Shop</NuxtLink
-                        >
-                      </div>
-
-                      <div class="w-fit" @click="handleChangeOpenMenu(false)">
-                        <NuxtLink
-                          class="font-normal text-normal text-black pl-3"
-                          to="/"
-                          >Blog</NuxtLink
-                        >
-                      </div>
-
-                      <div class="w-fit" @click="handleChangeOpenMenu(false)">
-                        <NuxtLink
-                          class="font-normal text-normal text-black pl-3"
-                          to="/"
-                          >Contact</NuxtLink
-                        >
-                      </div>
-                    </a-collapse-panel>
-                  </a-collapse>
-                </div>
-              </div>
+              ></div>
+              <NavBarLeftMobile @closeMenu="handleChangeOpenMenu" />
             </div>
           </div>
         </div>
@@ -206,7 +153,7 @@
 import { useUserStore } from "@/stores/user";
 import { storeToRefs } from "pinia";
 const store = useUserStore();
-const { loggedIn } = storeToRefs(store);
+const { loggedIn, getImage } = storeToRefs(store);
 
 const openMenu = ref(false);
 const openLogin = ref(false);
@@ -217,6 +164,4 @@ function handleChangeOpenMenu(value: boolean) {
 function handleChangeOpenLogin(value: boolean) {
   openLogin.value = value;
 }
-
-const activeKey = ref(["1"]);
 </script>

@@ -1,11 +1,11 @@
+import jwt from "jsonwebtoken";
 
-import {sign} from "jsonwebtoken";
-import { User } from "../types/user.types"
+import { User } from "../types/user.types";
 
 export const generateAccessToken = (user: User) => {
+  const { sign } = jwt;
   const config = useRuntimeConfig();
-  return "dasd"
-  // return sign({ userId: user.id }, config.jwtAccessSecret);
+  return sign({ userId: user.id }, config.jwtAccessSecret);
 };
 
 // export const decodeRefreshToken = (token: string) => {

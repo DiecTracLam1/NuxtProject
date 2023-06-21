@@ -8,8 +8,4 @@
     font-family: "Nunito Sans", sans-serif;
     @apply box-border m-0 p-0;
   }
-  :root {
-    --primary-color: #fff;
-    --secondary-color: #000;
-  }
 }

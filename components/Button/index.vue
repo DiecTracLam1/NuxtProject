@@ -1,11 +1,11 @@
 <template>
-  <NuxtLink
+  <button
     class="inline-block bg-black text-white w-fit tracking-[4px] uppercase font-bold hover:cursor-pointer hover:text-white"
     :class="classes"
   >
     {{ props.text }}
     <slot />
-  </NuxtLink>
+  </button>
 </template>
 <script setup>
 const props = defineProps({

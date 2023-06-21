@@ -403,4 +403,16 @@ const dtailTab = ref("des");
 function handleChangeDtailTab(value: string) {
   dtailTab.value = value;
 }
+
+// get product detail
+const product: any = ref(null);
+const route = useRoute();
+
+
+  product.value = await (
+    `/api/product/123`
+  );
+  console.log("Into", product.value);
+console.log(product.value)
 </script>
+
