@@ -38,13 +38,13 @@
             </div>
           </div>
           <div class="grid grid-cols-12 sm:gap-7.5">
-            <ProductList :products="products.data.products" />
-            <!-- <ul>
+            <!-- <ProductList :products="products.data.products" /> -->
+            <ul>
               <li v-for="product in products.data.products">
                 {{ product?.name }}
                 <p>_______________</p>
               </li>
-            </ul> -->
+            </ul>
           </div>
 
           <div class="my-8 text-center">
@@ -52,7 +52,7 @@
               v-model:current="page"
               :total="500"
               show-size-changer
-              @change="onShowSizeChange"
+              @change="onChangePage"
             />
           </div>
         </div>
@@ -61,40 +61,47 @@
   </div>
 </template>
 <script setup lang="ts">
-
+const products:any = ref([])
 const nuxtApp = useNuxtApp();
 const total = ref("");
 const page = ref(1);
-const productLogCount = 2;
+const productLogCount = 1;
 const _offset = ref(productLogCount * (page.value - 1));
 
-const onShowSizeChange = (current: number) => {
+const onChangePage = (current: number) => {
   console.log(current);
   _offset.value = (current - 1) * productLogCount;
+  console.log(_offset.value)
+  a()
 };
 
-// const { data: products } = await useFetch("/api/product", {
-//   params: { _limit: productLogCount, _offset: _offset.value },
-//   watch: [_offset],
-//   server: true,
-// });
-// console.log(products);
+const a = async() => {
+  console.log(_offset.value)
+  console.log(productLogCount)
+  const { data } = await useFetch("/api/product", {
+    query: { _limit: productLogCount, _offset: _offset.value },
+  });
+  console.log(data)
+  products.value = data.value
+  console.log(products.value)
+}
+a()
 
-const { data: products } = await useAsyncData(
-  "products",
-  async () => {
-    const dataProducts = await $fetch("/api/product", {
-      params: { _limit: productLogCount, _offset: _offset.value },
-    });
-    console.log("InFetch", dataProducts);
-    console.log(nuxtApp)
-    // products.value = dataProducts.data;
-    return dataProducts;
-  },
-  {
-    watch: [_offset],
-  }
-);
+// const { data: products } = await useAsyncData(
+//   "products",
+//   async () => {
+//     const dataProducts = await $fetch("/api/product", {
+//       params: { _limit: productLogCount, _offset: _offset.value },
+//     });
+//     console.log("InFetch", dataProducts);
+//     console.log(nuxtApp)
+//     // products.value = dataProducts.data;
+//     return dataProducts;
+//   },
+//   {
+//     watch: [_offset],
+//   }
+// );
 
-products.value = data.value.data;
+// products.value = data.value.data;
 </script>
