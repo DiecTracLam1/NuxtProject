@@ -3,7 +3,7 @@
     <div class="h-[260px] relative">
       <img
         class="w-full h-full"
-        src="https://preview.colorlib.com/theme/malefashion/img/product/product-2.jpg.webp"
+        :src="product.image[0]"
         alt=""
       />
       <span
@@ -22,7 +22,7 @@
       </ul>
     </div>
     <div class="relative mt-6">
-      <p class="text-[18px] mb-[5px]">Piqué Biker Jacket</p>
+      <p class="text-[18px] mb-[5px]">{{ product.name}}</p>
       <div class="mb-[6px]"><a-rate /></div>
       <p class="text-[18px] font-bold">$67.24</p>
       <button
@@ -33,3 +33,12 @@
     </div>
   </div>
 </template>
+<script setup>
+const props = defineProps({
+  product: {
+    type : Object,
+    default : null
+  },
+});
+const {product} = props
+</script>

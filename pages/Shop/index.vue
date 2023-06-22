@@ -15,134 +15,86 @@
     >
       <div class="grid grid-cols-12 gap-y-[50px] md:gap-[50px]">
         <div class="col-span-12 md:col-span-3">
-          <form class="flex border-[#e3e1e8] border-2 px-3 py-2 mb-11">
-            <input
-              class="flex-1 text-normal text-blur-grey outline-none"
-              type="text"
-              placeholder="Search..."
-            />
-            <button class="pl-2 text-blur-grey">
-              <Icon name="heroicons-outline:magnifying-glass" />
-            </button>
-          </form>
-
-          <a-collapse
-            v-model:activeKey="activeKey"
-            expand-icon-position="right"
-            ghost
-          >
-            <a-collapse-panel key="1" header="CATEGORIES" class="font-bold">
-              <div class="border-b-[1px] border-[#e3e1e8] pb-2">
-                <div
-                  class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
-                  v-for="item in list"
-                >
-                  {{ item.text }} {{ `(${item.amount})` }}
-                </div>
-              </div>
-            </a-collapse-panel>
-
-            <a-collapse-panel key="2" header="BRANDING" class="font-bold">
-              <div class="border-b-[1px] border-[#e3e1e8] pb-2">
-                <div
-                  class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
-                  v-for="item in list"
-                >
-                  {{ item.text }}
-                </div>
-              </div>
-            </a-collapse-panel>
-
-            <a-collapse-panel key="3" header="FILTER PRICE" class="font-bold">
-              <div class="border-b-[1px] border-[#e3e1e8] pb-2">
-                <div
-                  class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
-                  v-for="item in list"
-                >
-                  {{ item.text }}
-                </div>
-              </div>
-            </a-collapse-panel>
-
-            <a-collapse-panel key="4" header="SIZE" class="font-bold">
-              <div class="border-b-[1px] border-[#e3e1e8] pb-2">
-                <div
-                  class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
-                  v-for="item in list"
-                >
-                  {{ item.text }}
-                </div>
-              </div>
-            </a-collapse-panel>
-
-            <a-collapse-panel key="5" header="COLORS" class="font-bold">
-              <div class="border-b-[1px] border-[#e3e1e8] pb-2">
-                <!-- <div
-                  class="my-2 text-blur-grey hover:cursor-pointer"
-                  v-for="item in list"
-                > -->
-                <div
-                  class="mb-2 mr-2 w-[30px] h-[30px] p-[1px] rounded-full border-[#e3e1e8] border-[1px]"
-                >
-                  <span
-                    class="inline-block bg-yellow-500 w-full h-full rounded-full"
-                  />
-                </div>
-
-                <!-- </div> -->
-              </div>
-            </a-collapse-panel>
-          </a-collapse>
+          <NavBarShop />
         </div>
+
         <div class="col-span-12 md:col-span-9">
           <div class="flex mb-11">
-            <p>Showing 1-12 of 126 results</p>
-            <p class="items-end">asdasd</p>
+            <p class="leading-6 text-normal">Showing 1-12 of 126 results</p>
+            <div class="leading-6 text-normal ml-auto">
+              Sort By Pirce
+              <a-select
+                sty
+                ref="select"
+                defaultValue="inc"
+                style="width: 120px"
+                @focus="focus"
+                @change="handleChange"
+                :bordered="false"
+              >
+                <a-select-option value="inc">Low To High</a-select-option>
+                <a-select-option value="lucy">High to Low</a-select-option>
+              </a-select>
+            </div>
           </div>
           <div class="grid grid-cols-12 sm:gap-7.5">
-            <div class="col-span-12 sm:col-span-6 md:col-span-4">
-              <ProductItem />
-            </div>
-            <div class="col-span-12 sm:col-span-6 md:col-span-4">
-              <ProductItem />
-            </div>
-            <div class="col-span-12 sm:col-span-6 md:col-span-4">
-              <ProductItem />
-            </div>
-            <div class="col-span-12 sm:col-span-6 md:col-span-4">
-              <ProductItem />
-            </div>
+            <ProductList :products="products.data.products" />
+            <!-- <ul>
+              <li v-for="product in products.data.products">
+                {{ product?.name }}
+                <p>_______________</p>
+              </li>
+            </ul> -->
           </div>
 
           <div class="my-8 text-center">
-            <a-pagination v-model:current="current" :total="500"  />
+            <a-pagination
+              v-model:current="page"
+              :total="500"
+              show-size-changer
+              @change="onShowSizeChange"
+            />
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-<script>
-import { SettingOutlined } from "@ant-design/icons-vue";
-import { defineComponent, ref, watch } from "vue";
-export default defineComponent({
-  components: {
-    SettingOutlined,
-  },
-  setup() {
-    const list = ref([
-      { text: "Men", amount: 20 },
-      { text: "Woman", amount: 20 },
-    ]);
+<script setup lang="ts">
 
-    const activeKey = ref(["1"]);
-    watchEffect(activeKey, (val) => {
-      console.log(val);
+const nuxtApp = useNuxtApp();
+const total = ref("");
+const page = ref(1);
+const productLogCount = 2;
+const _offset = ref(productLogCount * (page.value - 1));
+
+const onShowSizeChange = (current: number) => {
+  console.log(current);
+  _offset.value = (current - 1) * productLogCount;
+};
+
+// const { data: products } = await useFetch("/api/product", {
+//   params: { _limit: productLogCount, _offset: _offset.value },
+//   watch: [_offset],
+//   server: true,
+// });
+// console.log(products);
+
+const { data: products } = await useAsyncData(
+  "products",
+  async () => {
+    const dataProducts = await $fetch("/api/product", {
+      params: { _limit: productLogCount, _offset: _offset.value },
     });
-    return {
-      list,
-      activeKey,
-    };
+    console.log("InFetch", dataProducts);
+    console.log(nuxtApp)
+    // products.value = dataProducts.data;
+    return dataProducts;
   },
-});
+  {
+    watch: [_offset],
+  }
+);
+
+products.value = data.value.data;
 </script>

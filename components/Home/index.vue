@@ -116,7 +116,7 @@
       <div
         class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto"
       >
-        <div class="grid grid-cols-12 sm:gap-x-7.5 gap-y-10">
+        <!-- <div class="grid grid-cols-12 sm:gap-x-7.5 gap-y-10">
           <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
             <ProductItem />
           </div>
@@ -136,7 +136,7 @@
           <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
             <ProductItem />
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 

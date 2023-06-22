@@ -1,4 +1,5 @@
-export const userTransformer = (user : any)=>{
+import { User } from "../types/user.types"
+export const userTransformer = (user : User)=>{
     return {
         id: user.id,
         name: user.name,
