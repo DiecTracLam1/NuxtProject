@@ -1,14 +1,6 @@
 // Pinia Store
 import { defineStore } from "pinia";
-
-interface User {
-  id: string;
-  name: string | null;
-  email: string | null;
-  username: string | null;
-  phone: number | null;
-  profileImage: string;
-}
+import { User } from "~/model/user";
 
 export const useUserStore = defineStore("User", {
   state: () => {

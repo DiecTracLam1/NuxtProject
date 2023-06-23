@@ -1,6 +1,7 @@
 import { getDetailProduct } from "../../db/product";
 
 export default defineEventHandler(async (event) => {
-  const product = await getDetailProduct("6492c171572f2f9af05603d6");
+  const id:string | undefined = event.context.params?.id;
+  const product = await getDetailProduct(id || "");
   return { data: product };
 });

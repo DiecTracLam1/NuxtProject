@@ -1,7 +1,8 @@
+import { User } from "../types/user.types";
 import { prisma } from "./";
 import * as bcrypt from "bcrypt";
 
-export const createUser = async (userData: any) => {
+export const createUser = async (userData: User) => {
   const finalUserData = {
     ...userData,
     password: await bcrypt.hash(userData.password, 10),

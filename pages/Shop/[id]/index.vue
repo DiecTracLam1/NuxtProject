@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-[#F3F2EE]">
+    <div class="bg-[#f6f6f6]">
       <div
         class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] w-full mx-auto"
       >
@@ -15,15 +15,15 @@
                 class="flex sm:flex-col flex-row sm:items-center justify-center"
               >
                 <li v-for="image in product.image" class="cursor-pointer mb-2">
-                  <div class="h-[120px]">
+                  <div @click="onChangeBigImg(image)" class="h-[120px]">
                     <img class="w-full h-full" :src="image" alt="" />
                   </div>
                 </li>
               </ul>
             </div>
             <div class="sm:col-span-8 col-span-12">
-              <div class="mx-auto sm:w-full w-fit">
-                <img src="~/assets/images/product-big-2.png" alt="" />
+              <div class="mx-auto sm:w-full w-fit h-[533px]">
+                <img class="h-full" :src="bigImage" alt="" />
               </div>
             </div>
           </div>
@@ -53,8 +53,12 @@
 
         <!-- Price -->
         <div class="flex justify-center items-center my-4">
-          <p class="font-bold leading-9 text-3xl mr-3 my-0">${{ product.salePrice }}</p>
-          <p class="text-xl text-blur-grey line-through my-0">${{ product.price }}</p>
+          <p class="font-bold leading-9 text-3xl mr-3 my-0">
+            ${{ product.salePrice }}
+          </p>
+          <p class="text-xl text-blur-grey line-through my-0">
+            ${{ product.price }}
+          </p>
         </div>
 
         <!-- Description -->
@@ -62,138 +66,7 @@
           {{ product.description }}
         </p>
 
-        <!-- Size & Color -->
-        <form
-          class="flex justify-center items-center mb-[30px] sm:flex-row flex-col"
-        >
-          <div class="flex sm:mr-[50px] items-center sm:mb-0 mb-[25px]">
-            <span class="text-base">Size: </span>
-            <ul class="flex items-center m-0 ml-[10px]">
-              <li class="mr-[10px]">
-                <input class="hidden peer" type="radio" name="size" id="XXL" />
-                <label
-                  class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] inline-block peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
-                  for="XXL"
-                  >XXL</label
-                >
-              </li>
-
-              <li class="mr-[10px]">
-                <input class="hidden peer" type="radio" name="size" id="XL" />
-                <label
-                  class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] inline-block peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
-                  for="XL"
-                  >XL</label
-                >
-              </li>
-
-              <li class="mr-[10px]">
-                <input class="hidden peer" type="radio" name="size" id="L" />
-                <label
-                  class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] inline-block peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
-                  for="L"
-                  >L</label
-                >
-              </li>
-
-              <li class="mr-[10px]">
-                <input class="hidden peer" type="radio" name="size" id="M" />
-                <label
-                  class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] inline-block peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
-                  for="M"
-                  >M</label
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div class="flex items-center">
-            <span class="leading-6 text-base">Color: </span>
-            <ul class="flex items-center m-0 ml-[10px]">
-              <li class="mr-[10px]">
-                <input
-                  class="hidden peer"
-                  type="radio"
-                  name="color"
-                  id="yellow"
-                />
-                <label
-                  class="inline-block w-[30px] h-[30px] p-[1px] rounded-full border-[#e3e1e8] border-[1px] peer-checked:scale-[1.2] peer-checked:border-black hover:cursor-pointer"
-                  for="yellow"
-                >
-                  <span
-                    class="inline-block bg-yellow-500 w-full h-full rounded-full"
-                  />
-                </label>
-              </li>
-
-              <li class="mr-[10px]">
-                <input
-                  class="hidden peer"
-                  type="radio"
-                  name="color"
-                  id="yellow"
-                />
-                <label
-                  class="inline-block w-[30px] h-[30px] p-[1px] rounded-full border-[#e3e1e8] border-[1px] peer-checked:scale-[1.2] peer-checked:border-black hover:cursor-pointer"
-                  for="yellow"
-                >
-                  <span
-                    class="inline-block bg-yellow-500 w-full h-full rounded-full"
-                  />
-                </label>
-              </li>
-
-              <li class="mr-[10px]">
-                <input
-                  class="hidden peer"
-                  type="radio"
-                  name="color"
-                  id="yellow"
-                />
-                <label
-                  class="inline-block w-[30px] h-[30px] p-[1px] rounded-full border-[#e3e1e8] border-[1px] peer-checked:scale-[1.2] peer-checked:border-black hover:cursor-pointer"
-                  for="yellow"
-                >
-                  <span
-                    class="inline-block bg-yellow-500 w-full h-full rounded-full"
-                  />
-                </label>
-              </li>
-
-              <li class="mr-[10px]">
-                <input
-                  class="hidden peer"
-                  type="radio"
-                  name="color"
-                  id="yellow"
-                />
-                <label
-                  class="inline-block w-[30px] h-[30px] p-[1px] rounded-full border-[#e3e1e8] border-[1px] peer-checked:scale-[1.2] peer-checked:border-black hover:cursor-pointer"
-                  for="yellow"
-                >
-                  <span
-                    class="text- inline-block bg-yellow-500 w-full h-full rounded-full"
-                  />
-                </label>
-              </li>
-            </ul>
-          </div>
-        </form>
-
-        <!-- Amount  -->
-        <div
-          class="flex flex-col xs:flex-row justify-center items-center mb-10"
-        >
-          <input
-            type="number"
-            class="border-blur-grey border-[1px] font-bold text-center py-[13px] px-[15px] mr-6 xs:mb-0 mb-[15px] outline-none"
-            min="1"
-            max="20"
-            value="1"
-          />
-          <Button text="+ADD TO CART" size="xl" />
-        </div>
+        <FormDetail/>
 
         <!-- Checkout -->
         <div
@@ -354,7 +227,7 @@
       <!-- Related Product -->
       <div class="py-[60px]">
         <h2 class="font-bold text-3xl mx-auto mb-11 w-fit">Related Product</h2>
-        <div class="grid grid-cols-12 xs:gap-[30px]">
+        <!-- <div class="grid grid-cols-12 xs:gap-[30px]">
           <div
             class="xs:col-span-6 sm:col-span-6 md:col-span-4 xl:col-span-3 col-span-12"
           >
@@ -375,7 +248,7 @@
           >
             <ProductItem />
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -391,7 +264,20 @@ function handleChangeDtailTab(value: string) {
 const product: any = ref(null);
 const route = useRoute();
 
-const {data} = await useAsyncData("productDetail",()=> $fetch("/api/product/123"));
-product.value = data?.value.data
-console.log(product.value);
+const { data } = await useAsyncData("productDetail", () =>
+  $fetch(`/api/product/${route.params.id}`)
+);
+product.value = data?.value.data;
+
+// set big image
+const bigImage = ref(product.value.image[0]);
+function onChangeBigImg(value: string) {
+  bigImage.value = value;
+}
+
+// form
+function onSubmit(event: any) {
+  event.preventDefault();
+  console.log(event.value);
+}
 </script>

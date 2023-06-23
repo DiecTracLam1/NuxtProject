@@ -3,6 +3,7 @@ import { compare } from "bcrypt";
 import { userTransformer } from "../../transfomers/user";
 import { generateAccessToken } from "../../ultis/jwt";
 import { sendError } from "h3";
+import { User } from "../../types/user.types.js";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);

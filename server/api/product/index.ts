@@ -1,7 +1,7 @@
 import { getProducts } from "../../db/product";
 import { productTransformer } from "../../transfomers/product";
 export default defineEventHandler(async (event) => {
-  const { _offset = 0, _limit = 10 } = getQuery(event);
+  const { _offset = 0, _limit = 9 } = getQuery(event);
   // console.log(params)
   const { total, products } = await getProducts({
     skip: Number(_offset),

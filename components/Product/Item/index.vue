@@ -1,11 +1,7 @@
 <template>
   <div class="flex flex-col overflow-hidden hover:cursor-pointer group">
     <div class="h-[260px] relative">
-      <img
-        class="w-full h-full"
-        :src="product.image[0]"
-        alt=""
-      />
+      <img class="w-full h-full" :src="props.product.image[0]" alt="" />
       <span
         class="absolute bg-white font-bold top-5 text-[11px] px-[15px] py-1 inline-block"
         >NEW</span
@@ -17,12 +13,12 @@
           <span><Icon class="" name="uil:heart" /></span>
         </li>
         <li class="bg-white mb-[10px] p-[10px] text-base leading-4">
-          <span><Icon class="" name="uil:search" /></span>
+          <span @click="onNavigate(props.product.id)"><Icon class="" name="uil:search" /></span>
         </li>
       </ul>
     </div>
     <div class="relative mt-6">
-      <p class="text-[18px] mb-[5px]">{{ product.name}}</p>
+      <p class="text-[18px] mb-[5px]">{{ props.product.name }}</p>
       <div class="mb-[6px]"><a-rate /></div>
       <p class="text-[18px] font-bold">$67.24</p>
       <button
@@ -36,9 +32,14 @@
 <script setup>
 const props = defineProps({
   product: {
-    type : Object,
-    default : null
+    type: Object,
+    default: null,
   },
 });
-const {product} = props
+
+const onNavigate = (id)=>{
+  navigateTo({
+    path: `/shop/${id}`,
+  });
+}
 </script>

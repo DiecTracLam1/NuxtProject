@@ -11,7 +11,7 @@
         <Icon name="humbleicons:times" />
       </span>
     </div>
-    <Form/>
+    <FormLogin/>
   </div>
 </template>
 <script setup lang="ts">

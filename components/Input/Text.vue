@@ -3,7 +3,7 @@
     <input
       v-model="value"
       class=" border-[#e3e5e9] border-[2px] w-full p-4"
-      name="username"
+      :name="name"
       :type="props.type"
       :class="errorMessage && 'border-red-500'"
       :placeholder="placeholder"

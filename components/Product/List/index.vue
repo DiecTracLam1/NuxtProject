@@ -7,13 +7,10 @@
   </div>
 </template>
 <script setup>
-console.log("List")
-const productTamp = ref()
 const props = defineProps({
   products: {
     type: Array,
     default: [],
   },
 });
-watch(products)
 </script>
