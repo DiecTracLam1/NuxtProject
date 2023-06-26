@@ -12,8 +12,11 @@
         <li class="bg-white mb-[10px] p-[10px] text-base leading-4">
           <span><Icon class="" name="uil:heart" /></span>
         </li>
-        <li class="bg-white mb-[10px] p-[10px] text-base leading-4">
-          <span @click="onNavigate(props.product.id)"><Icon class="" name="uil:search" /></span>
+        <li
+          @click="onNavigate(props.product.id)"
+          class="bg-white mb-[10px] p-[10px] text-base leading-4"
+        >
+          <span><Icon class="" name="uil:search" /></span>
         </li>
       </ul>
     </div>
@@ -37,9 +40,9 @@ const props = defineProps({
   },
 });
 
-const onNavigate = (id)=>{
+const onNavigate = (id) => {
   navigateTo({
     path: `/shop/${id}`,
   });
-}
+};
 </script>

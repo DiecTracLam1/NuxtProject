@@ -74,8 +74,11 @@ const onChangePage = (current: number) => {
   console.log("limit", _limit.value);
 };
 
-const { data : products } = await useFetch(
+const { data: products } = await useFetch(
   () => `/api/product?_offset=${_offset.value}&_limit=${_limit.value}`,
+  {
+    watch: [_offset],
+  }
 );
 
 // const { data: products } = await useAsyncData(

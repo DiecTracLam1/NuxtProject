@@ -63,21 +63,29 @@
                 color="black"
               />
             </li>
-            <li class="mx-2 mt-[2px] text-end">
-              <Icon
-                class="text-2xl hover:cursor-pointer"
-                name="uil:shopping-bag"
-                color="black"
-              />
+            <li class="mx-2 mt-[2px] text-end relative">
+              <a-badge :count="cartStore.cart.length">
+                <NuxtLink class="inline-block" to="/cart">
+                  <Icon
+                    class="text-2xl hover:cursor-pointer"
+                    name="uil:shopping-bag"
+                    color="black"
+                  />
+                </NuxtLink>
+              </a-badge>
             </li>
             <li v-if="loggedIn" class="mx-2 mt-[2px] text-end">
               <a-popover placement="bottom">
                 <template #content>
                   <p>
-                    <NuxtLink to="account" class="text-black">My Account</NuxtLink>
+                    <NuxtLink to="account" class="text-black"
+                      >My Account</NuxtLink
+                    >
                   </p>
                   <p>
-                    <NuxtLink to="/order" class="text-black">My Purchase</NuxtLink>
+                    <NuxtLink to="/order" class="text-black"
+                      >My Purchase</NuxtLink
+                    >
                   </p>
                   <p>
                     <NuxtLink class="text-black">Logout</NuxtLink>
@@ -125,11 +133,13 @@
                 />
               </li>
               <li class="mx-2 text-end">
-                <Icon
-                  class="text-3xl hover:cursor-pointer"
-                  name="uil:shopping-bag"
-                  color="black"
-                />
+                <NuxtLink to="/cart">
+                  <Icon
+                    class="text-3xl hover:cursor-pointer"
+                    name="uil:shopping-bag"
+                    color="black"
+                  />
+                </NuxtLink>
               </li>
             </ul>
             <div class="border-[1px] border-black p-1 w-fit">
@@ -151,9 +161,11 @@
 </template>
 <script setup lang="ts">
 import { useUserStore } from "@/stores/user";
+import { useCartStore } from "@/stores/cart";
 import { storeToRefs } from "pinia";
-const store = useUserStore();
-const { loggedIn, getImage } = storeToRefs(store);
+const userStore = useUserStore();
+const cartStore = useCartStore();
+const { loggedIn, getImage } = storeToRefs(userStore);
 
 const openMenu = ref(false);
 const openLogin = ref(false);

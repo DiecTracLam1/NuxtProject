@@ -14,27 +14,29 @@
             <template v-if="column.key === 'product'">
               <div class="flex sm:items-center sm:flex-row flex-col">
                 <div class="h-[90px]">
-                  <img
-                    class="w-[90px] h-[90px]"
-                    src="https://preview.colorlib.com/theme/malefashion/img/product/product-2.jpg.webp"
-                    alt=""
-                  />
+                  <img class="w-[90px] h-[90px]" :src="record.image" alt="" />
                 </div>
                 <div class="sm:ml-[30px]">
-                  <p class="m-0 text-normal">{{ record.name }}</p>
+                  <p class="m-0 text-lg">{{ record.name }}</p>
+                  <div class="flex my-1 text-blur-grey text-sm">
+                    <span>Size:XL</span>
+                    <span class="ml-3">Color:Blue</span>
+                  </div>
                   <div class="flex items-center font-bold text-lg">
                     <Icon
                       name="ph:currency-dollar-simple-bold"
                       color="black"
                       class="w-fit leading"
                     />
-                    <p class="m-0 mt-[2px]">68.12</p>
+                    <p class="m-0 mt-[2px]">{{ record.salePrice }}</p>
                   </div>
                 </div>
               </div>
             </template>
 
-            <template v-else-if="column.key === 'quantity'"> </template>
+            <template v-else-if="column.key === 'quantity'">
+              <input @change="(e)=>onChangeQuantity(e,record)" class="w-16 text-center border-black border-[1px] " type="number" :value="record.quantity">
+            </template>
 
             <template v-else-if="column.key === 'total'">
               <div class="flex items-center font-bold text-lg">
@@ -52,6 +54,7 @@
                 class="box-content p-2 bg-[#F3F2EE] text-2xl rounded-full cursor-pointer"
                 name="typcn:times"
                 color="black"
+                @click="removeCart(record?.id)"
               />
             </template>
           </template>
@@ -99,67 +102,53 @@
 </template>
 
 <script setup lang="ts">
+import { useCartStore } from "@/stores/cart";
+
+// pinia cart store
+const store = useCartStore();
 const columns = [
   {
     title: "PRODUCT",
     dataIndex: "product",
     key: "product",
-    width: "xs:w-fit"
+    width: "xs:w-fit",
   },
   {
     title: "QUANTITY",
     dataIndex: "quantity",
     key: "quantity",
-    width: '20%'
-
+    width: "20%",
   },
   {
     title: "TOTAL",
     dataIndex: "total",
     key: "total",
-    width: '20%'
-
+    width: "20%",
   },
   {
     title: "",
     dataIndex: "Delete",
     key: "Delete",
-    width: '10%'
+    width: "10%",
   },
 ];
 
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    imgae:
-      "https://preview.colorlib.com/theme/malefashion/img/shopping-cart/cart-1.jpg.webp",
-    quantity: 32,
-    total: "80.00",
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    quantity: 42,
-    total: "80.00",
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    quantity: 32,
-    total: "80.00",
-  },
-  {
-    key: "4",
-    name: "Joe Black",
-    quantity: 32,
-    total: "80.00",
-  },
-  {
-    key: "5",
-    name: "Joe Black",
-    quantity: 32,
-    total: "80.00",
-  },
-];
+const data = computed(() => {
+  return store.cart.map((item) => {
+    return {
+      ...item,
+      key: item.id,
+      image: item.image[0],
+      total: item.quantity * item.salePrice,
+    };
+  });
+});
+
+function removeCart(id: string) {
+  store.removeItemFromCart(id);
+}
+
+function onChangeQuantity(e :any , product:any){
+  store.setQuantity(Number(e.target.value), product)
+}
 </script>
