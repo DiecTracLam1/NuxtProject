@@ -43,7 +43,7 @@
 
     <div class="">
       <ul class="flex flex-col">
-        <li class="border-[1px] my-3 shadow-lg p-6">
+        <li v-for="order , index in orders?.data" class="border-[1px] my-3 shadow-lg p-6">
           <div>
             <div class="border-b-[1px] pb-3 text-end text-[#26aa99]">
               <Icon name="mdi:truck-outline" class="text-lg" />
@@ -56,14 +56,14 @@
                 <div class="w-[78px] h-[78px]">
                   <img
                     class="w-full h-full"
-                    src="https://preview.colorlib.com/theme/malefashion/img/shopping-cart/cart-1.jpg.webp"
+                    :src="order.product[index].image[0] "
                     alt=""
                   />
                 </div>
                 <div class="flex flex-1 flex-col pl-3">
                   <a-typography-paragraph
                     :ellipsis="{ rows: 2 }"
-                    content="Giày Thể Thao Nam MWC NATT- 5444 Giày Thể Thao Nam Cao Cấp, Sneaker Nam Cổ Thấp Năng Động Cá Tính"
+                    :content="order.product[index].name "
                     class="text-base"
                   ></a-typography-paragraph>
                   <p class="text-blur-grey">Phân loại hàng: xanh - 39</p>
@@ -72,14 +72,14 @@
               </div>
               <div class="flex justify-self-end text-lg xs:pl-0 pl-[90px]">
                 <span class="text-blur-grey line-through mr-3 my-0"
-                  >$25.00</span
+                  >${{ order.product[index].price }}</span
                 >
-                <span class="text-[#ee4d2d] my-0">$20.00</span>
+                <span class="text-[#ee4d2d] my-0">${{ order.product[index].salePrice }}</span>
               </div>
             </div>
             <div class="py-3 text-right">
               <span class="text-sm">Order total : </span>
-              <span class="text-[#ee4d2d] text-2xl">$256.00</span>
+              <span class="text-[#ee4d2d] text-2xl">${{ order.totalPrice }}</span>
             </div>
             <div class="pt-3 text-right">
               <Button class="tracking-normal" text="Buy again" />
@@ -137,4 +137,7 @@
 
 <script setup lang="ts">
 const activeKey = ref("1");
+
+const { data: orders } = await useFetch(`/api/order`);
+console.log(orders)
 </script>

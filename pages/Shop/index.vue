@@ -38,14 +38,13 @@
             </div>
           </div>
           <div class="grid grid-cols-12 sm:gap-7.5">
-            <ProductList :products="products?.data?.products" />
-            <!-- <ul>
-              <li v-for="product in products?.data?.products">
-              
+            <!-- <ProductList :products="products?.data?.products" /> -->
+            <ul>
+              <li v-for="product in productsStore.data.products">
                 {{ product?.name }}
                 <p>------</p>
               </li>
-            </ul> -->
+            </ul>
           </div>
 
           <div class="my-8 text-center">
@@ -62,24 +61,28 @@
   </div>
 </template>
 <script setup lang="ts">
-const nuxtApp = useNuxtApp();
+const { $productPluxgin } = useNuxtApp();
+import { useProductStore } from "~/stores/product";
+const productsStore = useProductStore();
 const total = ref("");
 const page = ref(1);
 const _limit = ref(3);
 const _offset = ref(_limit.value * (page.value - 1));
+// $productPluxgin(_offset.value, _limit.value);
 
-const onChangePage = (current: number) => {
+const onChangePage = async (current: number) => {
   _offset.value = (current - 1) * _limit.value;
+  await  $productPluxgin(_offset.value, _limit.value);
   console.log("offset", _offset.value);
   console.log("limit", _limit.value);
 };
 
-const { data: products } = await useFetch(
-  () => `/api/product?_offset=${_offset.value}&_limit=${_limit.value}`,
-  {
-    watch: [_offset],
-  }
-);
+// const { data: products } = await useFetch(
+//   () => `/api/product?_offset=${_offset.value}&_limit=${_limit.value}`,
+//   {
+//     watch: [_offset],
+//   }
+// );
 
 // const { data: products } = await useAsyncData(
 //   "products",
