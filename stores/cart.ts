@@ -25,14 +25,20 @@ export const useCartStore = defineStore("Cart", {
       const ItemIndex = this.cart.findIndex((x) => x.id == product.id);
       if (ItemIndex > 0) {
         this.cart[ItemIndex].quantity = quantity;
-      }
-      else{
-        this.cart.splice(ItemIndex, 1)
+      } else {
+        this.cart.splice(ItemIndex, 1);
       }
     },
 
     removeItemFromCart(id: string) {
       this.cart = this.cart.filter((item) => item.id != id);
+    },
+
+    async submitToApi({ totalPrice, userId, product }: any) {
+      await $fetch("/api/order", {
+        method: "POST",
+        body: { totalPrice, userId, product },
+      });
     },
   },
 });

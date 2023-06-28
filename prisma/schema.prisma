@@ -11,58 +11,58 @@ datasource db {
 }
 
 model User {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId
-  email        String
-  name         String?
-  username     String  @unique
-  password     String
-  phone        String
-  profileImage String?
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  email         String
+  name          String?
+  username      String     @unique
+  password      String
+  phone         String
+  profileImage  String?
 
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 
-  orders       Order[]
+  orders        Order[]
 }
 
 model Brand {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  products     Product[]
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  products      Product[]
 
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 }
 
 model Product {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  image        String[]
-  price        Float
-  salePrice    Float
-  description  String
-  totalAmount  Int 
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  image         String[]
+  price         Float
+  salePrice     Float
+  description   String
+  totalAmount   Int 
 
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 
-  brand        Brand @relation(fields: [brandId], references: [id])
-  brandId      String @db.ObjectId
+  brand         Brand      @relation(fields: [brandId], references: [id])
+  brandId       String     @db.ObjectId
 
-  order        Order @relation(fields: [orderId], references: [id])
-  orderId      String[] @db.ObjectId
+  order         Order?     @relation(fields: [orderId], references: [id])
+  orderId       String[]   @db.ObjectId
 }
 
 model Order {
-   id          String  @id @default(auto()) @map("_id") @db.ObjectId
-   totalPrice  Float
-   status      Int @default(0)
-   createdAt   DateTime @default(now())
+   id           String     @id @default(auto()) @map("_id") @db.ObjectId
+   totalPrice   Float
+   status       String     @default("1")
+   createdAt    DateTime   @default(now())
 
-   user        User @relation(fields: [userId], references: [id])
-   userId      String @db.ObjectId 
-   product     Product[]
-   
+   user         User       @relation(fields: [userId], references: [id])
+   userId       String     @db.ObjectId 
+   productList  Product[]
+   product      Json
 }
 
 

@@ -35,7 +35,12 @@
             </template>
 
             <template v-else-if="column.key === 'quantity'">
-              <input @change="(e)=>onChangeQuantity(e,record)" class="w-16 text-center border-black border-[1px] " type="number" :value="record.quantity">
+              <input
+                @change="(e) => onChangeQuantity(e, record)"
+                class="w-16 text-center border-black border-[1px]"
+                type="number"
+                :value="record.quantity"
+              />
             </template>
 
             <template v-else-if="column.key === 'total'">
@@ -94,7 +99,11 @@
               <p class="m-0 mt-[2px] text-[#e53638]">169.00</p>
             </div>
           </div>
-          <Button class="mt-6 w-full text-center" text="PROCEED TO ORDER" />
+          <Button
+            @click="onSubmitCart"
+            class="mt-6 w-full text-center"
+            text="PROCEED TO ORDER"
+          />
         </div>
       </div>
     </div>
@@ -103,9 +112,12 @@
 
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cart";
+import { useUserStore } from "~/stores/user";
 
 // pinia cart store
-const store = useCartStore();
+const cartStore = useCartStore();
+const userStore = useUserStore();
+
 const columns = [
   {
     title: "PRODUCT",
@@ -134,7 +146,7 @@ const columns = [
 ];
 
 const data = computed(() => {
-  return store.cart.map((item) => {
+  return cartStore.cart.map((item) => {
     return {
       ...item,
       key: item.id,
@@ -145,10 +157,23 @@ const data = computed(() => {
 });
 
 function removeCart(id: string) {
-  store.removeItemFromCart(id);
+  cartStore.removeItemFromCart(id);
 }
 
-function onChangeQuantity(e :any , product:any){
-  store.setQuantity(Number(e.target.value), product)
+function onChangeQuantity(e: any, product: any) {
+  cartStore.setQuantity(Number(e.target.value), product);
+}
+
+async function onSubmitCart() {
+  const totalPrice = data.value.reduce(
+    (initial, nextItem) => initial + nextItem.total,
+    0
+  );
+  const userId = userStore.data.user?.id
+  const product = data.value
+  await cartStore.submitToApi({totalPrice , userId , product})
+  navigateTo({
+    path : '/order'
+  })
 }
 </script>

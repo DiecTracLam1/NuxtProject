@@ -26,21 +26,16 @@
       <div class="border-b-[1px] border-[#e3e1e8] pb-2">
         <div
           class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
-          v-for="item in list"
+          v-for="item in brands.data"
         >
-          {{ item.text }}
+          {{ item.name }}
         </div>
       </div>
     </a-collapse-panel>
 
     <a-collapse-panel key="3" header="FILTER PRICE" class="font-bold">
       <div class="border-b-[1px] border-[#e3e1e8] pb-2">
-        <div
-          class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
-          v-for="item in list"
-        >
-          {{ item.text }}
-        </div>
+        <Slider v-model="rangeValue" :format="format" :max="1000" />
       </div>
     </a-collapse-panel>
 
@@ -56,30 +51,45 @@
     </a-collapse-panel>
 
     <a-collapse-panel key="5" header="COLORS" class="font-bold">
-      <div class="border-b-[1px] border-[#e3e1e8] pb-2">
-        <!-- <div
-                  class="my-2 text-blur-grey hover:cursor-pointer"
-                  v-for="item in list"
-                > -->
+      <div class="flex border-b-[1px] border-[#e3e1e8] pb-2">
         <div
-          class="mb-2 mr-2 w-[30px] h-[30px] p-[1px] rounded-full border-[#e3e1e8] border-[1px]"
+          class="my-2 text-blur-grey hover:cursor-pointer"
+          v-for="item in list"
         >
-          <span class="inline-block bg-yellow-500 w-full h-full rounded-full" />
+          <div
+            class="mb-2 mr-2 w-[30px] h-[30px] p-[1px] rounded-full border-[#e3e1e8] border-[1px]"
+          >
+            <span
+              class="inline-block bg-yellow-500 w-full h-full rounded-full"
+            />
+          </div>
         </div>
-
-        <!-- </div> -->
       </div>
     </a-collapse-panel>
   </a-collapse>
 </template>
 <script setup lang="ts">
+import Slider from "@vueform/slider";
+import "@vueform/slider/themes/default.css";
 const list = ref([
   { text: "Men", amount: 20 },
   { text: "Woman", amount: 20 },
 ]);
 
+const ColorList = ref([
+  "black",
+  "blue",
+  "yellow",
+  "grey",
+  "green",
+  "pink",
+  "white",
+]);
+
 const activeKey = ref(["1"]);
-// watchEffect(activeKey, (val) => {
-//   console.log(val);
-// });
+const rangeValue = ref([20, 40]);
+const format = { prefix: "$", decimals: 2 };
+
+const { data: brands } = await useFetch("/api/brand");
+console.log(brands);
 </script>

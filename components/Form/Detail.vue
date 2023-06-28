@@ -4,7 +4,7 @@
     :validation-schema="schema"
     :initial-values="formValues"
   >
-    <!-- Size & Color -->
+    <!-- Size -->
     <div
       class="flex justify-center items-baseline mb-[30px] sm:flex-row flex-col"
     >
@@ -12,26 +12,15 @@
         <div class="flex sm:mr-[50px] items-center sm:mb-0 mb-[25px]">
           <span class="text-base">Size: </span>
           <ul class="flex items-center m-0 ml-[10px]">
-            <li class="mr-[10px]">
-              <InputSize name="size" size="XXL" value="XXL" />
-            </li>
-
-            <li class="mr-[10px]">
-              <InputSize name="size" size="XL" value="XL" />
-            </li>
-
-            <li class="mr-[10px]">
-              <InputSize name="size" size="M" value="M" />
-            </li>
-
-            <li class="mr-[10px]">
-              <InputSize name="size" size="L" value="L" />
+            <li v-for="size in sizes" class="mr-[10px]">
+              <InputSize name="size" :size="size" :value="size" />
             </li>
           </ul>
         </div>
         <ErrorMessage class="block text-base text-red-500 mt-2" name="size" />
       </div>
 
+      <!-- Color -->
       <div>
         <div class="flex items-center">
           <span class="leading-6 text-base">Color: </span>
@@ -51,6 +40,7 @@
             <li class="mr-[10px]">
               <InputColor name="color" value="pink" />
             </li>
+            
           </ul>
         </div>
         <ErrorMessage class="block text-base text-red-500 mt-2" name="color" />
@@ -69,6 +59,7 @@
 import { Form, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 
+const sizes = ["XXL","XL","M","L","S"]
 
 const emit = defineEmits(['submitForm'])
 

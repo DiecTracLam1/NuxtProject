@@ -141,7 +141,7 @@
     </div>
 
     <!-- Spad -->
-    <!-- <div class="bg-[#f3f2ee] py-[150px] relative">
+    <!-- <div class="bg-[#f3f2ee] py-[150px] mb-[100px] relative ">
       <div class="md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto z-10">
         <div class="grid grid-cols-12">
           <div class="col-span-4">
@@ -151,7 +151,11 @@
               <h5>Accessories</h5>
             </div>
           </div>
-          <div class="col-span-4"></div>
+          <div class="col-span-4">
+            <div class="">
+              <img src="~/assets/images/product-sale.png" alt="">
+            </div>
+          </div>
           <div class="col-span-4"></div>
         </div>
       </div>
@@ -168,7 +172,7 @@
               <div class="h-[261px]">
                 <img
                   class="w-full h-full"
-                  src="https://preview.colorlib.com/theme/malefashion/img/instagram/instagram-1.jpg"
+                  src="~/assets/images/instagram-1.jpg"
                   alt=""
                 />
               </div>
@@ -177,7 +181,7 @@
               <div class="h-[261px]">
                 <img
                   class="w-full h-full"
-                  src="https://preview.colorlib.com/theme/malefashion/img/instagram/instagram-1.jpg"
+                  src="~/assets/images/instagram-2.jpg"
                   alt=""
                 />
               </div>
@@ -186,7 +190,7 @@
               <div class="h-[261px]">
                 <img
                   class="w-full h-full"
-                  src="https://preview.colorlib.com/theme/malefashion/img/instagram/instagram-1.jpg"
+                  src="~/assets/images/instagram-3.jpg"
                   alt=""
                 />
               </div>
@@ -195,7 +199,7 @@
               <div class="h-[261px]">
                 <img
                   class="w-full h-full"
-                  src="https://preview.colorlib.com/theme/malefashion/img/instagram/instagram-1.jpg"
+                  src="~/assets/images/instagram-4.jpg"
                   alt=""
                 />
               </div>
@@ -204,7 +208,7 @@
               <div class="h-[261px]">
                 <img
                   class="w-full h-full"
-                  src="https://preview.colorlib.com/theme/malefashion/img/instagram/instagram-1.jpg"
+                  src="~/assets/images/instagram-5.jpg"
                   alt=""
                 />
               </div>
@@ -213,7 +217,7 @@
               <div class="h-[261px]">
                 <img
                   class="w-full h-full"
-                  src="https://preview.colorlib.com/theme/malefashion/img/instagram/instagram-1.jpg"
+                  src="~/assets/images/instagram-6.jpg"
                   alt=""
                 />
               </div>
@@ -249,7 +253,7 @@
             <div class="h-[270px]">
               <img
                 class="h-full w-full"
-                src="https://preview.colorlib.com/theme/malefashion/img/blog/blog-1.jpg"
+                src="~/assets/images/blog-1.jpg"
                 alt=""
               />
             </div>
@@ -277,7 +281,7 @@
             <div class="h-[270px]">
               <img
                 class="h-full w-full"
-                src="https://preview.colorlib.com/theme/malefashion/img/blog/blog-1.jpg"
+                src="~/assets/images/blog-2.jpg"
                 alt=""
               />
             </div>
@@ -305,7 +309,7 @@
             <div class="h-[270px]">
               <img
                 class="h-full w-full"
-                src="https://preview.colorlib.com/theme/malefashion/img/blog/blog-1.jpg"
+                src="~/assets/images/blog-3.jpg"
                 alt=""
               />
             </div>
@@ -337,16 +341,17 @@ import "vueperslides/dist/vueperslides.css";
 
 const slides = [
   {
-    title: "asd",
-    content: "wqe",
+    title: "",
+    content: "",
     image:
       "https://preview.colorlib.com/theme/malefashion/img/hero/hero-1.jpg.webp",
   },
   {
-    title: "asd",
-    content: "assss",
+    title: "",
+    content: "",
     image:
       "https://preview.colorlib.com/theme/malefashion/img/hero/hero-2.jpg.webp",
   },
 ];
+
 </script>

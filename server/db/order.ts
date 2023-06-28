@@ -1,25 +1,39 @@
 import { User } from "../types/user.types";
 import { prisma } from "./";
 
-export const createOrder = (product: any , user: String , totalPrice:number) => {
-  const data:any = {
-    product : {
-      ...product
-    },
-    user,
+export const createOrder = (
+  product: any,
+  userId: String,
+  totalPrice: number
+) => {
+  const data: any = {
+    product,
+    userId,
     totalPrice,
   };
-  console.log(data)
+
   return prisma.order.create({
     data: data,
   });
 };
 
-export const getOrder = (user:User,params:any = {})=>{
+export const getOrder = (user: User, status: string, params: any = {}) => {
   return prisma.order.findMany({
     ...params,
-    where:{
-      userId: user.id
-    }
-  })
-}
+    where: {
+      status,
+      userId: user.id,
+    },
+  });
+};
+
+export const updateOrder = async (id: string, status: string) => {
+  const updateOrder = await prisma.order.update({
+    where: {
+      id,
+    },
+    data: {
+      status,
+    },
+  });
+};
