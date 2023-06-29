@@ -10,3 +10,9 @@ export interface Product {
   brandId: string;
   quantity?: number
 }
+
+export type ProductApi = {
+  data:{
+    products : Product[]
+  }
+}

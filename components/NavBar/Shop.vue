@@ -15,9 +15,10 @@
       <div class="border-b-[1px] border-[#e3e1e8] pb-2">
         <div
           class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
-          v-for="item in list"
+          v-for="item in listCategory"
+          @click="(e:Event)=>onClickAcollapse(e ,'category')"
         >
-          {{ item.text }} {{ `(${item.amount})` }}
+          {{ item.text }}
         </div>
       </div>
     </a-collapse-panel>
@@ -26,16 +27,23 @@
       <div class="border-b-[1px] border-[#e3e1e8] pb-2">
         <div
           class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
-          v-for="item in brands.data"
+          v-for="item in brands?.data"
+          @click="(e:Event) =>onClickAcollapse(e ,'brand')"
         >
-          {{ item.name }}
+          {{ item?.name }}
         </div>
       </div>
     </a-collapse-panel>
 
     <a-collapse-panel key="3" header="FILTER PRICE" class="font-bold">
-      <div class="border-b-[1px] border-[#e3e1e8] pb-2">
-        <Slider v-model="rangeValue" :format="format" :max="1000" />
+      <div class="border-b-[1px] border-[#e3e1e8] pb-2 w-full">
+        <Slider
+          v-model="rangeValue"
+          :format="format"
+          :max="1000"
+          @change="changeRange"
+        />
+        <Button size="xs" text="Apply" class="mt-3 ml-auto" @click="" />
       </div>
     </a-collapse-panel>
 
@@ -43,7 +51,7 @@
       <div class="border-b-[1px] border-[#e3e1e8] pb-2">
         <div
           class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
-          v-for="item in list"
+          v-for="item in listCategory"
         >
           {{ item.text }}
         </div>
@@ -54,7 +62,7 @@
       <div class="flex border-b-[1px] border-[#e3e1e8] pb-2">
         <div
           class="my-2 text-blur-grey hover:cursor-pointer"
-          v-for="item in list"
+          v-for="item in listCategory"
         >
           <div
             class="mb-2 mr-2 w-[30px] h-[30px] p-[1px] rounded-full border-[#e3e1e8] border-[1px]"
@@ -66,16 +74,70 @@
         </div>
       </div>
     </a-collapse-panel>
+
+    <a-collapse-panel
+      key="6"
+      header="TAGS"
+      class="font-bold"
+      :show-arrow="false"
+    >
+      <div class="flex flex-wrap">
+        <Tags
+          v-for="tag in tagList"
+          :name="tag[0]"
+          :title="tag[1]"
+          @closeTag="onCloseTag"
+        />
+      </div>
+    </a-collapse-panel>
   </a-collapse>
 </template>
 <script setup lang="ts">
 import Slider from "@vueform/slider";
 import "@vueform/slider/themes/default.css";
-const list = ref([
-  { text: "Men", amount: 20 },
-  { text: "Woman", amount: 20 },
-]);
+import { Brands } from "@/model/brands";
+const router = useRouter();
+const route = useRoute();
+const query = ref(route.query);
+const tagList = ref(Object.entries(query.value));
+const emit = defineEmits(["onChangeQuery"]);
 
+const listCategory = ref([{ text: "Men" }, { text: "Woman" }]);
+const activeKey = ref(["1", "6"]);
+
+// Range Price
+const rangeValue = ref([0, 1000]);
+const minRange = ref(0);
+const maxRange = ref(1000);
+const format = { prefix: "$", decimals: 2 };
+const changeRange = (value: any) => {
+  minRange.value = value[0];
+  maxRange.value = value[1];
+};
+
+// Event select item in category
+const onClickAcollapse = (e: any, key: string) => {
+  query.value = { ...route.query, [key]: e.target?.innerText };
+  router.push({
+    query: query.value,
+  });
+};
+
+watch(query, () => {
+  tagList.value = Object.entries(query.value);
+  emit("onChangeQuery");
+});
+
+const onCloseTag = (key: string) => {
+  delete query.value[key];
+  query.value = { ...query.value };
+  router.replace({ query: query.value });
+};
+
+// call Api brand
+const { data: brands } = await useFetch<Brands>("/api/brand");
+
+// console.log(new URLSearchParams(route.query).toString())
 const ColorList = ref([
   "black",
   "blue",
@@ -85,11 +147,4 @@ const ColorList = ref([
   "pink",
   "white",
 ]);
-
-const activeKey = ref(["1"]);
-const rangeValue = ref([20, 40]);
-const format = { prefix: "$", decimals: 2 };
-
-const { data: brands } = await useFetch("/api/brand");
-console.log(brands);
 </script>

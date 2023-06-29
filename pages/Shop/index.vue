@@ -15,7 +15,7 @@
     >
       <div class="grid grid-cols-12 gap-y-[50px] md:gap-[50px]">
         <div class="col-span-12 md:col-span-3">
-          <NavBarShop />
+          <NavBarShop @onChangeQuery="onChangeQuery" />
         </div>
 
         <div class="col-span-12 md:col-span-9">
@@ -40,7 +40,7 @@
           <div class="grid grid-cols-12 sm:gap-7.5">
             <ProductList :products="products?.data?.products" />
             <!-- <ul>
-              <li v-for="product in productsStore.data.products">
+              <li v-for="product in products.data.products">
                 {{ product?.name }}
                 <p>------</p>
               </li>
@@ -62,6 +62,7 @@
 </template>
 <script setup lang="ts">
 const { $productPluxgin } = useNuxtApp();
+import { ProductApi } from "~/model/product";
 import { useProductStore } from "~/stores/product";
 const productsStore = useProductStore();
 const total = ref("");
@@ -72,16 +73,21 @@ const _offset = ref(_limit.value * (page.value - 1));
 
 const onChangePage = async (current: number) => {
   _offset.value = (current - 1) * _limit.value;
+  console.log("Ofsset" , _offset.value)
   // await  $productPluxgin(_offset.value, _limit.value);
-  // console.log("offset", _offset.value);
-  // console.log("limit", _limit.value);
 };
 
-const { data: products } = await useFetch(
+const onChangeQuery = () => {
+  console.log("Change");
+};
+
+const { data: products } = await useFetch<ProductApi>(
+  // "/api/product",
   () => `/api/product?_offset=${_offset.value}&_limit=${_limit.value}`,
   {
-    watch: [_offset],
+    watch: [_offset, _limit],
   }
+
 );
 
 // const { data: products } = await useAsyncData(

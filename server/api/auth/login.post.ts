@@ -48,6 +48,5 @@ export default defineEventHandler(async (event) => {
 
   return {
     access_token: accessToken,
-    user: userTransformer(user),
   };
 });
