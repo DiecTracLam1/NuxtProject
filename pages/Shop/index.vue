@@ -15,7 +15,7 @@
     >
       <div class="grid grid-cols-12 gap-y-[50px] md:gap-[50px]">
         <div class="col-span-12 md:col-span-3">
-          <NavBarShop @onChangeQuery="onChangeQuery" />
+          <NavBarShop/>
         </div>
 
         <div class="col-span-12 md:col-span-9">
@@ -65,29 +65,32 @@ const { $productPluxgin } = useNuxtApp();
 import { ProductApi } from "~/model/product";
 import { useProductStore } from "~/stores/product";
 const productsStore = useProductStore();
-const total = ref("");
-const page = ref(1);
-const _limit = ref(3);
-const _offset = ref(_limit.value * (page.value - 1));
+const total = ref<number>(0);
+const router = useRouter();
+const { queryState, setQuery } = useRouteState();
+const page = ref<number>(Number(queryState.value?.page) || 1);
+const _limit = ref<number>(Number(queryState.value?._offset) || 3);
+const _offset = ref<number>(_limit.value * (page.value - 1));
+const queryString = ref<string>(
+  new URLSearchParams(queryState.value).toString()
+);
 // $productPluxgin(_offset.value, _limit.value);
 
 const onChangePage = async (current: number) => {
   _offset.value = (current - 1) * _limit.value;
-  console.log("Ofsset" , _offset.value)
+  setQuery({ _offset: _offset.value, page: current });
+
   // await  $productPluxgin(_offset.value, _limit.value);
 };
 
-const onChangeQuery = () => {
-  console.log("Change");
-};
+watch(queryState, () => {
+  queryString.value = new URLSearchParams(queryState.value).toString();
+  console.log(queryString.value)
+  router.push({ query: queryState.value });
+});
 
 const { data: products } = await useFetch<ProductApi>(
-  // "/api/product",
-  () => `/api/product?_offset=${_offset.value}&_limit=${_limit.value}`,
-  {
-    watch: [_offset, _limit],
-  }
-
+  () => `/api/product?${queryString.value}`
 );
 
 // const { data: products } = await useAsyncData(

@@ -82,12 +82,14 @@
       :show-arrow="false"
     >
       <div class="flex flex-wrap">
-        <Tags
-          v-for="tag in tagList"
-          :name="tag[0]"
-          :title="tag[1]"
-          @closeTag="onCloseTag"
-        />
+        <template v-for="tag in tagList">
+          <Tags
+            v-if="cateList.includes(tag[0])"
+            :name="tag[0]"
+            :title="tag[1]"
+            @closeTag="onCloseTag"
+          />
+        </template>
       </div>
     </a-collapse-panel>
   </a-collapse>
@@ -96,11 +98,12 @@
 import Slider from "@vueform/slider";
 import "@vueform/slider/themes/default.css";
 import { Brands } from "@/model/brands";
+const { queryState, setQuery, removeQuery } = useRouteState();
+
 const router = useRouter();
 const route = useRoute();
-const query = ref(route.query);
-const tagList = ref(Object.entries(query.value));
-const emit = defineEmits(["onChangeQuery"]);
+const tagList = ref(Object.entries(queryState.value));
+
 
 const listCategory = ref([{ text: "Men" }, { text: "Woman" }]);
 const activeKey = ref(["1", "6"]);
@@ -117,27 +120,24 @@ const changeRange = (value: any) => {
 
 // Event select item in category
 const onClickAcollapse = (e: any, key: string) => {
-  query.value = { ...route.query, [key]: e.target?.innerText };
-  router.push({
-    query: query.value,
-  });
+  setQuery({ [key]: e.target?.innerText });
 };
 
-watch(query, () => {
-  tagList.value = Object.entries(query.value);
-  emit("onChangeQuery");
+watch(queryState, () => {
+  tagList.value = Object.entries(queryState.value);
+  router.push({
+    query: queryState.value,
+  });
 });
 
 const onCloseTag = (key: string) => {
-  delete query.value[key];
-  query.value = { ...query.value };
-  router.replace({ query: query.value });
+  removeQuery(key);
+  router.replace({ query: queryState.value });
 };
 
 // call Api brand
 const { data: brands } = await useFetch<Brands>("/api/brand");
 
-// console.log(new URLSearchParams(route.query).toString())
 const ColorList = ref([
   "black",
   "blue",
@@ -147,4 +147,6 @@ const ColorList = ref([
   "pink",
   "white",
 ]);
+
+const cateList = ref(["category", "brand"]);
 </script>

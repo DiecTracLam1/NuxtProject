@@ -9,7 +9,6 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
   const { username, password } = body;
-  console.log(username, password);
   if (!username || !password) {
     return sendError(
       event,
@@ -48,5 +47,6 @@ export default defineEventHandler(async (event) => {
 
   return {
     access_token: accessToken,
+    user : userTransformer(user)
   };
 });

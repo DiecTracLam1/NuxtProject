@@ -7,12 +7,12 @@ export const generateAccessToken = (user: User) => {
   return jwt.sign({ userId: user.id }, config.jwtAccessSecret);
 };
 
-// export const decodeRefreshToken = (token: string) => {
-//   const config = useRuntimeConfig();
+export const decodeAccessToken = (token : string) => {
+  const config = useRuntimeConfig();
 
-//   try {
-//     return jwt.verify(token, config.jwtRefreshSecret);
-//   } catch (error) {
-//     return null;
-//   }
-// };
+  try {
+    return jwt.verify(token, config.jwtAccessSecret);
+  } catch (error) {
+    return null;
+  }
+};
