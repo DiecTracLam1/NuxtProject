@@ -9,10 +9,11 @@ export const getProducts = async (params = {}, query = {}) => {
         brand: {
           name: query?.brand,
         },
+        // type: { in: [query.type] },
       },
-      orderBy :{
-       salePrice: "asc"
-      }
+      orderBy: {
+        salePrice: "asc",
+      },
     }),
   ]);
   return { total: data[0], products: data[1] };

@@ -16,7 +16,7 @@
         <div
           class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
           v-for="item in listCategory"
-          @click="(e:Event)=>onClickAcollapse(e ,'category')"
+          @click="onClickAcollapse(item.text ,'category')"
         >
           {{ item.text }}
         </div>
@@ -28,7 +28,7 @@
         <div
           class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
           v-for="item in brands?.data"
-          @click="(e:Event) =>onClickAcollapse(e ,'brand')"
+          @click="onClickAcollapse(item?.name ,'brand')"
         >
           {{ item?.name }}
         </div>
@@ -43,7 +43,7 @@
           :max="1000"
           @change="changeRange"
         />
-        <Button size="xs" text="Apply" class="mt-3 ml-auto" @click="" />
+        <Button size="xs" text="Apply" class="mt-3 ml-auto" @click="onButtonRange" />
       </div>
     </a-collapse-panel>
 
@@ -117,10 +117,15 @@ const changeRange = (value: any) => {
   minRange.value = value[0];
   maxRange.value = value[1];
 };
+const onButtonRange = ()=>{
+  console.log(minRange.value)
+  console.log(maxRange.value)
+
+}
 
 // Event select item in category
-const onClickAcollapse = (e: any, key: string) => {
-  setQuery({ [key]: e.target?.innerText });
+const onClickAcollapse = (value : any, key: string) => {
+  setQuery({ [key]: value });
 };
 
 watch(queryState, () => {

@@ -42,6 +42,7 @@ model Product {
   salePrice     Float
   description   String
   totalAmount   Int 
+  type          String[]
 
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
