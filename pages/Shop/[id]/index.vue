@@ -117,6 +117,7 @@
 </template>
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cart";
+import { Product } from "~/model/product";
 
 // pinia cart store
 const store = useCartStore();
@@ -124,7 +125,7 @@ const store = useCartStore();
 // get product detail
 const route = useRoute();
 
-const { data: product } = await useAsyncData("productDetail", () =>
+const { data: product } = await useAsyncData<Product>("productDetail", () =>
   $fetch(`/api/product/${route.params.id}`)
 );
 

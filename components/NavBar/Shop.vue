@@ -1,14 +1,15 @@
 <template>
-  <form class="flex border-[#e3e1e8] border-2 px-3 py-2 mb-11">
+  <div class="flex border-[#e3e1e8] border-2 px-3 py-2 mb-11">
     <input
       class="flex-1 text-normal text-blur-grey outline-none"
       type="text"
       placeholder="Search..."
+      v-model="search"
     />
-    <button class="pl-2 text-blur-grey">
+    <button @click="onClickSearch" class="pl-2 text-blur-grey">
       <Icon name="heroicons-outline:magnifying-glass" />
     </button>
-  </form>
+  </div>
 
   <a-collapse v-model:activeKey="activeKey" expand-icon-position="right" ghost>
     <a-collapse-panel key="1" header="CATEGORIES" class="font-bold">
@@ -16,7 +17,7 @@
         <div
           class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
           v-for="item in listCategory"
-          @click="onClickAcollapse(item.text ,'category')"
+          @click="onClickAcollapse(item.text, 'category')"
         >
           {{ item.text }}
         </div>
@@ -28,7 +29,7 @@
         <div
           class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
           v-for="item in brands?.data"
-          @click="onClickAcollapse(item?.name ,'brand')"
+          @click="onClickAcollapse(item?.name, 'brand')"
         >
           {{ item?.name }}
         </div>
@@ -43,18 +44,22 @@
           :max="1000"
           @change="changeRange"
         />
-        <Button size="xs" text="Apply" class="mt-3 ml-auto" @click="onButtonRange" />
+        <Button
+          size="xs"
+          text="Apply"
+          class="mt-3 ml-auto"
+          @click="onButtonRange"
+        />
       </div>
     </a-collapse-panel>
 
     <a-collapse-panel key="4" header="SIZE" class="font-bold">
       <div class="border-b-[1px] border-[#e3e1e8] pb-2">
-        <div
-          class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
-          v-for="item in listCategory"
-        >
-          {{ item.text }}
-        </div>
+        <ul class="flex flex-wrap items-center m-0">
+          <li v-for="size in SizeList" class="mr-[10px] mb-3">
+            <InputSize name="size" :size="size" :value="size" />
+          </li>
+        </ul>
       </div>
     </a-collapse-panel>
 
@@ -104,27 +109,37 @@ const router = useRouter();
 const route = useRoute();
 const tagList = ref(Object.entries(queryState.value));
 
-
-const listCategory = ref([{ text: "Men" }, { text: "Woman" }]);
+const listCategory = ref([{ text: "Men" }, { text: "Women" }]);
 const activeKey = ref(["1", "6"]);
 
-// Range Price
-const rangeValue = ref([0, 1000]);
-const minRange = ref(0);
-const maxRange = ref(1000);
-const format = { prefix: "$", decimals: 2 };
-const changeRange = (value: any) => {
-  minRange.value = value[0];
-  maxRange.value = value[1];
-};
-const onButtonRange = ()=>{
-  console.log(minRange.value)
-  console.log(maxRange.value)
-
+// Search
+const search = ref('')
+const onClickSearch = () =>{
+  setQuery({ search : search})
 }
 
+// Range Price
+const rangeValue = ref([
+  Number(queryState.value?.minPrice ?? 0),
+  Number(queryState.value?.maxPrice ?? 1000),
+]);
+
+const format = { prefix: "$", decimals: 2 };
+const changeRange = (value: any) => {
+  rangeValue.value[0] = value[0];
+  rangeValue.value[1] = value[1];
+};
+const onButtonRange = () => {
+  setQuery({ minPrice: rangeValue.value[0] });
+  setQuery({ maxPrice: rangeValue.value[1] });
+  tagList.value.push([
+    "price",
+    `${rangeValue.value[0]} - ${rangeValue.value[1]}`,
+  ]);
+};
+
 // Event select item in category
-const onClickAcollapse = (value : any, key: string) => {
+const onClickAcollapse = (value: any, key: string) => {
   setQuery({ [key]: value });
 };
 
@@ -153,5 +168,7 @@ const ColorList = ref([
   "white",
 ]);
 
-const cateList = ref(["category", "brand"]);
+const SizeList = ref(["XXL", "XL", "M", "L", "S", "XS"]);
+
+const cateList = ref(["category", "brand" , 'search']);
 </script>

@@ -43,6 +43,8 @@ model Product {
   description   String
   totalAmount   Int 
   type          String[]
+  isSale        Boolean  
+  size          Json
 
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt

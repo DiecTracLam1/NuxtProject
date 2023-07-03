@@ -15,26 +15,27 @@
     >
       <div class="grid grid-cols-12 gap-y-[50px] md:gap-[50px]">
         <div class="col-span-12 md:col-span-3">
-          <NavBarShop/>
+          <NavBarShop />
         </div>
 
         <div class="col-span-12 md:col-span-9">
           <div class="flex mb-11">
-            <p class="leading-6 text-normal">Showing 1-12 of 126 results</p>
+            <p class="leading-6 text-normal">
+              {{
+                `Showing 1-${products?.data?.products.length} of ${products?.data?.total} results`
+              }}
+            </p>
             <div class="leading-6 text-normal ml-auto">
               Sort By Pirce
-              <!-- <a-select
-                sty
+              <a-select
                 ref="select"
-                defaultValue="inc"
+                :defaultValue="_sort"
                 style="width: 120px"
-                @focus="focus"
-                @change="handleChange"
-                :bordered="false"
+                @change="onChangeOption"
               >
-                <a-select-option value="inc">Low To High</a-select-option>
-                <a-select-option value="lucy">High to Low</a-select-option>
-              </a-select> -->
+                <a-select-option value="asc">Low To High</a-select-option>
+                <a-select-option value="desc">High to Low</a-select-option>
+              </a-select>
             </div>
           </div>
           <div class="grid grid-cols-12 sm:gap-7.5">
@@ -50,8 +51,8 @@
           <div class="my-8 text-center">
             <a-pagination
               v-model:current="page"
-              :total="500"
-              show-size-changer
+              :total="products?.data?.total"
+              :defaultPageSize="defaultPageSize"
               @change="onChangePage"
             />
           </div>
@@ -65,27 +66,30 @@ const { $productPluxgin } = useNuxtApp();
 import { ProductApi } from "~/model/product";
 import { useProductStore } from "~/stores/product";
 const productsStore = useProductStore();
-const total = ref<number>(0);
 const router = useRouter();
 const { queryState, setQuery } = useRouteState();
+const defaultPageSize = ref(3)
 const page = ref<number>(Number(queryState.value?.page) || 1);
 const _limit = ref<number>(Number(queryState.value?._offset) || 3);
 const _offset = ref<number>(_limit.value * (page.value - 1));
+const _sort = ref<String>(queryState.value?._sort || "asc");
 const queryString = ref<string>(
   new URLSearchParams(queryState.value).toString()
 );
 // $productPluxgin(_offset.value, _limit.value);
 
+const onChangeOption = (value: string) => {
+  setQuery({ _sort: value });
+};
 const onChangePage = async (current: number) => {
   _offset.value = (current - 1) * _limit.value;
   setQuery({ _offset: _offset.value, page: current });
-
   // await  $productPluxgin(_offset.value, _limit.value);
 };
 
 watch(queryState, () => {
   queryString.value = new URLSearchParams(queryState.value).toString();
-  console.log(queryString.value)
+  console.log(queryString.value);
   router.push({ query: queryState.value });
 });
 

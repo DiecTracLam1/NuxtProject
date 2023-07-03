@@ -4,15 +4,17 @@ export interface Product {
   image: Array<string>;
   price: number | null;
   salePrice: number;
+  isSale: boolean;
   description: string | null;
   createdAt: string;
   updatedAt: string;
   brandId: string;
-  quantity?: number
+  quantity?: number;
 }
 
 export type ProductApi = {
   data:{
     products : Product[]
+    total : number
   }
 }

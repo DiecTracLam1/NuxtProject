@@ -23,12 +23,17 @@
     <div class="relative mt-6">
       <p class="text-[18px] mb-[5px]">{{ props.product.name }}</p>
       <div class="mb-[6px]"><a-rate /></div>
-      <p class="text-[18px] font-bold">${{props.product.salePrice}}</p>
-      <button
-        class="absolute text-white bottom-3 right-[-100px] group-hover:right-5 bg-black py-1 px-2 text-xs transition-all duration-[700ms]"
+      <div class="flex items-center">
+        <p class="font-bold m-0 text-[18px]">${{ props.product.salePrice }}</p>
+        <p v-if="props.product.isSale" class="line-through text-sm  m-0 ml-2 text-blur-grey ">${{ props.product.price }}</p>
+      </div>
+
+      <Button
+        size="xs"
+        class="absolute bottom-3 right-[-100px] group-hover:right-5 transition-all duration-[700ms]"
       >
-        +Add to cart
-      </button>
+        <Icon name="bi:cart-plus-fill" class="text-lg" />
+      </Button>
     </div>
   </div>
 </template>
