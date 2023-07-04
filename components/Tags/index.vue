@@ -3,7 +3,7 @@
     class="bg-black inline-flex items-center mr-2 mb-3 py-1 pl-2 pr-1 text-white"
   >
     <a-typography-text
-      :style="{ width:'60px', color: 'white' }"
+      :style="{ width:'80px', color: 'white' }"
       :ellipsis="{ tooltip: true }"
       :content="props.title"
     />

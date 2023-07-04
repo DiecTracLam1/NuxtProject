@@ -4,7 +4,6 @@ export default () => {
     "query",
     () => router.currentRoute.value.query
   );
-
   const setQuery = (query: any) => {
     queryState.value = { ...queryState.value, ...query };
   };

@@ -11,10 +11,8 @@
     :for="value"
   >
     <span
-      class="inline-block w-full h-full rounded-full"
+      class="bg-black-500 inline-block w-full h-full rounded-full"
       :class="{
-        [`${COLOR.green}`]: value === 'green',
-        [`${COLOR.blue}`]: value === 'blue',
         [`${COLOR.black}`]: value === 'black',
       }"
     />
@@ -23,7 +21,7 @@
 <script setup>
 import { defineProps } from "vue";
 import { Field } from "vee-validate";
-import { COLOR } from "@/utils/getColor";
+import { COLOR } from "~/utils/getColor";
 
 const props = defineProps({
   name: {
@@ -35,5 +33,9 @@ const props = defineProps({
     required: true,
   },
 });
-// class="inline-block w-full h-full rounded-full"
+
+const color = ref(COLOR[props.value]);
+// [`${COLOR.green}`]: value === 'green',
+//         [`${COLOR.blue}`]: value === 'blue',
+//         [`${COLOR.black}`]: value === 'black',
 </script>

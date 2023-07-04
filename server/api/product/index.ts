@@ -7,17 +7,24 @@ export default defineEventHandler(async (event) => {
     brand,
     category: type,
     _sort = "asc",
-    minPrice = 0,
-    maxPrice = 1000,
-    search = ''
+    price = "",
+    search = "",
   } = getQuery(event);
+
+  const convertPrice = function () {
+    if (!price) return [0, 0];
+    const priceList = (price as string).split("-");
+    return priceList;
+  };
+
+  const [minPrice, maxPrice] = convertPrice();
 
   const { total, products } = await getProducts(
     {
       skip: Number(_offset),
       take: Number(_limit),
     },
-    { brand, _sort, type, minPrice, maxPrice , search }
+    { brand, _sort, type, minPrice, maxPrice, search }
   );
   return {
     data: productTransformer({

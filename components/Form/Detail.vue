@@ -26,11 +26,11 @@
           <span class="leading-6 text-base">Color: </span>
           <ul class="flex items-center m-0 ml-[10px]">
             <li class="mr-[10px]">
-              <InputColor name="color" value="red" />
+              <InputColor name="color" value="black" />
             </li>
 
             <li class="mr-[10px]">
-              <InputColor name="color" value="yellow" />
+              <InputColor name="color" value="grey" />
             </li>
 
             <li class="mr-[10px]">
@@ -38,9 +38,8 @@
             </li>
 
             <li class="mr-[10px]">
-              <InputColor name="color" value="pink" />
+              <InputColor name="color" value="blue" />
             </li>
-            
           </ul>
         </div>
         <ErrorMessage class="block text-base text-red-500 mt-2" name="color" />
@@ -59,9 +58,9 @@
 import { Form, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 
-const sizes = ["XXL","XL","M","L","S"]
+const sizes = ["XXL", "XL", "M", "L", "S"];
 
-const emit = defineEmits(['submitForm'])
+const emit = defineEmits(["submitForm"]);
 
 const schema = yup.object({
   color: yup.string().required("Please select a color"),
@@ -74,6 +73,6 @@ const formValues = {
 };
 
 const onSubmit = (values: any) => {
-  emit('submitForm',values)
+  emit("submitForm", values);
 };
 </script>

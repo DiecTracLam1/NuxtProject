@@ -1,13 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   plugins: ["@/plugins/antd"],
-  css: ["~/assets/css/tailwind.css"],
-  modules: ["nuxt-icon", "nuxt-swiper", "@pinia/nuxt"],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
+  modules: ["nuxt-icon", "nuxt-swiper", "@pinia/nuxt", "@nuxtjs/tailwindcss"],
+  tailwindcss: {
+    configPath: "./tailwind.config",
   },
   runtimeConfig: {
     jwtAccessSecret: process.env.JWT_ACCESS_TOKEN_SECRET,

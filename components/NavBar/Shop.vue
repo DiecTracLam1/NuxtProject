@@ -15,23 +15,41 @@
     <a-collapse-panel key="1" header="CATEGORIES" class="font-bold">
       <div class="border-b-[1px] border-[#e3e1e8] pb-2">
         <div
-          class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
+          class="flex my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
           v-for="item in listCategory"
-          @click="onClickAcollapse(item.text, 'category')"
         >
-          {{ item.text }}
+          <span
+            @click="onClickAcollapse(item.text, 'category')"
+            :class="
+              queryState?.category?.includes(item.text) && 'text-blue-400'
+            "
+            >{{ item.text }}</span
+          >
+          <span
+            v-if="queryState?.category?.includes(item.text)"
+            class="ml-auto mr-4 hover:text-blue-400"
+            @click="onCloseTag('category')"
+            ><Icon name="typcn:times"
+          /></span>
         </div>
       </div>
     </a-collapse-panel>
 
     <a-collapse-panel key="2" header="BRANDING" class="font-bold">
       <div class="border-b-[1px] border-[#e3e1e8] pb-2">
-        <div
-          class="my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
-          v-for="item in brands?.data"
-          @click="onClickAcollapse(item?.name, 'brand')"
-        >
-          {{ item?.name }}
+        <div class="flex my-2 text-blur-grey" v-for="item in brands?.data">
+          <span
+            @click="onClickAcollapse(item?.name, 'brand')"
+            class="hover:cursor-pointer hover:text-blue-400"
+            :class="queryState?.brand?.includes(item.name) && 'text-blue-400'"
+            >{{ item.name }}</span
+          >
+          <span
+            v-if="queryState?.brand?.includes(item.name)"
+            class="ml-auto mr-4 hover:cursor-pointer hover:text-blue-400"
+            @click="onCloseTag('brand')"
+            ><Icon name="typcn:times"
+          /></span>
         </div>
       </div>
     </a-collapse-panel>
@@ -106,17 +124,16 @@ import { Brands } from "@/model/brands";
 const { queryState, setQuery, removeQuery } = useRouteState();
 
 const router = useRouter();
-const route = useRoute();
 const tagList = ref(Object.entries(queryState.value));
 
 const listCategory = ref([{ text: "Men" }, { text: "Women" }]);
 const activeKey = ref(["1", "6"]);
 
 // Search
-const search = ref('')
-const onClickSearch = () =>{
-  setQuery({ search : search})
-}
+const search = ref("");
+const onClickSearch = () => {
+  setQuery({ search: search });
+};
 
 // Range Price
 const rangeValue = ref([
@@ -130,12 +147,7 @@ const changeRange = (value: any) => {
   rangeValue.value[1] = value[1];
 };
 const onButtonRange = () => {
-  setQuery({ minPrice: rangeValue.value[0] });
-  setQuery({ maxPrice: rangeValue.value[1] });
-  tagList.value.push([
-    "price",
-    `${rangeValue.value[0]} - ${rangeValue.value[1]}`,
-  ]);
+  setQuery({ price: `${rangeValue.value[0]}-${rangeValue.value[1]}` });
 };
 
 // Event select item in category
@@ -170,5 +182,5 @@ const ColorList = ref([
 
 const SizeList = ref(["XXL", "XL", "M", "L", "S", "XS"]);
 
-const cateList = ref(["category", "brand" , 'search']);
+const cateList = ref(["category", "brand", "price", "search"]);
 </script>

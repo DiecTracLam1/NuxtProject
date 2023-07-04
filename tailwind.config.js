@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+console.log("input config");
 module.exports = {
+  darkMode: "class",
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -8,6 +10,13 @@ module.exports = {
     "./nuxt.config.{js,ts}",
     "./app.vue",
   ],
+
+  safelist: [
+    {
+      pattern: /bg-(grey|green|blue|black)-(100|500)/,
+    },
+  ],
+
   theme: {
     screens: {
       xs: "576px",
@@ -47,5 +56,5 @@ module.exports = {
     },
   },
   plugins: [],
-  important: true
+  important: true,
 };

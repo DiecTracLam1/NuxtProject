@@ -47,7 +47,7 @@
               </li>
             </ul> -->
           </div>
-
+          <InputColor name="color" value="black" />
           <div class="my-8 text-center">
             <a-pagination
               v-model:current="page"
@@ -68,7 +68,7 @@ import { useProductStore } from "~/stores/product";
 const productsStore = useProductStore();
 const router = useRouter();
 const { queryState, setQuery } = useRouteState();
-const defaultPageSize = ref(3)
+const defaultPageSize = ref(3);
 const page = ref<number>(Number(queryState.value?.page) || 1);
 const _limit = ref<number>(Number(queryState.value?._offset) || 3);
 const _offset = ref<number>(_limit.value * (page.value - 1));
@@ -89,7 +89,6 @@ const onChangePage = async (current: number) => {
 
 watch(queryState, () => {
   queryString.value = new URLSearchParams(queryState.value).toString();
-  console.log(queryString.value);
   router.push({ query: queryState.value });
 });
 
