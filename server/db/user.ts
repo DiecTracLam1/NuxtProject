@@ -12,7 +12,7 @@ export const createUser = async (userData: User) => {
   });
 };
 
-export const getUserByUsername = (username: string) => {
+export const getUserByUsername = (username: string):any => {
   return prisma.user.findUnique({
     where: {
       username,

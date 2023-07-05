@@ -85,8 +85,12 @@
                 >${{ order.totalPrice }}</span
               >
             </div>
-            <div class="pt-3 text-right">
-              <Button @click="cancelProduct(order.id)" class="normal-case tracking-normal" text="Cancel Order" />
+            <div class="pt-3">
+              <Button
+                @click="cancelProduct(order.id)"
+                class="ml-auto normal-case tracking-normal"
+                text="Cancel Order"
+              />
             </div>
           </div>
         </li>
@@ -96,17 +100,17 @@
 </template>
 
 <script setup lang="ts">
+import { OrderApi } from "model/order";
+
 const activeKey = ref("1");
 
 const changeTabs = (key: string) => {
   activeKey.value = key;
 };
 
-const cancelProduct = (orderId : string)=>{
-  
-}
+const cancelProduct = (orderId: string) => {};
 
-const { data: orders } = await useFetch(
+const { data: orders } = await useFetch<OrderApi>(
   () => `/api/order?status=${activeKey.value}`
 );
 console.log(orders);

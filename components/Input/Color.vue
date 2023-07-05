@@ -11,9 +11,12 @@
     :for="value"
   >
     <span
-      class="bg-black-500 inline-block w-full h-full rounded-full"
+      class="inline-block w-full h-full rounded-full"
       :class="{
         [`${COLOR.black}`]: value === 'black',
+        [`${COLOR.green}`]: value === 'green',
+        [`${COLOR.gray}`]: value === 'gray',
+
       }"
     />
   </label>

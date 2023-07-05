@@ -9,7 +9,7 @@ export const getProducts = async (params = {}, query: any) => {
         },
         salePrice: { gte: Number(query.minPrice), lte: Number(query.maxPrice) },
         type: { hasEvery: [query.type] },
-        // size : { title : "XXL"}
+        name: { contains: query.search },
       },
       orderBy: {
         salePrice: query?._sort,
@@ -19,13 +19,11 @@ export const getProducts = async (params = {}, query: any) => {
     prisma.product.findMany({
       ...params,
       where: {
-        brand: {
-          name: query?.brand,
-        },
+        brand: { name: query?.brand },
         salePrice: { gte: Number(query.minPrice), lte: Number(query.maxPrice) },
         type: { hasEvery: [query.type] },
-        // name: { search: query.search },
-        // size : { title : "XXL"}
+        name: { contains: query.search },
+        // sizeList: { equals: { title: "XXL" } },
       },
       orderBy: {
         salePrice: query?._sort,

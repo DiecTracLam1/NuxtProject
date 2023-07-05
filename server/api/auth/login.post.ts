@@ -1,9 +1,10 @@
 import { getUserByUsername } from "../../db/user.js";
 import { compare } from "bcrypt";
 import { userTransformer } from "../../transfomers/user";
-import { generateAccessToken } from "../../ultis/jwt";
+import { generateTokens, sendRefreshToken } from "../../ultis/jwt";
 import { sendError } from "h3";
 import { User } from "../../types/user.types.js";
+import { createRefreshToken } from "../../db/refreshToken.js";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -19,7 +20,7 @@ export default defineEventHandler(async (event) => {
     );
   }
 
-  const user:any = await getUserByUsername(username);
+  const user: User = await getUserByUsername(username);
 
   if (!user) {
     return sendError(
@@ -43,10 +44,17 @@ export default defineEventHandler(async (event) => {
     );
   }
 
-  const accessToken= generateAccessToken(user);
+  const { accessToken, refreshToken } = generateTokens(user);
+
+  await createRefreshToken({
+    token: refreshToken,
+    userId: user.id,
+  });
+
+  sendRefreshToken(event, refreshToken);
 
   return {
     access_token: accessToken,
-    user : userTransformer(user)
+    user: userTransformer(user),
   };
 });

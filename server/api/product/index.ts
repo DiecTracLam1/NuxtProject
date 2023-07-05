@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   } = getQuery(event);
 
   const convertPrice = function () {
-    if (!price) return [0, 0];
+    if (!price) return [0, 1000];
     const priceList = (price as string).split("-");
     return priceList;
   };

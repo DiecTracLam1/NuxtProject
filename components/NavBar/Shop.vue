@@ -130,7 +130,7 @@ const listCategory = ref([{ text: "Men" }, { text: "Women" }]);
 const activeKey = ref(["1", "6"]);
 
 // Search
-const search = ref("");
+const search = ref(queryState.value?.search);
 const onClickSearch = () => {
   setQuery({ search: search });
 };

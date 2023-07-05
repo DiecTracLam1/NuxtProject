@@ -9,6 +9,8 @@ module.exports = {
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
     "./app.vue",
+    "./assets/**/antd.css",
+    "./assets/**/index.css"
   ],
 
   safelist: [

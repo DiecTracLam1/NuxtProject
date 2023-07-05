@@ -6,4 +6,7 @@ export interface User {
   password: string;
   phone: string;
   profileImage: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
+   

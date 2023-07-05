@@ -1,8 +1,8 @@
 export const COLOR = {
-  black: "bg-black-500",
+  black: "bg-black",
   blue: "bg-blue-500",
   green: "bg-green-500",
-  grey: "bg-grey-500",
+  gray: "bg-gray-500",
 };
 // export const getColor = (value:string) =>{
 //     let color = ""

@@ -47,7 +47,7 @@
               </li>
             </ul> -->
           </div>
-          <InputColor name="color" value="black" />
+
           <div class="my-8 text-center">
             <a-pagination
               v-model:current="page"

@@ -30,7 +30,7 @@
             </li>
 
             <li class="mr-[10px]">
-              <InputColor name="color" value="grey" />
+              <InputColor name="color" value="gray" />
             </li>
 
             <li class="mr-[10px]">

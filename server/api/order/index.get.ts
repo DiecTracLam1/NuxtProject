@@ -4,7 +4,6 @@ import { User } from "../../types/user.types";
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
-  console.log(query)
   const { status = "1" } = query;
   const headers = event.req.headers;
   const user: any = await getUserById("649119ba0bf2adb885a7b108");
