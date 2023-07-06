@@ -47,7 +47,12 @@ export const getDetailProduct = (id: string) => {
 export const getRelatedProduct = (id: string , brandId:string) => {
   return prisma.product.findMany({
     where: {
-      brandId,     
+      brand : {
+        id : brandId
+      },
+      NOT:{
+        id
+      }     
     },
     take: Number(4),
   });

@@ -23,7 +23,7 @@
             </li>
             <li class="group">
               <NuxtLink
-                to="/Shop"
+                to="/shop"
                 class="text-lg no-underline text-black hover:underline hover:cursor-pointer"
               >
                 Shop
