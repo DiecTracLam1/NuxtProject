@@ -8,6 +8,7 @@
   />
   <label
     class="border-blur-grey border-[1px] font-bold text-[15px] py-2 px-[17px] inline-block peer-checked:text-white peer-checked:bg-black hover:cursor-pointer"
+    :class="isChecked && 'bg-black text-white'"
     :for="size"
     >{{ size }}</label
   >
@@ -16,6 +17,7 @@
 <script setup>
 import { defineProps } from "vue";
 import { Field } from "vee-validate";
+import { boolean } from "yup";
 
 const props = defineProps({
   name: {
@@ -25,6 +27,10 @@ const props = defineProps({
   size: {
     type: String,
     required: true,
+  },
+  isChecked: {
+    type: boolean,
+    default: false,
   },
 });
 </script>

@@ -63,14 +63,15 @@
 </template>
 <script setup lang="ts">
 const { $productPluxgin } = useNuxtApp();
-import { ProductApi } from "~/model/product";
+import product from "server/api/product";
+import {  ProductListApi } from "~/model/product";
 import { useProductStore } from "~/stores/product";
 const productsStore = useProductStore();
 const router = useRouter();
 const { queryState, setQuery } = useRouteState();
-const defaultPageSize = ref(3);
+const defaultPageSize = ref(12);
 const page = ref<number>(Number(queryState.value?.page) || 1);
-const _limit = ref<number>(Number(queryState.value?._offset) || 3);
+const _limit = ref<number>(Number(queryState.value?._offset) || 12);
 const _offset = ref<number>(_limit.value * (page.value - 1));
 const _sort = ref<String>(queryState.value?._sort || "asc");
 const queryString = ref<string>(
@@ -92,7 +93,7 @@ watch(queryState, () => {
   router.push({ query: queryState.value });
 });
 
-const { data: products } = await useFetch<ProductApi>(
+const { data: products } = await useFetch<ProductListApi>(
   () => `/api/product?${queryString.value}`
 );
 

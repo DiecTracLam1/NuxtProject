@@ -74,27 +74,34 @@
     <a-collapse-panel key="4" header="SIZE" class="font-bold">
       <div class="border-b-[1px] border-[#e3e1e8] pb-2">
         <ul class="flex flex-wrap items-center m-0">
-          <li v-for="size in SizeList" class="mr-[10px] mb-3">
-            <InputSize name="size" :size="size" :value="size" />
+          <li
+            v-for="size in SizeList"
+            @click="onClickAcollapse(size, 'size')"
+            class="mr-[10px] mb-3"
+          >
+            <InputSize
+              name="size"
+              :size="size"
+              :value="size"
+              :isChecked="queryState?.size === size"
+            />
           </li>
         </ul>
       </div>
     </a-collapse-panel>
 
     <a-collapse-panel key="5" header="COLORS" class="font-bold">
-      <div class="flex border-b-[1px] border-[#e3e1e8] pb-2">
-        <div
-          class="my-2 text-blur-grey hover:cursor-pointer"
-          v-for="item in listCategory"
-        >
-          <div
-            class="mb-2 mr-2 w-[30px] h-[30px] p-[1px] rounded-full border-[#e3e1e8] border-[1px]"
+      <div class="border-b-[1px] border-[#e3e1e8]  pb-2">
+        <ul class="flex flex-wrap">
+          <li
+            class="my-2 mr-1 text-blur-grey hover:cursor-pointer"
+            v-for="item in ColorList"
+            @click="onClickAcollapse(item, 'color')"
+
           >
-            <span
-              class="inline-block bg-yellow-500 w-full h-full rounded-full"
-            />
-          </div>
-        </div>
+            <InputColor name="color" :value="item" />
+          </li>
+        </ul>
       </div>
     </a-collapse-panel>
 
@@ -174,13 +181,14 @@ const ColorList = ref([
   "black",
   "blue",
   "yellow",
-  "grey",
+  "gray",
   "green",
   "pink",
   "white",
+  "red",
 ]);
 
 const SizeList = ref(["XXL", "XL", "M", "L", "S", "XS"]);
 
-const cateList = ref(["category", "brand", "price", "search"]);
+const cateList = ref(["category", "brand", "price", "search", "size", "color"]);
 </script>

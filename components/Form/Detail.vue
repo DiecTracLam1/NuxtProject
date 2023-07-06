@@ -12,7 +12,7 @@
         <div class="flex sm:mr-[50px] items-center sm:mb-0 mb-[25px]">
           <span class="text-base">Size: </span>
           <ul class="flex items-center m-0 ml-[10px]">
-            <li v-for="size in sizes" class="mr-[10px]">
+            <li v-for="size in props.sizeList" class="mr-[10px]">
               <InputSize name="size" :size="size" :value="size" />
             </li>
           </ul>
@@ -25,20 +25,8 @@
         <div class="flex items-center">
           <span class="leading-6 text-base">Color: </span>
           <ul class="flex items-center m-0 ml-[10px]">
-            <li class="mr-[10px]">
-              <InputColor name="color" value="black" />
-            </li>
-
-            <li class="mr-[10px]">
-              <InputColor name="color" value="gray" />
-            </li>
-
-            <li class="mr-[10px]">
-              <InputColor name="color" value="green" />
-            </li>
-
-            <li class="mr-[10px]">
-              <InputColor name="color" value="blue" />
+            <li class="mr-[10px]" v-for="color in props.colorList">
+              <InputColor name="color" :value="color" />
             </li>
           </ul>
         </div>
@@ -57,6 +45,17 @@
 <script setup lang="ts">
 import { Form, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+
+const props = defineProps({
+  sizeList: {
+    type: Array,
+    default: [],
+  },
+  colorList: {
+    type: Array,
+    default: [],
+  },
+});
 
 const sizes = ["XXL", "XL", "M", "L", "S"];
 

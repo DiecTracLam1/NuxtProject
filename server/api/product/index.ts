@@ -3,12 +3,14 @@ import { productTransformer } from "../../transfomers/product";
 export default defineEventHandler(async (event) => {
   const {
     _offset = 0,
-    _limit = 3,
+    _limit = 12,
     brand,
+    color,
     category: type,
     _sort = "asc",
     price = "",
     search = "",
+    size,
   } = getQuery(event);
 
   const convertPrice = function () {
@@ -24,7 +26,7 @@ export default defineEventHandler(async (event) => {
       skip: Number(_offset),
       take: Number(_limit),
     },
-    { brand, _sort, type, minPrice, maxPrice, search }
+    { brand, _sort, type, minPrice, maxPrice, search, size , color}
   );
   return {
     data: productTransformer({

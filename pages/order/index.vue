@@ -102,6 +102,10 @@
 <script setup lang="ts">
 import { OrderApi } from "model/order";
 
+definePageMeta({
+  middleware: 'auth'
+});
+
 const activeKey = ref("1");
 
 const changeTabs = (key: string) => {

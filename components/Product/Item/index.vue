@@ -21,11 +21,20 @@
       </ul>
     </div>
     <div class="relative mt-6">
-      <p class="text-[18px] mb-[5px]">{{ props.product.name }}</p>
+      <a-typography-paragraph
+        class="text-[18px] mb-[5px]"
+        :ellipsis="{ rows: 2 }"
+        :content="props.product.name"
+      />
       <div class="mb-[6px]"><a-rate /></div>
       <div class="flex items-center">
         <p class="font-bold m-0 text-[18px]">${{ props.product.salePrice }}</p>
-        <p v-if="props.product.isSale" class="line-through text-sm  m-0 ml-2 text-blur-grey ">${{ props.product.price }}</p>
+        <p
+          v-if="props.product.isSale"
+          class="line-through text-sm m-0 ml-2 text-blur-grey"
+        >
+          ${{ props.product.price }}
+        </p>
       </div>
 
       <Button

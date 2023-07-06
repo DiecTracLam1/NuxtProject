@@ -16,7 +16,11 @@
         [`${COLOR.black}`]: value === 'black',
         [`${COLOR.green}`]: value === 'green',
         [`${COLOR.gray}`]: value === 'gray',
-
+        [`${COLOR.white}`]: value === 'white',
+        [`${COLOR.red}`]: value === 'red',
+        [`${COLOR.blue}`]: value === 'blue',
+        [`${COLOR.yellow}`]: value === 'yellow',
+        [`${COLOR.pink}`]: value === 'pink',
       }"
     />
   </label>

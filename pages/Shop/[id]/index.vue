@@ -69,7 +69,11 @@
           {{ product?.data.description }}
         </p>
 
-        <FormDetail @submitForm="submitForm" />
+        <FormDetail
+          @submitForm="submitFormToCart"
+          :sizeList="product?.data.sizeList"
+          :colorList="product?.data.colorList"
+        />
 
         <!-- Checkout -->
         <div
@@ -117,7 +121,7 @@
 </template>
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cart";
-import { Product } from "~/model/product";
+import { ProductApi } from "~/model/product";
 
 // pinia cart store
 const store = useCartStore();
@@ -125,7 +129,7 @@ const store = useCartStore();
 // get product detail
 const route = useRoute();
 
-const { data: product } = await useAsyncData<Product>("productDetail", () =>
+const { data: product } = await useAsyncData("productDetail", () =>
   $fetch(`/api/product/${route.params.id}`)
 );
 
@@ -136,7 +140,8 @@ function onChangeBigImg(value: string) {
 }
 
 // form
-function submitForm(value: any) {
-  store.addToCart(product.value.data, value.quantity);
+function submitFormToCart(value: any) {
+  console.log(value);
+  store.addToCart(product.value.data, value.quantity , value.size , value.color);
 }
 </script>

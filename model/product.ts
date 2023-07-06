@@ -10,11 +10,19 @@ export interface Product {
   updatedAt: string;
   brandId: string;
   quantity?: number;
+  sizeList: Array<string>;
+  colorList: Array<string>;
 }
 
+export type ProductListApi = {
+  data: {
+    products: Product[];
+    total: number;
+  };
+};
+
 export type ProductApi = {
-  data:{
-    products : Product[]
-    total : number
-  }
-}
+  data: {
+    product: Product;
+  };
+};

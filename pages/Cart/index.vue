@@ -13,14 +13,20 @@
           <template #bodyCell="{ column, record }">
             <template v-if="column.key === 'product'">
               <div class="flex sm:items-center sm:flex-row flex-col">
-                <div class="h-[90px]">
-                  <img class="w-[90px] h-[90px]" :src="record.image" alt="" />
+                <div class="h-[90px] w-[90px]">
+                  <img class="w-full h-full" :src="record.image" alt="" />
                 </div>
-                <div class="sm:ml-[30px]">
-                  <p class="m-0 text-lg">{{ record.name }}</p>
+                <div class="flex-1 sm:ml-[30px]">
+                  <a-typography-paragraph
+                    class="text-lg"
+                    :ellipsis="{ rows: 2 }"
+                    :content="record.name"
+                  />
+                  <!-- <p class="m-0 text-lg">{{ record.name }}</p> -->
                   <div class="flex my-1 text-blur-grey text-sm">
-                    <span>Size:XL</span>
-                    <span class="ml-3">Color:Blue</span>
+                    <span>Size:{{ record.size }}</span>
+
+                    <span class="ml-3">Color:{{ record.color }}</span>
                   </div>
                   <div class="flex items-center font-bold text-lg">
                     <Icon
@@ -85,7 +91,9 @@
                 color="#e53638"
                 class="w-fit leading"
               />
-              <p class="m-0 mt-[2px] text-[#e53638]">169.00</p>
+              <p class="m-0 mt-[2px] text-[#e53638]">
+                {{ cartStore.totalPrice }}
+              </p>
             </div>
           </div>
           <div class="flex items-center">
@@ -96,7 +104,9 @@
                 color="#e53638"
                 class="w-fit leading"
               />
-              <p class="m-0 mt-[2px] text-[#e53638]">169.00</p>
+              <p class="m-0 mt-[2px] text-[#e53638]">
+                {{ cartStore.totalPrice }}
+              </p>
             </div>
           </div>
           <Button
@@ -151,7 +161,7 @@ const data = computed(() => {
       ...item,
       key: item.id,
       image: item.image[0],
-      total: item.quantity * item.salePrice,
+      total: Math.round(item.quantity * item.salePrice * 100) / 100,
     };
   });
 });
@@ -169,11 +179,11 @@ async function onSubmitCart() {
     (initial, nextItem) => initial + nextItem.total,
     0
   );
-  const userId = userStore.data.user?.id
-  const product = data.value
-  await cartStore.submitToApi({totalPrice , userId , product})
+  const userId = userStore.data.user?.id;
+  const product = data.value;
+  await cartStore.submitToApi({ totalPrice, userId, product });
   navigateTo({
-    path : '/order'
-  })
+    path: "/order",
+  });
 }
 </script>
