@@ -41,12 +41,18 @@
             </template>
 
             <template v-else-if="column.key === 'quantity'">
-              <input
-                @change="(e) => onChangeQuantity(e, record)"
+              <a-input-number
+                id="inputNumber"
+                @change="(e:any) => onChangeQuantity(e, record)"
+                v-model:value="record.quantity"
+                :min="1"
+                :max="record.stock[0].quantity"
+              />
+              <!-- <input
                 class="w-16 text-center border-black border-[1px]"
                 type="number"
                 :value="record.quantity"
-              />
+              /> -->
             </template>
 
             <template v-else-if="column.key === 'total'">
@@ -160,7 +166,7 @@ const data = computed(() => {
     return {
       ...item,
       key: item.id,
-      image: item.image[0],
+      thumbnail: item.image[0],
       total: Math.round(item.quantity * item.salePrice * 100) / 100,
     };
   });
@@ -170,8 +176,8 @@ function removeCart(id: string) {
   cartStore.removeItemFromCart(id);
 }
 
-function onChangeQuantity(e: any, product: any) {
-  cartStore.setQuantity(Number(e.target.value), product);
+function onChangeQuantity(value : number, product: any) {
+  cartStore.setQuantity(value, product);
 }
 
 async function onSubmitCart() {

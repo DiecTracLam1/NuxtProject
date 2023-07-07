@@ -36,35 +36,36 @@ export const getProducts = async (params = {}, query: any) => {
   return { total: data[0], products: data[1] };
 };
 
-export const getDetailProduct = (id: string) => {
+export const getDetailProduct = (params = {}, id: string) => {
   return prisma.product.findUnique({
+    ...params,
     where: {
       id,
     },
   });
 };
 
-export const getRelatedProduct = (id: string , brandId:string) => {
+export const getRelatedProduct = (id: string, brandId: string) => {
   return prisma.product.findMany({
     where: {
-      brand : {
-        id : brandId
+      brand: {
+        id: brandId,
       },
-      NOT:{
-        id
-      }     
+      NOT: {
+        id,
+      },
     },
     take: Number(4),
   });
-}
+};
 
 export const getBrandIdByProuductId = (id: string) => {
   return prisma.product.findUnique({
     where: {
       id,
     },
-    select :{
-      brandId : true
-    }
+    select: {
+      brandId: true,
+    },
   });
-}
+};

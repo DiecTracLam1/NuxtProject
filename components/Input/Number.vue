@@ -4,17 +4,16 @@
       type="number"
       class="border-blur-grey border-[1px] font-bold text-center py-[13px] px-[15px] mr-6 xs:mb-0 mb-[15px] outline-none"
       min="1"
-      max="20"
+      :max="maxQuantity"
       name="quantity"
       v-model="value"
+      v-on:keyup="onChangeInput"
     />
-
-    <span class="mr-auto" :class="errorMessage && 'text-red-500'">{{ errorMessage }}</span>
+    
   </div>
 </template>
 
-<script setup>
-import { defineProps } from "vue";
+<script setup lang="ts">
 import { useField } from "vee-validate";
 
 const props = defineProps({
@@ -26,8 +25,20 @@ const props = defineProps({
     type: String,
     default: "number",
   },
+  maxQuantity:{
+    type: Number,
+    default:1
+  }
 });
 
-const { errorMessage, value } = useField(props.name);
+const { value } = useField(props.name);
+
+
+const onChangeInput = (e :any)=>{
+  if(e.target.value > props.maxQuantity){
+    value.value = props.maxQuantity
+  }
+  console.log(value.value)
+}
 </script>
 

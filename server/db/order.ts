@@ -17,7 +17,7 @@ export const createOrder = (
   });
 };
 
-export const getOrder = (user: User, status: string, params: any = {}) => {
+export const getOrderList = (user: User, status: string, params: any = {}) => {
   return prisma.order.findMany({
     ...params,
     where: {
@@ -37,3 +37,5 @@ export const updateOrder = async (id: string, status: string) => {
     },
   });
 };
+
+

@@ -6,7 +6,7 @@ export interface OrderApi {
       userId: string;
       image: string;
       totalPrice: number | null;
-      status: string;
+      status: string ;
       product: Product[];
     }
   ];

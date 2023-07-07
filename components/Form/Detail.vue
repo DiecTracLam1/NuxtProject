@@ -35,10 +35,13 @@
     </div>
 
     <!-- Amount  -->
-    <div class="flex flex-col xs:flex-row justify-center items-center mb-10">
-      <InputNumber name="quantity" />
+    <div class="flex flex-col xs:flex-row justify-center items-center mb-2">
+      <InputNumber :maxQuantity="props.stock[0].quantity" name="quantity" />
       <Button type="submit" text="+ADD TO CART" size="xl" />
     </div>
+    <p class="text-blur-grey mb-10">
+      {{ props.stock[0].quantity }} pieces available
+    </p>
   </Form>
 </template>
 
@@ -55,16 +58,21 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+  stock: {
+    type: Array,
+    required: true,
+  },
 });
-
-const sizes = ["XXL", "XL", "M", "L", "S"];
 
 const emit = defineEmits(["submitForm"]);
 
 const schema = yup.object({
   color: yup.string().required("Please select a color"),
   size: yup.string().required("Please select a size"),
-  quantity: yup.number().required(),
+  quantity: yup
+    .number()
+    .required()
+    .max(props.stock[0].quantity, "Cannot Exceed Max Quantity"),
 });
 
 const formValues = {

@@ -25,6 +25,9 @@ export default defineEventHandler(async (event) => {
     {
       skip: Number(_offset),
       take: Number(_limit),
+      include : {
+        stock:true
+      }
     },
     { brand, _sort, type, minPrice, maxPrice, search, size , color}
   );

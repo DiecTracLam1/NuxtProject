@@ -40,9 +40,4 @@ const props = defineProps({
     required: true,
   },
 });
-
-const color = ref(COLOR[props.value]);
-// [`${COLOR.green}`]: value === 'green',
-//         [`${COLOR.blue}`]: value === 'blue',
-//         [`${COLOR.black}`]: value === 'black',
 </script>

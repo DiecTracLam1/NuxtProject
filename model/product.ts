@@ -12,6 +12,7 @@ export interface Product {
   quantity?: number;
   sizeList: Array<string>;
   colorList: Array<string>;
+  thumbnail:string
 }
 
 export type ProductListApi = {

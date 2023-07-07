@@ -8,20 +8,27 @@ export const useCartStore = defineStore("Cart", {
     cart: [] as Array<Product>,
   }),
   getters: {
-    totalPrice : (state)=>{
-      const total = state.cart.reduce((current , nextValue)=>{
-        return current + Math.round(((nextValue.quantity * nextValue.salePrice)*100) /100)
-      },0)
-      return total
-    }
+    totalPrice: (state) => {
+      const total = state.cart.reduce((current, nextValue) => {
+        return (
+          current +
+          Math.round((nextValue.quantity * nextValue.salePrice * 100) / 100)
+        );
+      }, 0);
+      return total;
+    },
   },
   actions: {
-    addToCart(product: Product, quantity: number , size: string , color: string) {
+    addToCart(product: Product, quantity: number, size: string, color: string) {
       const ItemIndex = this.cart.findIndex(
         (item: Product) => item.id === product.id
       );
-      const cartItem = this.cart[ItemIndex]
-      if (ItemIndex >= 0 && cartItem.size === size && cartItem.color === color) {
+      const cartItem = this.cart[ItemIndex];
+      if (
+        ItemIndex >= 0 &&
+        cartItem.size === size &&
+        cartItem.color === color
+      ) {
         this.cart[ItemIndex].quantity += quantity;
       } else {
         product.quantity = quantity;
@@ -33,7 +40,6 @@ export const useCartStore = defineStore("Cart", {
 
     setQuantity(quantity: number, product: Product) {
       const ItemIndex = this.cart.findIndex((x) => x.id == product.id);
-      console.log(ItemIndex)
       if (ItemIndex >= 0) {
         this.cart[ItemIndex].quantity = quantity;
       } else {

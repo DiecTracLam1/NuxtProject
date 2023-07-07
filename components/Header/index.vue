@@ -164,6 +164,7 @@ import { useUserStore } from "@/stores/user";
 import { useCartStore } from "@/stores/cart";
 import { storeToRefs } from "pinia";
 const userStore = useUserStore();
+console.log(userStore.$state)
 const cartStore = useCartStore();
 const { loggedIn, getImage } = storeToRefs(userStore);
 

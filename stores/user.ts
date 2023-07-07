@@ -4,11 +4,16 @@ import { User } from "~/model/user";
 
 export const useUserStore = defineStore("User", {
   state: () => {
-    // hh
+    let userStorage: any;
+    if (process.client) {
+      userStorage = localStorage.getItem("user");
+      console.log("User", userStorage);
+    }
+    console.log("UserOutside" , userStorage);
     return {
       data: {
-        access_token: "",
-        user: null as User | null,
+        access_token: userStorage?.access_token ?? "",
+        user: userStorage?.user as User | null,
       },
       loading: false,
       error: "",
@@ -45,7 +50,7 @@ export const useUserStore = defineStore("User", {
           method: "POST",
           body: { username, password },
         });
-        localStorage.setItem('user' , JSON.stringify(this.data))
+        localStorage.setItem("user", JSON.stringify(this.data));
       } catch (error: any) {
         throw new Error(error.message);
       } finally {

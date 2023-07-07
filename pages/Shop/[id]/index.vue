@@ -73,6 +73,7 @@
           @submitForm="submitFormToCart"
           :sizeList="product?.data.sizeList"
           :colorList="product?.data.colorList"
+          :stock="product?.data.stock"
         />
 
         <!-- Checkout -->
@@ -96,9 +97,9 @@
         <div class="grid grid-cols-12 xs:gap-[30px]">
           <div
             v-for="product in productRelated.data"
-            class="xs:col-span-6 sm:col-span-6 md:col-span-4 xl:col-span-3 col-span-12 "
+            class="xs:col-span-6 sm:col-span-6 md:col-span-4 xl:col-span-3 col-span-12"
           >
-            <ProductItem  :product="product" />
+            <ProductItem :product="product" />
           </div>
         </div>
       </div>
@@ -122,7 +123,7 @@ const { data: productRelated } = await useAsyncData("productRelated", () =>
   $fetch(`/api/product/related/${route.params.id}`)
 );
 
-console.log(productRelated)
+console.log(productRelated);
 
 // set big image
 const bigImage = ref(product.value.data.image[0]);
@@ -133,6 +134,6 @@ function onChangeBigImg(value: string) {
 // form
 function submitFormToCart(value: any) {
   console.log(value);
-  store.addToCart(product.value.data, value.quantity , value.size , value.color);
+  store.addToCart(product.value.data, value.quantity, value.size, value.color);
 }
 </script>
