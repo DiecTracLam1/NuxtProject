@@ -17,23 +17,24 @@ export const createOrder = (
   });
 };
 
-export const getOrderList = (user: User, status: string, params: any = {}) => {
+export const getOrderList = (user: User, status: object, params: any = {}) => {
   return prisma.order.findMany({
     ...params,
     where: {
-      status,
+      ...status,
       userId: user.id,
     },
   });
 };
 
-export const updateOrder = async (id: string, status: string) => {
+export const updateOrder = async (id: string, status: string , cancelMsg : string) => {
   const updateOrder = await prisma.order.update({
     where: {
       id,
     },
     data: {
       status,
+      cancelMsg
     },
   });
 };

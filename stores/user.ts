@@ -7,9 +7,9 @@ export const useUserStore = defineStore("User", {
     let userStorage: any;
     if (process.client) {
       userStorage = localStorage.getItem("user");
-      console.log("User", userStorage);
+      // console.log("User", userStorage);
     }
-    console.log("UserOutside" , userStorage);
+    // console.log("UserOutside" , userStorage);
     return {
       data: {
         access_token: userStorage?.access_token ?? "",
@@ -29,20 +29,7 @@ export const useUserStore = defineStore("User", {
     },
   },
   actions: {
-    // async loadUser (id: number) {
-    //   if (this.userId !== null) throw new Error('Already logged in')
-    //   const res = await api.user.load(id)
-    //   this.updateUser(res)
-    // },
-    // updateUser (payload) {
-    //   this.firstName = payload.firstName
-    //   this.lastName = payload.lastName
-    //   this.userId = payload.userId
-    // },
-    // clearUser () {
-    //   this.$reset()
-    // }
-
+    
     async loginUser(username: string, password: string) {
       this.loading = true;
       try {
@@ -58,8 +45,8 @@ export const useUserStore = defineStore("User", {
       }
     },
 
-    // logout(){
-    //   this.data = {};
-    // }
+    logout(){
+      this.$reset();
+    }
   },
 });

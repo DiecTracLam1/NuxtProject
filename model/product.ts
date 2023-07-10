@@ -13,6 +13,8 @@ export interface Product {
   sizeList: Array<string>;
   colorList: Array<string>;
   thumbnail:string
+  color?:string;
+  size?:string
 }
 
 export type ProductListApi = {

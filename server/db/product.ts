@@ -69,3 +69,15 @@ export const getBrandIdByProuductId = (id: string) => {
     },
   });
 };
+
+export const updateQuantity = async()=>{
+  await prisma.product.updateMany({
+    where:{
+      
+    },
+    data:{
+      
+    },
+    
+  })
+}

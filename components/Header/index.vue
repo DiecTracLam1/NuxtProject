@@ -88,7 +88,7 @@
                     >
                   </p>
                   <p>
-                    <NuxtLink class="text-black">Logout</NuxtLink>
+                    <NuxtLink @click="userStore.logout" class="text-black">Logout</NuxtLink>
                   </p>
                 </template>
                 <div class="w-6 h-6">
@@ -164,7 +164,7 @@ import { useUserStore } from "@/stores/user";
 import { useCartStore } from "@/stores/cart";
 import { storeToRefs } from "pinia";
 const userStore = useUserStore();
-console.log(userStore.$state)
+// console.log(userStore.$state)
 const cartStore = useCartStore();
 const { loggedIn, getImage } = storeToRefs(userStore);
 

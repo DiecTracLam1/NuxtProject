@@ -8,6 +8,7 @@ export interface OrderApi {
       totalPrice: number | null;
       status: string ;
       product: Product[];
+      cancelMsg: string;
     }
   ];
 }
