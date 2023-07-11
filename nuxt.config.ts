@@ -2,7 +2,13 @@
 export default defineNuxtConfig({
   plugins: ["@/plugins/antd"],
   css: ["@/assets/css/index.css"],
-  modules: ["nuxt-icon", "nuxt-swiper", "@pinia/nuxt", "@nuxtjs/tailwindcss"],
+  modules: [
+    "nuxt-icon",
+    "@nuxtjs/tailwindcss",
+    "nuxt-swiper",
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
+  ],
   tailwindcss: {
     configPath: "./tailwind.config",
   },

@@ -189,7 +189,7 @@ async function onSubmitCart() {
   const product = data.value;
   await cartStore.submitToApi({ totalPrice, userId, product });
   navigateTo({
-    path: "/order",
+    path: "/user/order",
   });
 }
 </script>

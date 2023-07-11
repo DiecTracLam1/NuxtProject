@@ -83,12 +83,14 @@
                     >
                   </p>
                   <p>
-                    <NuxtLink to="/order" class="text-black"
+                    <NuxtLink to="/user/order" class="text-black"
                       >My Purchase</NuxtLink
                     >
                   </p>
                   <p>
-                    <NuxtLink @click="userStore.logout" class="text-black">Logout</NuxtLink>
+                    <NuxtLink @click="userStore.logout" class="text-black"
+                      >Logout</NuxtLink
+                    >
                   </p>
                 </template>
                 <div class="w-6 h-6">
@@ -163,9 +165,12 @@
 import { useUserStore } from "@/stores/user";
 import { useCartStore } from "@/stores/cart";
 import { storeToRefs } from "pinia";
-const userStore = useUserStore();
-// console.log(userStore.$state)
+
+const { $userPluxgin } = useNuxtApp();
 const cartStore = useCartStore();
+// $userPluxgin();
+// console.log(userStore.$state)
+const userStore = useUserStore();
 const { loggedIn, getImage } = storeToRefs(userStore);
 
 const openMenu = ref(false);

@@ -19,6 +19,7 @@ export const useUserStore = defineStore("User", {
       error: "",
     };
   },
+
   getters: {
     loggedIn: (state): string | undefined => state.data?.user?.id,
     getImage(state): string | undefined {
@@ -29,7 +30,6 @@ export const useUserStore = defineStore("User", {
     },
   },
   actions: {
-    
     async loginUser(username: string, password: string) {
       this.loading = true;
       try {
@@ -37,7 +37,7 @@ export const useUserStore = defineStore("User", {
           method: "POST",
           body: { username, password },
         });
-        localStorage.setItem("user", JSON.stringify(this.data));
+        
       } catch (error: any) {
         throw new Error(error.message);
       } finally {
@@ -45,8 +45,11 @@ export const useUserStore = defineStore("User", {
       }
     },
 
-    logout(){
+    logout() {
       this.$reset();
-    }
+    },
+  },
+  persist: {
+    storage: persistedState.localStorage,
   },
 });

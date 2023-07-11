@@ -63,7 +63,6 @@
 </template>
 <script setup lang="ts">
 const { $productPluxgin } = useNuxtApp();
-import product from "server/api/product";
 import {  ProductListApi } from "~/model/product";
 import { useProductStore } from "~/stores/product";
 const productsStore = useProductStore();
