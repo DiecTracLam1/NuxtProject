@@ -36,6 +36,7 @@
     "nuxt-swiper": "^1.1.0",
     "pinia": "^2.1.4",
     "postcss": "^8.4.24",
+    "url-pattern": "^1.0.3",
     "vueperslides": "^3.5.1",
     "yup": "^1.2.0"
   }

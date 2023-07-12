@@ -166,10 +166,7 @@ import { useUserStore } from "@/stores/user";
 import { useCartStore } from "@/stores/cart";
 import { storeToRefs } from "pinia";
 
-const { $userPluxgin } = useNuxtApp();
 const cartStore = useCartStore();
-// $userPluxgin();
-// console.log(userStore.$state)
 const userStore = useUserStore();
 const { loggedIn, getImage } = storeToRefs(userStore);
 

@@ -4,7 +4,7 @@
       <NuxtLink to="/user" class="block h-[50px]">
         <img
           class="w-full h-full rounded-full"
-          src="~/assets/images/instagram-1.jpg"
+          :src="userStore.$state.data.user?.profileImage"
           alt=""
         />
       </NuxtLink>
@@ -44,14 +44,17 @@
           </div>
         </a-collapse-panel>
 
-        <NuxtLink class="text-black text-base" to="/user/order"
-          ><Icon name="icon-park-outline:bill" class="mr-[10px]" />My
-          Purchase</NuxtLink
-        >
+        <NuxtLink class="text-black text-base" to="/user/order">
+          <Icon name="icon-park-outline:bill" class="mr-[10px]" />
+          My Purchase
+        </NuxtLink>
       </a-collapse>
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
+import { useUserStore } from "@/stores/user";
+const userStore = useUserStore();
+
 const accountList = ["Profile", "Change Password"];
 </script>

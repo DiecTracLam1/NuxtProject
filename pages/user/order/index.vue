@@ -110,7 +110,7 @@
                   text="Cancel Order"
                 />
 
-                <Button 
+                <Button
                   v-if="order.status === '4' || order.status === '5'"
                   @click="onClickBuyAgain(order.product)"
                   class="ml-auto normal-case tracking-normal"
@@ -189,18 +189,25 @@
 import { OrderApi } from "model/order";
 import { Product } from "model/product";
 import { useCartStore } from "@/stores/cart";
-
+import { useUserStore } from "@/stores/user";
 
 definePageMeta({
   middleware: "auth",
 });
 
+const { $pinia } = useNuxtApp();
 const cartStore = useCartStore();
+const userStore = useUserStore($pinia);
 
 const router = useRouter();
 const query = ref(router.currentRoute.value.query);
 const activeKey = ref(query.value?.status ?? "1");
-const statusList = ["","Waiting for comfirm", "Waiting for the goods", "Success"];
+const statusList = [
+  "",
+  "Waiting for comfirm",
+  "Waiting for the goods",
+  "Success",
+];
 const spinning = ref<boolean>(false);
 const visible = ref(false);
 const pickedCancelMsg = ref("");
@@ -214,14 +221,14 @@ const onChangeVisible = () => {
   visible.value = true;
 };
 
-const onClickBuyAgain = (productList:Product[])=>{
-  productList.forEach((product)=>{
-    cartStore.addToCart(product,product.quantity,product.size,product.color)
-  })
+const onClickBuyAgain = (productList: Product[]) => {
+  productList.forEach((product) => {
+    cartStore.addToCart(product, product.quantity, product.size, product.color);
+  });
   navigateTo({
-    path:"/cart"
-  })
-}
+    path: "/cart",
+  });
+};
 
 const changeCancelMsg = (e: any) => {
   errorMsg.value = "";
@@ -253,7 +260,14 @@ watch(activeKey, () => {
 });
 
 const { data: orders } = await useFetch<OrderApi>(
-  () => `/api/order?status=${activeKey.value}`
+  () => {
+    console.log(userStore.$state.data);
+    console.log("$pinia: ", $pinia.state.value.User);
+    return `/api/order?status=${activeKey.value}`;
+  },
+  {
+    headers: { Authorization: `Bearer ${userStore.$state.data.access_token}` },
+  }
 );
 // console.log(orders);
 </script>

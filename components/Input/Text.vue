@@ -1,14 +1,16 @@
 <template>
-  <div class="text-start my-4">
+  <div class="text-start">
     <input
       v-model="value"
-      class=" border-[#e3e5e9] border-[2px] w-full p-4"
+      class="border-[#e3e5e9] border-[2px] w-full"
       :name="name"
       :type="props.type"
-      :class="errorMessage && 'border-red-500'"
+      :class="classes"
       :placeholder="placeholder"
     />
-    <span class="mr-auto" :class="errorMessage && 'text-red-500'">{{ errorMessage }}</span>
+    <span class="mr-auto" :class="errorMessage && 'text-red-500'">{{
+      errorMessage
+    }}</span>
   </div>
 </template>
 <script setup>
@@ -24,11 +26,32 @@ const props = defineProps({
     type: String,
     default: "text",
   },
-  placeholder :{
+  placeholder: {
     type: String,
-    default : "",
+    default: "",
+  },
+  size: {
+    type: String,
+    default: "md",
+  },
+});
+
+const paddingClasses = computed(() => {
+  switch (props.size) {
+    case "xs":
+      return "p-2";
+    case "md":
+      return "p-4";
+    case "xl":
+      return "px-[30px] py-[14px]";
+    default:
+      return "px-3 py-3";
   }
 });
 
 const { errorMessage, value } = useField(props.name);
+
+const classes = computed(
+  () => `${paddingClasses.value} ${errorMessage.value ? "border-red-500" : ""}`
+);
 </script>
