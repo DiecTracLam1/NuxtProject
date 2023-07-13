@@ -59,7 +59,13 @@
               class="border-[1px] cursor-pointer px-4 p-3 hover:bg-slate-50"
               >Choose image</label
             >
-            <input type="file" hidden id="image" />
+            <Field name="profileImage" v-slot="{ handleChange }">
+              <input
+                type="file"
+                id="image"
+                @change="(e:any)=>handleChange(e.target.value)"
+              />
+            </Field>
           </div>
           <p class="m-0">File size: maximum 1 MB</p>
           <p class="m-0">File extension: .JPEG, .PNG</p>
@@ -70,7 +76,7 @@
 </template>
 <script setup lang="ts">
 import { useUserStore } from "@/stores/user";
-import { useForm } from "vee-validate";
+import { useForm, Field } from "vee-validate";
 import * as yup from "yup";
 const props = defineProps({
   user: {
@@ -85,19 +91,17 @@ const store = useUserStore();
 // event form
 const schema = yup.object({
   username: yup.string().required("Username must be filled"),
-  phoneNumber: yup.number().required("Phone number must be filled")
+  phoneNumber: yup.number().required("Phone number must be filled"),
 });
 
-const { handleSubmit, isSubmitting } = useForm({
+const { handleSubmit } = useForm({
   initialValues: {
     ...props.user.user,
-    fullname : props.user.user.name
   },
   validationSchema: schema,
 });
 
 const onSubmit = handleSubmit(async (values: any) => {
-  const { username, password } = values;
-  await store.loginUser(username, password);
+  await store.updateUser(values);
 });
 </script>

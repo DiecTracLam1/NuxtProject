@@ -2,10 +2,10 @@ import { User } from "../types/user.types"
 export const userTransformer = (user : User)=>{
     return {
         id: user.id,
-        name: user.name,
+        fullname: user.fullname,
         email: user.email,
         username: user.username,
-        phone : user.phone,
+        phoneNumber : user.phoneNumber,
         profileImage: user.profileImage,
     }
 }

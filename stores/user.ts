@@ -38,11 +38,17 @@ export const useUserStore = defineStore("User", {
       }
     },
 
-    async updateUser(values : any) {
+    async updateUser(values: any) {
       try {
-        
-      } catch (error) {
-        
+        this.data = await $fetch("/api/auth/update", {
+          headers: { Authorization: `Bearer ${this.$state.data.access_token}` },
+          method: "PUT",
+          body: { values },
+        });
+        console.log(this.data)
+
+      } catch (error: any) {
+        console.log(error.message);
       }
     },
 
@@ -50,7 +56,17 @@ export const useUserStore = defineStore("User", {
       this.$reset();
     },
   },
-  persist: {
-    storage: persistedState.localStorage,
-  },
+
+  persist: [
+    {
+      paths: ["data.user"],
+      storage: persistedState.localStorage,
+    },
+    {
+      paths: ["data.access_token"],
+      storage: persistedState.cookiesWithOptions({
+        sameSite: "strict",
+      }),
+    },
+  ],
 });

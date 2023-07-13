@@ -21,11 +21,9 @@ export default defineEventHandler(async (event) => {
     return;
   }
   // console.log(event.req);
-  console.log("Author : ", event.req.headers.authorization);
+  // console.log("Author : ", event.req.headers.authorization);
   const token = event.req.headers["authorization"]?.split(" ")[1];
-  // console.log(token);
   const decoded = decodeAccessToken(token);
-  // console.log(decoded);
   if (!decoded) {
     return sendError(
       event,

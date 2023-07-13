@@ -197,9 +197,9 @@ definePageMeta({
 
 const { $pinia } = useNuxtApp();
 const cartStore = useCartStore();
-const userStore = useUserStore($pinia);
 
 const router = useRouter();
+const cookie = useCookie<any>('User');
 const query = ref(router.currentRoute.value.query);
 const activeKey = ref(query.value?.status ?? "1");
 const statusList = [
@@ -261,13 +261,16 @@ watch(activeKey, () => {
 
 const { data: orders } = await useFetch<OrderApi>(
   () => {
-    console.log(userStore.$state.data);
-    console.log("$pinia: ", $pinia.state.value.User);
     return `/api/order?status=${activeKey.value}`;
   },
   {
-    headers: { Authorization: `Bearer ${userStore.$state.data.access_token}` },
+    headers: { Authorization: `Bearer ${cookie.value.data.access_token}` },
   }
 );
+
+// const fet = await $fetch("/api/order", {
+//   headers: { Authorization: `Bearer ${userStore.$state.data.access_token}` },
+// });
+// console.log(fet)
 // console.log(orders);
 </script>

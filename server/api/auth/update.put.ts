@@ -1,30 +1,31 @@
-import formidable from "formidable"
+import { updateUser } from "../../db/user"
+import { userTransformer } from "../../transfomers/user"
+import { User } from "../../types/user.types"
 import { uploadToCloudinary } from "../../ultis/cloudinary"
+import { generateTokens } from "../../ultis/jwt"
 
 export default defineEventHandler(async (event) => {
 
-    const form = formidable({})
-
-    const response = await new Promise((resolve, reject) => {
-        form.parse(event.req, (err:any, fields:any, files:any) => {
-            if (err) {
-                reject(err)
-            }
-            resolve({ fields, files })
-        })
-    })
-
-    const { fields, files } = response
-
+    const body = await readBody(event)
+    const data = body.values
     const userId = event.context?.auth?.user?.id
 
-    const filePromises = Object.keys(files).map(async key => {
-        const file = files[key]
+    // const filePromises = Object.keys(files).map(async key => {
+    //     const file = files[key]
 
-        await uploadToCloudinary(file.filepath)
-    })
+    //     const profileImage = await uploadToCloudinary(file.filepath)
 
+    //     return 
+    // })
 
-    await Promise.all(filePromises)
+    const profileImage = await uploadToCloudinary(data.profileImage)
+    data.profileImage = profileImage?.url
+    delete data.id
+    const newUser:User = await updateUser(userId , data)
+    const { accessToken, refreshToken } = generateTokens(newUser);
+    return {
+        access_token: accessToken,
+        user: userTransformer(newUser),
+      };
 
 })

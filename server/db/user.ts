@@ -27,3 +27,14 @@ export const getUserById = (userId: string):any => {
     },
   });
 };
+
+export const updateUser = (userId: string , dataUser:any)=>{
+  return prisma.user.update({
+    where:{
+      id: userId
+    },
+    data:{
+      ...dataUser
+    }
+  })
+}

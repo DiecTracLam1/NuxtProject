@@ -4,8 +4,18 @@
       <h1 class="text-2xl font-bold">Welcome to Male Fashion</h1>
       <p class="text-blur-grey text-base">Create an accout</p>
       <form @submit="onSubmit">
-        <InputText name="username" type="text" placeholder="Username" class="my-4"/>
-        <InputText name="password" type="password" placeholder="Password" class="my-4" />
+        <InputText
+          name="username"
+          type="text"
+          placeholder="Username"
+          class="my-4"
+        />
+        <InputText
+          name="password"
+          type="password"
+          placeholder="Password"
+          class="my-4"
+        />
         <Button
           class="w-full"
           typpe="submit"

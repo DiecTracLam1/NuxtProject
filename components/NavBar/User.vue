@@ -1,12 +1,8 @@
 <template>
   <div class="col-span-2">
     <div class="border-[blur-grey] border-b-[1px] flex py-[15px] mb-3">
-      <NuxtLink to="/user" class="block h-[50px]">
-        <img
-          class="w-full h-full rounded-full"
-          :src="userStore.$state.data.user?.profileImage"
-          alt=""
-        />
+      <NuxtLink  to="/user" class="block h-[50px]">
+        <img v-if="loggedIn" class="w-full h-full rounded-full" :src="getImage" alt="" />
       </NuxtLink>
       <div class="flex flex-col pl-[15px] justify-around text-base">
         <p></p>
@@ -54,7 +50,9 @@
 </template>
 <script setup lang="ts">
 import { useUserStore } from "@/stores/user";
+import { storeToRefs } from "pinia";
 const userStore = useUserStore();
 
+const { loggedIn, getImage } = storeToRefs(userStore);
 const accountList = ["Profile", "Change Password"];
 </script>
