@@ -9,12 +9,14 @@
           type="text"
           placeholder="Username"
           class="my-4"
+          :widthFull="true"
         />
         <InputText
           name="password"
           type="password"
           placeholder="Password"
           class="my-4"
+          :widthFull="true"
         />
         <Button
           class="w-full"

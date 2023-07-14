@@ -78,7 +78,7 @@
               <a-popover placement="bottom">
                 <template #content>
                   <p>
-                    <NuxtLink to="/user" class="text-black"
+                    <NuxtLink to="/user/account/profile" class="text-black"
                       >My Account</NuxtLink
                     >
                   </p>

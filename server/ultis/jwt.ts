@@ -5,7 +5,7 @@ import { User } from "../types/user.types";
 export const generateAccessToken = (user: User) => {
   const config = useRuntimeConfig();
   return jwt.sign({ userId: user.id }, config.jwtAccessSecret, {
-    expiresIn: "10m",
+    expiresIn: "2h",
   });
 };
 

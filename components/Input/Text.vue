@@ -2,7 +2,7 @@
   <div class="text-start">
     <input
       v-model="value"
-      class="border-[#e3e5e9] border-[2px] w-full"
+      class="border-[#e3e5e9] border-[2px]"
       :name="name"
       :type="props.type"
       :class="classes"
@@ -34,6 +34,10 @@ const props = defineProps({
     type: String,
     default: "md",
   },
+  widthFull:{
+    type: Boolean,
+    default : false
+  }
 });
 
 const paddingClasses = computed(() => {
@@ -52,6 +56,6 @@ const paddingClasses = computed(() => {
 const { errorMessage, value } = useField(props.name);
 
 const classes = computed(
-  () => `${paddingClasses.value} ${errorMessage.value ? "border-red-500" : ""}`
+  () => `${paddingClasses.value} ${props.widthFull && 'w-full'} ${errorMessage.value ? "border-red-500" : ""}`
 );
 </script>

@@ -1,27 +1,27 @@
 <template>
   <form @submit="onSubmit" class="pt-[30px] w-full">
     <div class="grid grid-cols-12 gap-y-[50px] md:gap-x-7.5">
-      <div class="col-span-8">
+      <div class="col-span-12 order-1 md:col-span-8 md:order-none">
         <div>
           <div class="flex items-center mb-7">
             <label class="text-blur-grey w-[20%] text-right" for=""
               >Username</label
             >
-            <InputText name="username" class="flex-1 ml-5" size="xs" />
+            <InputText name="username" class="flex-1 ml-5" size="xs" :widthFull="true" />
           </div>
 
           <div class="flex items-center mb-7">
             <label class="text-blur-grey w-[20%] text-right" for=""
               >Fullname</label
             >
-            <InputText name="fullname" class="flex-1 ml-5" size="xs" />
+            <InputText name="fullname" class="flex-1 ml-5" size="xs" :widthFull="true" />
           </div>
 
           <div class="flex items-center mb-7">
             <label class="text-blur-grey w-[20%] text-right" for=""
               >Email</label
             >
-            <InputText name="email" class="flex-1 ml-5" size="xs" />
+            <InputText name="email" class="flex-1 ml-5" size="xs" :widthFull="true" />
           </div>
 
           <div class="flex items-center mb-7">
@@ -35,7 +35,7 @@
             <label class="text-blur-grey w-[20%] text-right" for=""
               >Phone number</label
             >
-            <InputText name="phoneNumber" class="flex-1 ml-5" size="xs" />
+            <InputText name="phoneNumber" class="flex-1 ml-5" size="xs" :widthFull="true" />
           </div>
 
           <div class="flex items-center mb-7">
@@ -44,8 +44,8 @@
           </div>
         </div>
       </div>
-      <div class="col-span-4">
-        <div class="flex flex-col items-center border-l-[1px]">
+      <div class="col-span-12 md:col-span-4">
+        <div class="flex flex-col items-center md:border-l-[1px]">
           <div class="h-[100px] my-5">
             <img
               class="w-full h-full rounded-full"
@@ -63,7 +63,8 @@
               <input
                 type="file"
                 id="image"
-                @change="(e:any)=>handleChange(e.target.value)"
+                hidden
+                @change="(e:any)=>handleChange(e.target.files[0].name)"
               />
             </Field>
           </div>
@@ -102,6 +103,8 @@ const { handleSubmit } = useForm({
 });
 
 const onSubmit = handleSubmit(async (values: any) => {
+  const cookie = useCookie("User");
+  console.log(cookie);
   await store.updateUser(values);
 });
 </script>

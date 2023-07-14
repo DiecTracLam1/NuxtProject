@@ -45,8 +45,7 @@ export const useUserStore = defineStore("User", {
           method: "PUT",
           body: { values },
         });
-        console.log(this.data)
-
+        console.log(this.data);
       } catch (error: any) {
         console.log(error.message);
       }
@@ -54,6 +53,9 @@ export const useUserStore = defineStore("User", {
 
     logout() {
       this.$reset();
+      navigateTo({
+        path: "/",
+      });
     },
   },
 
