@@ -1,5 +1,5 @@
 <template>
-  <a-spin tip="Loading..." :spinning="spinning">
+  <a-spin tip="Loading..." :spinning="pending">
     <div class="pb-[50px]">
       <div class="pt-3 mb-3">
         <a-tabs v-model:activeKey="activeKey" centered @change="changeTabs">
@@ -48,29 +48,35 @@
               </div>
             </div>
             <div
-              v-for="product in order.product"
+              v-for="product in order.productList"
               class="flex xs:flex-row flex-col xs:items-center border-y-[1px] mt-[10px] py-3"
             >
               <div class="flex flex-1 pr-3">
                 <div class="w-[78px] h-[78px]">
-                  <img class="w-full h-full" :src="product.thumbnail" alt="" />
+                  <img
+                    class="w-full h-full"
+                    :src="product.product.image[0]"
+                    alt=""
+                  />
                 </div>
                 <div class="flex flex-1 flex-col pl-3">
                   <a-typography-paragraph
                     :ellipsis="{ rows: 2 }"
-                    :content="product.name"
+                    :content="product.product.name"
                     class="text-base"
                   />
-                  <p class="text-blur-grey">Variation: xanh - 39</p>
+                  <p class="text-blur-grey">
+                    Variation: {{ product.color }} - {{ product.size }}
+                  </p>
                   <span>x{{ product.quantity }}</span>
                 </div>
               </div>
               <div class="flex justify-self-end text-lg xs:pl-0 pl-[90px]">
                 <span class="text-blur-grey line-through mr-3 my-0"
-                  >${{ product.price }}</span
+                  >${{ product.product.price }}</span
                 >
                 <span class="text-[#ee4d2d] my-0"
-                  >${{ product.salePrice }}</span
+                  >${{ product.product.salePrice }}</span
                 >
               </div>
             </div>
@@ -93,11 +99,12 @@
 
               <Button
                 v-if="order.status === '4' || order.status === '5'"
-                @click="onClickBuyAgain(order.product)"
+                @click="onClickBuyAgain(order.productList)"
                 class="ml-auto normal-case tracking-normal"
                 text="Buy again"
               />
             </div>
+            {{ order.id }}
 
             <!-- Modal -->
             <a-modal
@@ -117,6 +124,7 @@
                     class="text-yellow-500 text-[40px]"
                   />
                   <p class="m-0 ml-2">
+                    {{ order.id }}
                     Please select a cancellation reason. Please take note that
                     this will cancel all items in the order and the action
                     cannot be undone.
@@ -166,8 +174,7 @@
 </template>
 
 <script setup lang="ts">
-import { OrderApi } from "model/order";
-import { Product } from "model/product";
+import { OrderApi, ProductOrder } from "model/order";
 import { useCartStore } from "@/stores/cart";
 import { useUserStore } from "@/stores/user";
 
@@ -175,7 +182,6 @@ definePageMeta({
   layout: "custom",
 });
 
-const { $pinia } = useNuxtApp();
 const cartStore = useCartStore();
 
 const router = useRouter();
@@ -201,9 +207,14 @@ const onChangeVisible = () => {
   visible.value = true;
 };
 
-const onClickBuyAgain = (productList: Product[]) => {
+const onClickBuyAgain = (productList: ProductOrder[]) => {
   productList.forEach((product) => {
-    cartStore.addToCart(product, product.quantity, product.size, product.color);
+    cartStore.addToCart(
+      product.product,
+      product.quantity,
+      product.size,
+      product.color
+    );
   });
   navigateTo({
     path: "/cart",
@@ -216,6 +227,7 @@ const changeCancelMsg = (e: any) => {
 };
 
 const cancelProduct = async (orderId: string) => {
+  console.log(orderId);
   if (!pickedCancelMsg.value) {
     errorMsg.value = "Please selection cancellation reason";
     return;
@@ -239,7 +251,7 @@ watch(activeKey, () => {
   router.push({ query: { status: activeKey.value } });
 });
 
-const { data: orders } = await useFetch<OrderApi>(
+const { data: orders, pending } = await useFetch<OrderApi>(
   () => {
     return `/api/order?status=${activeKey.value}`;
   },
@@ -247,5 +259,4 @@ const { data: orders } = await useFetch<OrderApi>(
     headers: { Authorization: `Bearer ${cookie.value.data.access_token}` },
   }
 );
-
 </script>

@@ -71,7 +71,7 @@
                 class="box-content p-2 bg-[#F3F2EE] text-2xl rounded-full cursor-pointer"
                 name="typcn:times"
                 color="black"
-                @click="removeCart(record?.id)"
+                @click="removeCart(record)"
               />
             </template>
           </template>
@@ -129,6 +129,7 @@
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cart";
 import { useUserStore } from "~/stores/user";
+import { message } from "ant-design-vue";
 
 // pinia cart store
 const cartStore = useCartStore();
@@ -161,6 +162,8 @@ const columns = [
   },
 ];
 
+console.log(cartStore.cart);
+
 const data = computed(() => {
   return cartStore.cart.map((item) => {
     return {
@@ -172,24 +175,40 @@ const data = computed(() => {
   });
 });
 
-function removeCart(id: string) {
-  cartStore.removeItemFromCart(id);
+function removeCart(product: any) {
+  cartStore.removeItemFromCart(product);
 }
 
-function onChangeQuantity(value : number, product: any) {
+function onChangeQuantity(value: number, product: any) {
   cartStore.setQuantity(value, product);
 }
 
 async function onSubmitCart() {
+  if (!userStore.$state.data.access_token) {
+    message.error("Please login first");
+    return;
+  }
+
+  if (cartStore.$state.cart.length <= 0) {
+    message.error("There are no products to order");
+    return;
+  }
+
   const totalPrice = data.value.reduce(
     (initial, nextItem) => initial + nextItem.total,
     0
   );
   const userId = userStore.data.user?.id;
   const product = data.value;
-  await cartStore.submitToApi({ totalPrice, userId, product });
-  navigateTo({
-    path: "/user/order",
-  });
+  try {
+    await cartStore.submitToApi({ totalPrice, userId, product });
+    message.success("Order successfully");
+    navigateTo({
+      path: "/user/order",
+    });
+    cartStore.$reset()
+  } catch (error) {
+    message.error("Something went wrong");
+  }
 }
 </script>

@@ -12,7 +12,7 @@ export const createUser = async (userData: User) => {
   });
 };
 
-export const getUserByUsername = (username: string):any => {
+export const getUserByUsername = (username: string): any => {
   return prisma.user.findUnique({
     where: {
       username,
@@ -20,7 +20,7 @@ export const getUserByUsername = (username: string):any => {
   });
 };
 
-export const getUserById = (userId: string):any => {
+export const getUserById = (userId: string): any => {
   return prisma.user.findUnique({
     where: {
       id: userId,
@@ -28,13 +28,15 @@ export const getUserById = (userId: string):any => {
   });
 };
 
-export const updateUser = (userId: string , dataUser:any)=>{
+export const updateUser = (userId: string, dataUser: any):any => {
   return prisma.user.update({
-    where:{
-      id: userId
+    where: {
+      id: userId,
     },
-    data:{
-      ...dataUser
-    }
-  })
-}
+    data: {
+      ...dataUser,
+    },
+  });
+};
+
+// export const

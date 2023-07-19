@@ -6,9 +6,16 @@ export interface OrderApi {
       userId: string;
       image: string;
       totalPrice: number | null;
-      status: string ;
-      product: Product[];
+      status: string;
+      productList: ProductOrder[];
       cancelMsg: string;
     }
   ];
 }
+
+export type ProductOrder = {
+  product: Product;
+  color: string;
+  size: string;
+  quantity: number;
+};

@@ -7,5 +7,6 @@ export const userTransformer = (user : User)=>{
         username: user.username,
         phoneNumber : user.phoneNumber,
         profileImage: user.profileImage,
+        sex : user.sex
     }
 }

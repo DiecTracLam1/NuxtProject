@@ -1,25 +1,25 @@
-import { v2 as _cloudinary } from "cloudinary"
-
+import { v2 as _cloudinary } from "cloudinary";
 
 const cloudinary = () => {
-    const config = useRuntimeConfig()
+  const config = useRuntimeConfig();
 
-    _cloudinary.config({
-        cloud_name: config.cloudinaryCloudName,
-        api_key: config.cloudinaryApiKey,
-        api_secret: config.cloudinaryApiSecret
-    })
+  _cloudinary.config({
+    cloud_name: config.cloudinaryCloudName,
+    api_key: config.cloudinaryApiKey,
+    api_secret: config.cloudinaryApiSecret,
+  });
 
-    return _cloudinary
-}
+  return _cloudinary;
+};
 
-export const uploadToCloudinary = (image:string) => {
-    return new Promise((resolve, reject) => {
-        cloudinary().uploader.upload(image, (error, data) => {
-            if (error) {
-                reject(error)
-            }
-            resolve(data)
-        })
-    })
-}
+export const uploadToCloudinary = (image: string) => {
+  return new Promise((resolve, reject) => {
+    console.log("Image : " , image);
+    cloudinary().uploader.upload(image, (error, data) => {
+      if (error) {
+        reject(error);
+      }
+      resolve(data);
+    });
+  });
+};

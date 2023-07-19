@@ -2,14 +2,20 @@ import { User } from "../types/user.types";
 import { prisma } from "./";
 
 export const createOrder = (
-  product: any,
+  productId: string[],
   userId: String,
-  totalPrice: number
+  totalPrice: number,
+  colors: string[],
+  sizes: string[],
+  quantities: string[]
 ) => {
   const data: any = {
-    product,
+    productId,
     userId,
     totalPrice,
+    colors,
+    sizes,
+    quantities,
   };
 
   return prisma.order.create({
@@ -17,9 +23,10 @@ export const createOrder = (
   });
 };
 
-export const getOrderList = (user: User, status: object, params: any = {}) => {
+export const getOrderList = (user: User, status: object, _offset: number) => {
   return prisma.order.findMany({
-    ...params,
+    skip: Number(_offset),
+    take: Number(6),
     where: {
       ...status,
       userId: user.id,
@@ -27,16 +34,26 @@ export const getOrderList = (user: User, status: object, params: any = {}) => {
   });
 };
 
-export const updateOrder = async (id: string, status: string , cancelMsg : string) => {
+export const getOrderById = (orderId: string):any => {
+  return prisma.order.findFirst({
+    where: {
+      id: orderId,
+    },
+  });
+};
+
+export const updateOrder = async (
+  id: string,
+  status: string,
+  cancelMsg: string
+) => {
   const updateOrder = await prisma.order.update({
     where: {
       id,
     },
     data: {
       status,
-      cancelMsg
+      cancelMsg,
     },
   });
 };
-
-

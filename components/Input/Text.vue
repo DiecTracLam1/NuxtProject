@@ -2,7 +2,7 @@
   <div class="text-start">
     <input
       v-model="value"
-      class="border-[#e3e5e9] border-[2px]"
+      class="border-[#e3e5e9] border-[2px] w-full"
       :name="name"
       :type="props.type"
       :class="classes"

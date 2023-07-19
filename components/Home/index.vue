@@ -116,50 +116,83 @@
       <div
         class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto"
       >
-        <!-- <div class="grid grid-cols-12 sm:gap-x-7.5 gap-y-10">
-          <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
+        <div class="grid grid-cols-12 sm:gap-x-7.5 gap-y-10">
+          <!-- <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
             <ProductItem />
-          </div>
-
-          <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
-            <ProductItem />
-          </div>
-
-          <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
-            <ProductItem />
-          </div>
-
-          <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
-            <ProductItem />
-          </div>
-
-          <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
-            <ProductItem />
-          </div>
-        </div> -->
+          </div> -->
+        </div>
       </div>
     </div>
 
     <!-- Spad -->
-    <!-- <div class="bg-[#f3f2ee] py-[150px] mb-[100px] relative ">
-      <div class="md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto z-10">
-        <div class="grid grid-cols-12">
-          <div class="col-span-4">
-            <div class="flex flex-col">
-              <h5>Clothings Hot</h5>
-              <h5>Shoe Collection</h5>
-              <h5>Accessories</h5>
+    <div class="bg-[#f3f2ee] py-[150px] mb-[100px] relative">
+      <div
+        class="absolute w-[26%] md:h-[300px] h-[200px] left-0 bg-white"
+      ></div>
+      <div
+        class="sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto z-10 relative"
+      >
+        <div class="grid grid-cols-12 gap-[30px]">
+          <div class="md:col-span-4 col-span-12">
+            <div class="flex flex-col justify-around h-full">
+              <h5 class="text-[34px] text-blur-grey lead-[74px] m-0">
+                Clothings Hot
+              </h5>
+              <h5 class="font-bold text-[34px] lead-[74px] m-0">
+                Shoe Collection
+              </h5>
+              <h5 class="text-[34px] text-blur-grey lead-[74px] m-0">
+                Accessories
+              </h5>
             </div>
           </div>
-          <div class="col-span-4">
-            <div class="">
-              <img src="~/assets/images/product-sale.png" alt="">
+          <div class="md:col-span-4 col-span-12">
+            <div class="relative md:m-0 mx-auto w-fit">
+              <img src="~/assets/images/product-sale.png" alt="" />
+              <div
+                class="absolute bg-black md:-top-9 top-1 right-1 w-[100px] h-[100px] text-center pt-[22px] rounded-full"
+              >
+                <h5 class="text-white text-normal">Sale Of</h5>
+                <h2 class="font-semibold text-white text-xl">$29.99</h2>
+              </div>
             </div>
           </div>
-          <div class="col-span-4"></div>
+          <div class="md:col-span-4 col-span-12">
+            <div class="ml-[8%]">
+              <p class="font-bold text-red-500 mb-[15px]">DEAL OF THE WEEK</p>
+              <h1 class="font-bold text-4xl mb-6">
+                Multi-pocket Chest Bag Black
+              </h1>
+              <div class="flex justify-around -ml-6 mb-5">
+                <div class="flex flex-col items-center">
+                  <span class="inline-block font-bold text-4xl mb-5">30</span>
+                  <p class="text-[#3d3d3d]">Days</p>
+                </div>
+                <div
+                  class="relative before:absolute before:content-[':'] before:font-bold before:text-2xl before:text-[#3d3d3d] before:top-1 before:-left-6"
+                >
+                  <span class="inline-block font-bold text-4xl mb-5">30</span>
+                  <p class="text-[#3d3d3d]">Hours</p>
+                </div>
+                <div
+                  class="relative before:absolute before:content-[':'] before:font-bold before:text-2xl before:text-[#3d3d3d] before:top-1 before:-left-6"
+                >
+                  <span class="inline-block font-bold text-4xl mb-5">30</span>
+                  <p class="text-[#3d3d3d]">Minutes</p>
+                </div>
+                <div
+                  class="relative before:absolute before:content-[':'] before:font-bold before:text-2xl before:text-[#3d3d3d] before:top-1 before:-left-6"
+                >
+                  <span class="inline-block font-bold text-4xl mb-5">30</span>
+                  <p class="text-[#3d3d3d]">Seconds</p>
+                </div>
+              </div>
+              <Button text="SHOP NOW" size="Xl" />
+            </div>
+          </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Intagram -->
     <div
@@ -249,87 +282,18 @@
       </div>
       <div class="grid grid-cols-12 sm:gap-x-[30px] gap-y-[30px]">
         <div class="col-span-12 sm:col-span-6 md:col-span-4">
-          <div class="relative">
-            <div class="h-[270px]">
-              <img
-                class="h-full w-full"
-                src="~/assets/images/blog-1.jpg"
-                alt=""
-              />
-            </div>
-            <div
-              class="bg-white mt-[-15%] mx-auto p-[30px] w-[300px] relative z-10"
-            >
-              <span class="text-[13px] text-[#919191]">
-                <Icon class="mr-1 mb-1" name="tabler:calendar-check" />16
-                February 2020</span
-              >
-              <h5 class="text-lg font-bold my-[6px]">
-                What Curling Irons Are The Best Ones
-              </h5>
-              <p
-                class="font-bold relative text-[13px] tracking-[4px] leading-5 w-fit hover:cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:bg-black after:w-1/2 after:h-[2px] hover:after:w-full hover:after:bg-red-400 after:transition-all after:duration-750"
-              >
-                READ MORE
-              </p>
-            </div>
-          </div>
+          <Blog
+            image="blog-1.jpg"
+            title="What Curling Irons Are The Best Ones"
+          />
         </div>
 
         <div class="col-span-12 sm:col-span-6 md:col-span-4">
-          <div class="relative">
-            <div class="h-[270px]">
-              <img
-                class="h-full w-full"
-                src="~/assets/images/blog-2.jpg"
-                alt=""
-              />
-            </div>
-            <div
-              class="bg-white mt-[-15%] mx-auto p-[30px] w-[300px] relative z-10"
-            >
-              <span class="text-[13px] text-[#919191]">
-                <Icon class="mr-1 mb-1" name="tabler:calendar-check" />16
-                February 2020</span
-              >
-              <h5 class="text-lg font-bold my-[6px]">
-                What Curling Irons Are The Best Ones
-              </h5>
-              <p
-                class="font-bold relative text-[13px] tracking-[4px] leading-5 w-fit hover:cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:bg-black after:w-1/2 after:h-[2px] hover:after:w-full hover:after:bg-red-400 after:transition-all after:duration-750"
-              >
-                READ MORE
-              </p>
-            </div>
-          </div>
+          <Blog image="blog-2.jpg" title="Eternity Bands Do Last Forever" />
         </div>
 
         <div class="col-span-12 sm:col-span-6 md:col-span-4">
-          <div class="relative">
-            <div class="h-[270px]">
-              <img
-                class="h-full w-full"
-                src="~/assets/images/blog-3.jpg"
-                alt=""
-              />
-            </div>
-            <div
-              class="bg-white mt-[-15%] mx-auto p-[30px] w-[300px] relative z-10"
-            >
-              <span class="text-[13px] text-[#919191]">
-                <Icon class="mr-1 mb-1" name="tabler:calendar-check" />16
-                February 2020</span
-              >
-              <h5 class="text-lg font-bold my-[6px]">
-                What Curling Irons Are The Best Ones
-              </h5>
-              <p
-                class="font-bold relative text-[13px] tracking-[4px] leading-5 w-fit hover:cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:bg-black after:w-1/2 after:h-[2px] hover:after:w-full hover:after:bg-red-400 after:transition-all after:duration-750"
-              >
-                READ MORE
-              </p>
-            </div>
-          </div>
+          <Blog image="blog-3.jpg" title="The Health Benefits Of Sunglasses" />
         </div>
       </div>
     </div>
@@ -353,5 +317,4 @@ const slides = [
       "https://preview.colorlib.com/theme/malefashion/img/hero/hero-2.jpg.webp",
   },
 ];
-
 </script>

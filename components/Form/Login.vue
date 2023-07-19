@@ -31,6 +31,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from "@/stores/user";
+import { message } from "ant-design-vue";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 
@@ -49,6 +50,12 @@ const { handleSubmit, isSubmitting } = useForm({
 
 const onSubmit = handleSubmit(async (values: any) => {
   const { username, password } = values;
-  await store.loginUser(username, password);
+  try {
+    await store.loginUser(username, password);
+    message.success("Login successfully");
+  } catch (error: any) {
+    message.error("Username or password is invalid");
+    return;
+  }
 });
 </script>

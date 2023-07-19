@@ -31,17 +31,13 @@ export default defineEventHandler(async (event) => {
       })
     );
   }
-
   const doesThePasswordMatch = await compare(password, user.password);
 
   if (!doesThePasswordMatch) {
-    return sendError(
-      event,
-      createError({
-        statusCode: 400,
-        statusMessage: "Username or password is invalid",
-      })
-    );
+    return {
+      statusCode: 400,
+      statusMessage: "Username or password is invalid",
+    };
   }
 
   const { accessToken, refreshToken } = generateTokens(user);

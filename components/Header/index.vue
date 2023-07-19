@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 bg-white w-full h-headerHeight shadow-xl z-10">
+  <header class="sticky top-0 bg-white w-full h-headerHeight shadow-xl z-50">
     <div
       class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] w-full mx-auto h-full"
     >
@@ -31,7 +31,7 @@
             </li>
             <li class="group">
               <NuxtLink
-                to="/Blog"
+                to="/blog"
                 class="text-lg no-underline text-black hover:underline hover:cursor-pointer"
               >
                 Blog
@@ -39,7 +39,7 @@
             </li>
             <li class="group">
               <NuxtLink
-                to="/Contacts"
+                to="/contact"
                 class="text-lg no-underline text-black hover:underline hover:cursor-pointer"
               >
                 Contacts

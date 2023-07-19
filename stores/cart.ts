@@ -20,26 +20,29 @@ export const useCartStore = defineStore("Cart", {
   },
   actions: {
     addToCart(product: Product, quantity: number, size: string, color: string) {
+      console.log(product);
       const ItemIndex = this.cart.findIndex(
-        (item: Product) => item.id === product.id
+        (item: Product) =>
+          item.id === product.id && item.size === size && item.color === color
       );
-      const cartItem = this.cart[ItemIndex];
-      if (
-        ItemIndex >= 0 &&
-        cartItem.size === size &&
-        cartItem.color === color
-      ) {
+      if (ItemIndex >= 0) {
         this.cart[ItemIndex].quantity += quantity;
       } else {
-        product.quantity = quantity;
-        product.size = size;
-        product.color = color;
-        this.cart.push(product);
+        const newProduct = { ...product };
+        newProduct.quantity = quantity;
+        newProduct.size = size;
+        newProduct.color = color;
+        this.cart.push(newProduct);
       }
     },
 
     setQuantity(quantity: number, product: Product) {
-      const ItemIndex = this.cart.findIndex((x) => x.id == product.id);
+      const ItemIndex = this.cart.findIndex(
+        (x) =>
+          x.id == product.id &&
+          x.size === product.size &&
+          x.color === product.color
+      );
       if (ItemIndex >= 0) {
         this.cart[ItemIndex].quantity = quantity;
       } else {
@@ -47,15 +50,27 @@ export const useCartStore = defineStore("Cart", {
       }
     },
 
-    removeItemFromCart(id: string) {
-      this.cart = this.cart.filter((item) => item.id != id);
+    removeItemFromCart(product: any) {
+      const ItemIndex = this.cart.findIndex(
+        (x) =>
+          x.id == product.id &&
+          x.size === product.size &&
+          x.color === product.color
+      );
+      this.cart.splice(ItemIndex, 1);
     },
 
     async submitToApi({ totalPrice, userId, product }: any) {
-      await $fetch("/api/order", {
-        method: "POST",
-        body: { totalPrice, userId, product },
-      });
+      try {
+        await $fetch("/api/order", {
+          method: "POST",
+          body: { totalPrice, userId, product },
+        });
+      } catch (error:any) {
+        throw new Error(error.message)
+      }
     },
+
+
   },
 });

@@ -607,6 +607,21 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.18.11.tgz#6526c7e1b40d5b9f0a222c6b767c22f6fb97aa57"
   integrity sha512-rQI4cjLHd2hGsM1LqgDI7oOCYbQ6IBOVsX9ejuRMSze0GqXUG2ekwiKkiBU1pRGSeCqFFHxTrcEydB2Hyoz9CA==
 
+"@fawmi/vue-google-maps@^0.9.79":
+  version "0.9.79"
+  resolved "https://registry.yarnpkg.com/@fawmi/vue-google-maps/-/vue-google-maps-0.9.79.tgz#0e43bd2a2d0e3309219d400bc06efad4134104a8"
+  integrity sha512-SnITonfrBfT/7uESF8SCs1DRWHSJyr/K0bPv9taONAUp/YiggmlwHOwAzA63UeDl8vP0bBmT56MYC1bZmAdUjQ==
+  dependencies:
+    "@googlemaps/markerclusterer" "^2.0.3"
+
+"@googlemaps/markerclusterer@^2.0.3":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@googlemaps/markerclusterer/-/markerclusterer-2.3.2.tgz#b311c26a0c0e8bb6325759ea690aef68c7150d8a"
+  integrity sha512-zb9OQP8XscZp2Npt1uQUYnGKu1miuq4DPP28JyDuFd6HV17HCEcjV9MtBi4muG/iVRXXvuHW9bRCnHbao9ITfw==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+    supercluster "^8.0.1"
+
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.3.0.tgz#8368869dcb735be2e7f5cb7647de78e167a251fb"
@@ -2953,6 +2968,11 @@ es6-object-assign@^1.1.0:
   resolved "https://registry.yarnpkg.com/es6-object-assign/-/es6-object-assign-1.1.0.tgz#c2c3582656247c39ea107cb1e6652b6f9f24523c"
   integrity sha512-MEl9uirslVwqQU369iHNWZXsI8yaZYGg/D65aOgZkeyFJwHYSxilf7rQzXKI7DdDuBPrBXbfk3sl9hJhmd5AUw==
 
+es6-promise@^4.0.5:
+  version "4.2.8"
+  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.2.8.tgz#4eb21594c972bc40553d276e510539143db53e0a"
+  integrity sha512-HJDGx5daxeIvxdBxvG2cb9g4tEvwIk3i8+nhX0yGrYmZUzbkdg8QbDevheDB8gd0//uPj4c1EQua8Q+MViT0/w==
+
 esbuild@^0.17.5, esbuild@~0.17.6:
   version "0.17.19"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.17.19.tgz#087a727e98299f0462a3d0bcdd9cd7ff100bd955"
@@ -3117,7 +3137,7 @@ externality@^1.0.2:
     pathe "^1.1.1"
     ufo "^1.1.2"
 
-fast-deep-equal@^3.1.1:
+fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
   integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
@@ -3525,6 +3545,13 @@ globby@^13.2.1:
     ignore "^5.2.4"
     merge2 "^1.4.1"
     slash "^4.0.0"
+
+google-maps-api-loader@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/google-maps-api-loader/-/google-maps-api-loader-1.1.1.tgz#b600602451300521ba1b5d7493e7071d7931ac00"
+  integrity sha512-+bxumYl6WCxKDjygLFF2FxrNyKIB0QgWKFb+EZ6F5wt/MoU2cm/8se9uQ0o1nY7389F2qe6ocdpSFn1bKQAD5w==
+  dependencies:
+    es6-promise "^4.0.5"
 
 gopd@^1.0.1:
   version "1.0.1"
@@ -4197,6 +4224,11 @@ jws@^3.2.2:
   dependencies:
     jwa "^1.4.1"
     safe-buffer "^5.0.1"
+
+kdbush@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/kdbush/-/kdbush-4.0.2.tgz#2f7b7246328b4657dd122b6c7f025fbc2c868e39"
+  integrity sha512-WbCVYJ27Sz8zi9Q7Q0xHC+05iwkm3Znipc2XTlrnJbsHMYktW4hPhXUE8Ys1engBrvffoSCqbil1JQAa7clRpA==
 
 keygrip@~1.1.0:
   version "1.1.0"
@@ -4898,6 +4930,11 @@ node-gyp@^9.0.0:
     tar "^6.1.2"
     which "^2.0.2"
 
+node-js-marker-clusterer@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/node-js-marker-clusterer/-/node-js-marker-clusterer-1.0.0.tgz#d09a1e963ebc5f6c162ece8510e9e680bba097a9"
+  integrity sha512-FmydyV+HaK6eTqUwsrrVIs3oh7v0ZaXp/tB5/E9vFCUCIfb1odYu8A1DB2CqY1nV/t0Qo9qlMam2dBIlZDzMLA==
+
 node-releases@^2.0.12:
   version "2.0.12"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.12.tgz#35627cc224a23bfb06fb3380f2b3afaaa7eb1039"
@@ -5043,6 +5080,14 @@ nuxi@3.6.1:
   integrity sha512-8kyDHfyiq0oLywon8UlucQWyYj3toE5AU96COjbuQy8ZzyRT6KJlAmMXmFkO/VuIhaMC8qdlcZPYg/NnHTVjaQ==
   optionalDependencies:
     fsevents "~2.3.2"
+
+nuxt-gmaps@^1.2.10:
+  version "1.2.10"
+  resolved "https://registry.yarnpkg.com/nuxt-gmaps/-/nuxt-gmaps-1.2.10.tgz#c32aca891e63eb227835e9f1c2edfa3bf86c0ca6"
+  integrity sha512-IeYXeR6cJpVfSDa0+IYht7r7IZNCL5uK6oWH8e1JY95+NbJBBH6Nas9BmR+9ZIkCw6aFrUwXEkOFgg8RefjlJw==
+  dependencies:
+    google-maps-api-loader "^1.1.1"
+    node-js-marker-clusterer "^1.0.0"
 
 nuxt-icon@^0.4.1:
   version "0.4.2"
@@ -6477,6 +6522,13 @@ sucrase@^3.32.0:
     mz "^2.7.0"
     pirates "^4.0.1"
     ts-interface-checker "^0.1.9"
+
+supercluster@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/supercluster/-/supercluster-8.0.1.tgz#9946ba123538e9e9ab15de472531f604e7372df5"
+  integrity sha512-IiOea5kJ9iqzD2t7QJq/cREyLHTtSmUT6gQsweojg9WH2sYJqZK9SswTu6jrscO6D1G5v5vYZ9ru/eq85lXeZQ==
+  dependencies:
+    kdbush "^4.0.2"
 
 supports-color@^5.3.0:
   version "5.5.0"

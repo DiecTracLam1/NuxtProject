@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center text-sm">
-    <input type="radio" id="huey" :name="props.name" />
-    <label class="ml-1" for="huey">{{ props.title }}</label>
+    <input type="radio" :id="title" :name="props.name" />
+    <label class="ml-1" :for="title">{{ props.title }}</label>
   </div>
 </template>
 <script setup>

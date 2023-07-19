@@ -10,7 +10,8 @@ export default defineEventHandler(async (event) => {
     "/api/order?status=3",
     "/api/order?status=4",
     "/api/order?status=5",
-    "/api/auth/update"
+    "/api/auth/update",
+    "/api/auth/resetPassword",
   ];
 
   const isHandledByThisMiddleware = endpoints.some((endopoint) => {

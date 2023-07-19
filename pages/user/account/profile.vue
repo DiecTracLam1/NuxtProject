@@ -12,6 +12,7 @@ import { User } from 'model/user';
 
 definePageMeta({
   layout: "custom",
+  middleware : "auth"
 });
 
 const { data: user } = await useFetch<User>("/api/auth/user");

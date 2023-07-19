@@ -1,14 +1,14 @@
+import { Product } from "../../model/product";
 
-export const userTransformer = (order:any , quantity:number , size:string , color:string)=>{
-    const mapProductFromOrder = ()=>{
-        order.product.map((item:any)=>{
-            
-        })
-    }
-    return {
-        ...order,
-        product : {
-            ...order.product
-        }
-    }
-}
+export const orderTransformer = (order: any, productList: Product[]) => {
+  return {
+    id: order.id,
+    userId: order.userId,
+    status: order.status,
+    createdAt: order.createdAt,
+    updatedAt: order.updatedAt,
+    totalPrice: order.totalPrice,
+    cancelMsg: order.cancelMsg,
+    productList: productList,
+  };
+};

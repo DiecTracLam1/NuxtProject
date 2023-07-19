@@ -1,20 +1,20 @@
 import { prisma } from "./";
 
-export const updateStock = async (productItem: any) => {
+export const updateStock = async (productId: any, quantity: number) => {
   const updateStock = await prisma.stock.updateMany({
     where: {
-      productId: productItem.id,
+      productId,
       quantity: {
-        gte:Number(productItem.quantity)
-      }
+        gte: Number(quantity),
+      },
     },
     data: {
       quantity: {
-        decrement: productItem.quantity,
+        decrement: quantity,
       },
-    }
+    },
   });
-  return updateStock
+  return updateStock;
 };
 
 export const getStock = async () => {};
