@@ -1,121 +1,136 @@
 <template>
+  <div class="bg-[#f6f6f6] h-[140px]">
+    <div
+      class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto h-full"
+    >
+      <div class="flex flex-col justify-center h-full">
+        <h4 class="text-2xl font-bold mb-2">Cart</h4>
+      </div>
+    </div>
+  </div>
   <div
-    class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] lg:max-w-[1170px] xl:max-w-[1170px] w-full px-[15px] mx-auto mt-24"
+    class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] lg:max-w-[1170px] xl:max-w-[1170px] w-full px-[15px] mx-auto"
   >
-    <div class="grid grid-cols-12 md:gap-[30px] gap-y-[30px]">
-      <div class="col-span-12 md:col-span-8">
-        <a-table
-          :pagination="false"
-          :columns="columns"
-          :data-source="data"
-          :scroll="{ y: 650 }"
-        >
-          <template #bodyCell="{ column, record }">
-            <template v-if="column.key === 'product'">
-              <div class="flex sm:items-center sm:flex-row flex-col">
-                <div class="h-[90px] w-[90px]">
-                  <img class="w-full h-full" :src="record.thumbnail" alt="" />
-                </div>
-                <div class="flex-1 sm:ml-[30px]">
-                  <a-typography-paragraph
-                    class="text-lg"
-                    :ellipsis="{ rows: 2 }"
-                    :content="record.name"
-                  />
-                  <!-- <p class="m-0 text-lg">{{ record.name }}</p> -->
-                  <div class="flex my-1 text-blur-grey text-sm">
-                    <span>Size:{{ record.size }}</span>
-
-                    <span class="ml-3">Color:{{ record.color }}</span>
+    <div class="my-24">
+      <div class="grid grid-cols-12 md:gap-[30px] gap-y-[30px]">
+        <div class="col-span-12 md:col-span-8">
+          <a-table
+            :pagination="false"
+            :columns="columns"
+            :data-source="data"
+            :scroll="{ y: 650 }"
+          >
+            <template #bodyCell="{ column, record }">
+              <template v-if="column.key === 'product'">
+                <div class="flex sm:items-center sm:flex-row flex-col">
+                  <div class="h-[90px] w-[90px]">
+                    <img class="w-full h-full" :src="record.thumbnail" alt="" />
                   </div>
-                  <div class="flex items-center font-bold text-lg">
-                    <Icon
-                      name="ph:currency-dollar-simple-bold"
-                      color="black"
-                      class="w-fit leading"
+                  <div class="flex-1 sm:ml-[30px]">
+                    <a-typography-paragraph
+                      class="text-lg"
+                      :ellipsis="{ rows: 2 }"
+                      :content="record.name"
                     />
-                    <p class="m-0 mt-[2px]">{{ record.salePrice }}</p>
+                    <!-- <p class="m-0 text-lg">{{ record.name }}</p> -->
+                    <div class="flex my-1 text-blur-grey text-sm">
+                      <span>Size:{{ record.size }}</span>
+
+                      <span class="ml-3">Color:{{ record.color }}</span>
+                    </div>
+                    <div class="flex items-center font-bold text-lg">
+                      <Icon
+                        name="ph:currency-dollar-simple-bold"
+                        color="black"
+                        class="w-fit leading"
+                      />
+                      <p class="m-0 mt-[2px]">{{ record.salePrice }}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </template>
+              </template>
 
-            <template v-else-if="column.key === 'quantity'">
-              <a-input-number
-                id="inputNumber"
-                @change="(e:any) => onChangeQuantity(e, record)"
-                v-model:value="record.quantity"
-                :min="1"
-                :max="record.stock[0].quantity"
-              />
-            </template>
+              <template v-else-if="column.key === 'quantity'">
+                <a-input-number
+                  id="inputNumber"
+                  @change="(e:any) => onChangeQuantity(e, record)"
+                  v-model:value="record.quantity"
+                  :min="1"
+                  :max="record.stock[0].quantity"
+                />
+              </template>
 
-            <template v-else-if="column.key === 'total'">
-              <div class="flex items-center font-bold text-lg">
+              <template v-else-if="column.key === 'total'">
+                <div class="flex items-center font-bold text-lg">
+                  <Icon
+                    name="ph:currency-dollar-simple-bold"
+                    color="black"
+                    class="leading"
+                  />
+                  <p class="m-0 mt-[2px]">{{ record.total }}</p>
+                </div>
+              </template>
+
+              <template v-else>
+                <Icon
+                  class="box-content p-2 bg-[#F3F2EE] text-2xl rounded-full cursor-pointer"
+                  name="typcn:times"
+                  color="black"
+                  @click="removeCart(record)"
+                />
+              </template>
+            </template>
+          </a-table>
+        </div>
+
+        <div class="col-span-12 md:col-span-4">
+          <h3 class="font-bold text-base mb-[35px]">DISCOUNT CODES</h3>
+          <div class="flex mb-[60px]">
+            <input
+              class="flex-1 border-blur-grey border-[2px] pl-5 py-3 pr-2 outline-none w-full"
+              placeholder="Coupon code"
+              type="text"
+            />
+            <Button text="APPLY" size="xl" />
+          </div>
+          <div class="bg-[#F3F2EE] p-10">
+            <h2 class="text-base mb-3">CART TOTAL</h2>
+            <div class="flex items-center">
+              <p class="text-base mb-0">Subtotal</p>
+              <div
+                class="flex items-center font-bold leading-10 text-lg ml-auto"
+              >
                 <Icon
                   name="ph:currency-dollar-simple-bold"
-                  color="black"
-                  class="leading"
+                  color="#e53638"
+                  class="w-fit leading"
                 />
-                <p class="m-0 mt-[2px]">{{ record.total }}</p>
+                <p class="m-0 mt-[2px] text-[#e53638]">
+                  {{ cartStore.totalPrice }}
+                </p>
               </div>
-            </template>
-
-            <template v-else>
-              <Icon
-                class="box-content p-2 bg-[#F3F2EE] text-2xl rounded-full cursor-pointer"
-                name="typcn:times"
-                color="black"
-                @click="removeCart(record)"
-              />
-            </template>
-          </template>
-        </a-table>
-      </div>
-      
-      <div class="col-span-12 md:col-span-4">
-        <h3 class="font-bold text-base mb-[35px]">DISCOUNT CODES</h3>
-        <div class="flex mb-[60px]">
-          <input
-            class="flex-1 border-blur-grey border-[2px] pl-5 py-3 pr-2 outline-none w-full"
-            placeholder="Coupon code"
-            type="text"
-          />
-          <Button text="APPLY" size="xl" />
-        </div>
-        <div class="bg-[#F3F2EE] p-10">
-          <h2 class="text-base mb-3">CART TOTAL</h2>
-          <div class="flex items-center">
-            <p class="text-base mb-0">Subtotal</p>
-            <div class="flex items-center font-bold leading-10 text-lg ml-auto">
-              <Icon
-                name="ph:currency-dollar-simple-bold"
-                color="#e53638"
-                class="w-fit leading"
-              />
-              <p class="m-0 mt-[2px] text-[#e53638]">
-                {{ cartStore.totalPrice }}
-              </p>
             </div>
-          </div>
-          <div class="flex items-center">
-            <p class="text-base mb-0">Total</p>
-            <div class="flex items-center font-bold leading-10 text-lg ml-auto">
-              <Icon
-                name="ph:currency-dollar-simple-bold"
-                color="#e53638"
-                class="w-fit leading"
-              />
-              <p class="m-0 mt-[2px] text-[#e53638]">
-                {{ cartStore.totalPrice }}
-              </p>
+            <div class="flex items-center">
+              <p class="text-base mb-0">Total</p>
+              <div
+                class="flex items-center font-bold leading-10 text-lg ml-auto"
+              >
+                <Icon
+                  name="ph:currency-dollar-simple-bold"
+                  color="#e53638"
+                  class="w-fit leading"
+                />
+                <p class="m-0 mt-[2px] text-[#e53638]">
+                  {{ cartStore.totalPrice }}
+                </p>
+              </div>
             </div>
+            <Button
+              @click="onSubmitCart"
+              class="mt-6 w-full text-center"
+              text="PROCEED TO ORDER"
+            />
           </div>
-          <Button
-            @click="onSubmitCart"
-            class="mt-6 w-full text-center"
-            text="PROCEED TO ORDER"
-          />
         </div>
       </div>
     </div>
@@ -202,7 +217,7 @@ async function onSubmitCart() {
     navigateTo({
       path: "/user/order",
     });
-    cartStore.$reset()
+    cartStore.$reset();
   } catch (error) {
     message.error("Something went wrong");
   }

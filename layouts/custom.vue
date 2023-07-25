@@ -2,7 +2,7 @@
   <div>
     <Header />
     <main>
-      <div class="bg-[#F3F2EE] h-[140px]">
+      <div class="bg-[#f6f6f6] h-[140px]">
         <div
           class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto h-full"
         >

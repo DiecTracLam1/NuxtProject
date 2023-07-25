@@ -104,7 +104,7 @@
     <div
       class="md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto my-[100px]"
     >
-      <ul class="flex justify-center py-24">
+      <ul class="flex justify-center pt-20 mb-11">
         <li class="mr-[15px] sm:mr-[92px] font-bold xs:text-2xl text-base">
           <p>Best Seller</p>
         </li>
@@ -117,9 +117,12 @@
         class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto"
       >
         <div class="grid grid-cols-12 sm:gap-x-7.5 gap-y-10">
-          <!-- <div class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3">
-            <ProductItem />
-          </div> -->
+          <div
+            v-for="product in products?.data?.products"
+            class="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3"
+          >
+            <ProductItem :product="product" />
+          </div>
         </div>
       </div>
     </div>
@@ -295,6 +298,7 @@
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
 import { BlogApi } from "model/blog";
+import { ProductListApi } from "model/product";
 
 const slides = [
   {
@@ -310,6 +314,8 @@ const slides = [
       "https://preview.colorlib.com/theme/malefashion/img/hero/hero-2.jpg.webp",
   },
 ];
-
+const { data: products } = await useFetch<ProductListApi>(
+  () => `/api/product?_limit=8`
+);
 const { data: blogs } = await useFetch<BlogApi>("/api/blog");
 </script>

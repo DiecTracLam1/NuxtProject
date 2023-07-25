@@ -97,42 +97,10 @@
             </div>
           </div>
           <div class="md:col-span-8 col-span-12">
-            <div>
-              <template
-                v-for="description in blogDetail?.data.blog.description"
-              >
-                <p
-                  
-                  v-if="description.type === 'content'"
-                  class="leading-[34px] text-lg text-normal-color"
-                >
-                  <span v-html="description.content"></span>
-                </p>
-
-                <!-- <h2 v-else-if="description.type === 'title'" class=""></h2>
-
-                <div v-else-if="description.type === 'image'" class="my-4">
-                  <img :src="description.content" class="mx-auto" alt="" />
-                </div>
-
-                <div
-                  v-else-if="description.type === 'quote'"
-                  class="bg-[#f3f2ee] relative my-[50px] px-10 pt-[50px] pb-[35px]"
-                >
-                  <span
-                    class="absolute bg-red-500 -top-6 left-10 px-4 py-[14px] rounded-full"
-                  >
-                    <Icon
-                      name="ooui:quotes-ltr"
-                      class="font-bold text-white text-lg"
-                    />
-                  </span>
-                  <h4 class="font-semibold text-lg">
-                    “{{ description.content }}”
-                  </h4>
-                </div> -->
-              </template>
-            </div>
+            <div
+              v-html="blogDetail?.data.blog.description"
+              class="leading-[34px] text-lg text-normal-color"
+            />
 
             <div class="my-[50px] pt-[15px] border-t-[1px]">
               <div class="grid grid-cols-12 sm:gap-x-[30px] gap-y-[30px]">
@@ -172,9 +140,9 @@
               <div class="grid grid-cols-12 sm:gap-x-[30px] gap-y-[30px]">
                 <div class="sm:col-span-6 col-span-12">
                   <div
-                    v-if="blogSide?.data.prevBlog?.id"
+                    v-if="blogDetail?.data.prevBlog?.id"
                     class="border-[1px] cursor-pointer group p-[30px]"
-                    @click="onRedirect(blogSide?.data.prevBlog?.id)"
+                    @click="onRedirect(blogDetail?.data.prevBlog?.id)"
                   >
                     <div
                       class="flex items-center text-blur-grey mb-[10px] group-hover:text-blue-400"
@@ -183,16 +151,16 @@
                       <p class="m-0 ml-[5px] text-normal">Previous Pod</p>
                     </div>
                     <h4 class="font-bold text-xl m-0">
-                      {{ blogSide?.data.prevBlog?.title }}
+                      {{ blogDetail?.data.prevBlog?.title }}
                     </h4>
                   </div>
                 </div>
 
                 <div class="sm:col-span-6 col-span-12">
                   <div
-                    v-if="blogSide?.data.nextBlog?.id"
+                    v-if="blogDetail?.data.nextBlog?.id"
                     class="border-[1px] cursor-pointer group p-[30px] text-end"
-                    @click="onRedirect(blogSide?.data.nextBlog?.id)"
+                    @click="onRedirect(blogDetail?.data.nextBlog?.id)"
                   >
                     <div
                       class="flex items-center w-fit text-blur-grey mb-[10px] ml-auto group-hover:text-blue-400"
@@ -201,7 +169,7 @@
                       <Icon name="solar:arrow-right-outline" class="text-xl" />
                     </div>
                     <h4 class="font-bold text-xl m-0">
-                      {{ blogSide?.data.nextBlog?.title }}
+                      {{ blogDetail?.data.nextBlog?.title }}
                     </h4>
                   </div>
                 </div>
@@ -219,10 +187,6 @@ import { BlogDetailApi } from "model/blog";
 const route = useRoute();
 const { data: blogDetail } = await useFetch<BlogDetailApi>(
   `/api/blog/${route.params.id}`
-);
-
-const { data: blogSide } = await useFetch(
-  `/api/blog/nextPrev?id=${route.params.id}`
 );
 
 const onRedirect = (id: string) => {

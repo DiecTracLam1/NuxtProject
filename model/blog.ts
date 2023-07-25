@@ -6,17 +6,18 @@ interface Blog {
   titleImage: string;
   createdAt: Date;
   updatedAt: Date;
-  description: Description[];
+  description: string;
 }
-type Description = {
-  type: string;
-  content: string;
-};
 
 export interface BlogApi {
   data: Blog[];
 }
 
 export interface BlogDetailApi {
-  data: { blog: Blog; author: User };
+  data: {
+    blog: Blog;
+    author: User;
+    nextBlog: Blog;
+    prevBlog: Blog;
+  };
 }

@@ -99,7 +99,7 @@
         <h2 class="font-bold text-3xl mx-auto mb-11 w-fit">Related Product</h2>
         <div class="grid grid-cols-12 xs:gap-[30px]">
           <div
-            v-for="product in productRelated.data"
+            v-for="product in productRelated?.data"
             class="xs:col-span-6 sm:col-span-6 md:col-span-4 xl:col-span-3 col-span-12"
           >
             <ProductItem :product="product" />
@@ -111,7 +111,7 @@
 </template>
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cart";
-import { ProductApi } from "~/model/product";
+import { ProductApi , ProductListApi} from "~/model/product";
 
 // pinia cart store
 const store = useCartStore();
@@ -119,10 +119,10 @@ const store = useCartStore();
 // get product detail
 const route = useRoute();
 
-const { data: product } = await useAsyncData("productDetail", () =>
+const { data: product } = await useAsyncData<ProductApi>("productDetail", () =>
   $fetch(`/api/product/${route.params.id}`)
 );
-const { data: productRelated } = await useAsyncData("productRelated", () =>
+const { data: productRelated } = await useAsyncData<ProductListApi>("productRelated", () =>
   $fetch(`/api/product/related/${route.params.id}`)
 );
 

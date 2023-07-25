@@ -14,18 +14,17 @@ export interface Product {
   colorList: Array<string>;
   thumbnail:string
   color?:string;
-  size?:string
+  size?:string;
+  stock?: number
 }
 
 export type ProductListApi = {
   data: {
     products: Product[];
-    total: number;
+    total?: number;
   };
 };
 
 export type ProductApi = {
-  data: {
-    product: Product;
-  };
+  data:  Product;
 };
