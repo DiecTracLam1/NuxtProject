@@ -10,7 +10,7 @@ module.exports = {
     "./nuxt.config.{js,ts}",
     "./app.vue",
     "./assets/**/antd.css",
-    "./assets/**/index.css"
+    "./assets/**/index.css",
   ],
 
   safelist: [
@@ -50,6 +50,7 @@ module.exports = {
       colors: {
         "blur-grey": "#afaeb3",
         "primary-color": "var(--primary-color)",
+        "normal-color": "#3d3d3d",
       },
       gridTemplateRows: {
         // Simple 8 row grid

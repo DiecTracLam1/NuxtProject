@@ -47,6 +47,7 @@
             </li>
             <li class="group">
               <NuxtLink
+                to="/about"
                 class="text-lg no-underline text-black hover:underline hover:cursor-pointer"
               >
                 About us
@@ -168,6 +169,7 @@ import { storeToRefs } from "pinia";
 
 const cartStore = useCartStore();
 const userStore = useUserStore();
+const cookie = useCookie("User");
 const { loggedIn, getImage } = storeToRefs(userStore);
 
 const openMenu = ref(false);
@@ -175,6 +177,16 @@ const openLogin = ref(false);
 function handleChangeOpenMenu(value: boolean) {
   openMenu.value = value;
 }
+
+onBeforeMount(async () => {
+  try {
+    await $fetch("/api/auth/user", {
+      headers: { Authorization: `Bearer ${cookie.value.data.access_token}` },
+    });
+  } catch (error) {
+    userStore.$reset();
+  }
+});
 
 function handleChangeOpenLogin(value: boolean) {
   openLogin.value = value;

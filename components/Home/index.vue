@@ -260,7 +260,7 @@
         <div class="col-span-12 md:col-span-4">
           <div class="flex flex-col justify-center h-full">
             <h1 class="font-medium text-4xl mb-[30px]">Intagram</h1>
-            <p class="text-[15px] leading-[25px] text-[#3d3d3d] mb-[65px]">
+            <p class="text-[15px] leading-[25px] text-normal-color mb-[65px]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua
             </p>
@@ -281,27 +281,20 @@
         <h2 class="text-4xl font-bold">Fashion New Trends</h2>
       </div>
       <div class="grid grid-cols-12 sm:gap-x-[30px] gap-y-[30px]">
-        <div class="col-span-12 sm:col-span-6 md:col-span-4">
-          <Blog
-            image="blog-1.jpg"
-            title="What Curling Irons Are The Best Ones"
-          />
-        </div>
-
-        <div class="col-span-12 sm:col-span-6 md:col-span-4">
-          <Blog image="blog-2.jpg" title="Eternity Bands Do Last Forever" />
-        </div>
-
-        <div class="col-span-12 sm:col-span-6 md:col-span-4">
-          <Blog image="blog-3.jpg" title="The Health Benefits Of Sunglasses" />
+        <div
+          v-for="blog in blogs?.data"
+          class="col-span-12 sm:col-span-6 md:col-span-4"
+        >
+          <Blog :blog="blog" />
         </div>
       </div>
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
+import { BlogApi } from "model/blog";
 
 const slides = [
   {
@@ -317,4 +310,6 @@ const slides = [
       "https://preview.colorlib.com/theme/malefashion/img/hero/hero-2.jpg.webp",
   },
 ];
+
+const { data: blogs } = await useFetch<BlogApi>("/api/blog");
 </script>

@@ -55,7 +55,6 @@ const props = defineProps({
 });
 
 const onNavigate = (id) => {
-  console.log(id)
   navigateTo({
     path: `/shop/${id}`,
   });

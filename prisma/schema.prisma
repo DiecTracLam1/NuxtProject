@@ -19,6 +19,7 @@ model User {
   phoneNumber   String
   profileImage  String?
   sex           String     @default("Male")
+  role          String     @default("User")  
 
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
@@ -27,6 +28,8 @@ model User {
   refreshToken  RefreshToken[]
   // Order
   orders        Order[]
+  // Blogs
+  blogs          Blog[]
 }
 
 model RefreshToken {
@@ -114,3 +117,19 @@ model Order {
   quantities    Int[]
 }
 
+model Blog {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  title         String 
+  titleImage    String
+  description   Description[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt @default(now())
+
+  author        User       @relation(fields: [authorId], references: [id])
+  authorId      String     @db.ObjectId 
+}
+
+type Description{
+  type    String
+  content String
+}

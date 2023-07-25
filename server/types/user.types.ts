@@ -9,5 +9,6 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
   sex: String
+  role:String;
 }
    

@@ -8,12 +8,15 @@
   </div>
 </template>
 <script setup lang="ts">
-import { User } from 'model/user';
+import { User } from "model/user";
 
 definePageMeta({
   layout: "custom",
-  middleware : "auth"
+  middleware: "auth",
 });
+const cookie = useCookie<any>("User");
 
-const { data: user } = await useFetch<User>("/api/auth/user");
+const { data: user } = await useFetch<User>("/api/auth/user", {
+  headers: { Authorization: `Bearer ${cookie.value.data.access_token}` },
+});
 </script>

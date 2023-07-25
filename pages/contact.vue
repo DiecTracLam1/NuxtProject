@@ -1,35 +1,6 @@
 <template>
   <div class="mb-20">
-    <GMapMap
-      :center="center"
-      :zoom="15"
-      :options="{
-        zoomControl: true,
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        rotateControl: false,
-        fullscreenControl: true,
-      }"
-      style="width: 500px; height: 300px; margin: auto"
-    >
-      <GMapMarker
-        :key="index"
-        v-for="(marker, index) in markers"
-        :position="marker.position"
-        :clickable="true"
-        :draggable="true"
-        @click="openMarker(marker.id)"
-      >
-        <GMapInfoWindow
-          :closeclick="true"
-          @closeclick="openMarker(null)"
-          :opened="openedMarkerID === marker.id"
-        >
-          <div>{{ marker.description }}</div>
-        </GMapInfoWindow>
-      </GMapMarker>
-    </GMapMap>
+    <div ref="mapDiv" class="h-[500px]"></div>
   </div>
   <div
     class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] mx-auto my-[100px]"
@@ -80,7 +51,8 @@
     </div>
   </div>
 </template>
-<script>
+<script setup lang="ts">
+import { Loader } from "@googlemaps/js-api-loader";
 const openedMarkerID = null;
 const center = { lat: 48.8773406, lng: 2.327774 };
 const markers = [
@@ -93,4 +65,17 @@ const markers = [
     },
   },
 ];
+
+const loader = new Loader({ apiKey: process.env.GOOGLE_MAP_API_KEY });
+const mapDiv = ref(null)
+onMounted(async () => {
+  await loader.load();
+  new google.maps.Map(mapDiv.value,{
+    center:{
+      lat:0,
+      lng:0
+    },
+    zoom:7
+  });
+});
 </script>

@@ -11,6 +11,7 @@ export default defineEventHandler(async (event: any) => {
   let message = "";
 
   const order: Order = await getOrderById(orderId);
+  
   const availableStock = async () => {
     let i = 0;
     for (const productId of order?.productId) {

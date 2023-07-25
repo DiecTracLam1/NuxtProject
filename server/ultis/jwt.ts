@@ -4,7 +4,7 @@ import { User } from "../types/user.types";
 
 export const generateAccessToken = (user: User) => {
   const config = useRuntimeConfig();
-  return jwt.sign({ userId: user.id }, config.jwtAccessSecret, {
+  return jwt.sign({ userId: user.id , role : user.role }, config.jwtAccessSecret, {
     expiresIn: "2h",
   });
 };
@@ -12,7 +12,7 @@ export const generateAccessToken = (user: User) => {
 const generateRefreshToken = (user: User) => {
   const config = useRuntimeConfig();
 
-  return jwt.sign({ userId: user.id }, config.jwtRefreshSecret, {
+  return jwt.sign({ userId: user.id , role : user.role }, config.jwtRefreshSecret, {
     expiresIn: "4h",
   });
 };

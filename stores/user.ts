@@ -40,7 +40,7 @@ export const useUserStore = defineStore("User", {
 
     async updateUser(values: any) {
       try {
-        this.loading = true
+        this.loading = true;
         this.data = await $fetch("/api/auth/update", {
           headers: { Authorization: `Bearer ${this.$state.data.access_token}` },
           method: "PUT",
@@ -55,14 +55,12 @@ export const useUserStore = defineStore("User", {
 
     async updatePassword(values: any) {
       try {
-        this.data = await $fetch('/api/auth/resetPassword', {
+        this.data = await $fetch("/api/auth/resetPassword", {
           headers: { Authorization: `Bearer ${this.$state.data.access_token}` },
           method: "PUT",
           body: { ...values },
-        })
-      } catch (error) {
-        
-      }
+        });
+      } catch (error) {}
     },
 
     logout() {

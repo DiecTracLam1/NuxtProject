@@ -14,7 +14,7 @@
             <template v-if="column.key === 'product'">
               <div class="flex sm:items-center sm:flex-row flex-col">
                 <div class="h-[90px] w-[90px]">
-                  <img class="w-full h-full" :src="record.image" alt="" />
+                  <img class="w-full h-full" :src="record.thumbnail" alt="" />
                 </div>
                 <div class="flex-1 sm:ml-[30px]">
                   <a-typography-paragraph
@@ -48,11 +48,6 @@
                 :min="1"
                 :max="record.stock[0].quantity"
               />
-              <!-- <input
-                class="w-16 text-center border-black border-[1px]"
-                type="number"
-                :value="record.quantity"
-              /> -->
             </template>
 
             <template v-else-if="column.key === 'total'">
@@ -77,6 +72,7 @@
           </template>
         </a-table>
       </div>
+      
       <div class="col-span-12 md:col-span-4">
         <h3 class="font-bold text-base mb-[35px]">DISCOUNT CODES</h3>
         <div class="flex mb-[60px]">
