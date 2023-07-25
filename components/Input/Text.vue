@@ -7,6 +7,7 @@
       :type="props.type"
       :class="classes"
       :placeholder="placeholder"
+      
     />
     <span class="mr-auto" :class="errorMessage && 'text-red-500'">{{
       errorMessage

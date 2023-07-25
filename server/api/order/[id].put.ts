@@ -1,8 +1,9 @@
 import { getOrderById, updateOrder } from "../../db/order";
-import { getDetailProduct } from "../../db/product";
+import { getProuductsByProductIds } from "../../db/product";
 import { updateStock } from "../../db/stock";
 import { sendError } from "h3";
 import { Order } from "../../types/order.types";
+import product from "../product";
 
 export default defineEventHandler(async (event: any) => {
   const orderId = event.context.params.id;
@@ -11,7 +12,17 @@ export default defineEventHandler(async (event: any) => {
   let message = "";
 
   const order: Order = await getOrderById(orderId);
-  
+  // const orderTamp = {...order , productId :order.productId.sort() }
+  // const productList = await getProuductsByProductIds(order.productId);
+  // productList.forEach((product, index) => {
+  //   console.log(product.stock[0].quantity);
+  //   console.log(orderTamp.quantities[index]);
+  //   if (
+  //     product.stock[0].quantity < orderTamp.quantities[index]
+  //   ) {
+  //     console.log("OutBuffer : ", product.id);
+  //   }
+  // });
   const availableStock = async () => {
     let i = 0;
     for (const productId of order?.productId) {

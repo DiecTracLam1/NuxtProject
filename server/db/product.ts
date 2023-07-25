@@ -36,7 +36,7 @@ export const getProducts = async (params = {}, query: any) => {
   return { total: data[0], products: data[1] };
 };
 
-export const getDetailProduct = async(params = {}, id: string) => {
+export const getDetailProduct = async (params = {}, id: string) => {
   return prisma.product.findUnique({
     ...params,
     where: {
@@ -70,3 +70,13 @@ export const getBrandIdByProuductId = (id: string) => {
   });
 };
 
+export const getProuductsByProductIds = (idList: String[]) => {
+  return prisma.product.findMany({
+    include: {
+      stock: true,
+    },
+    where: {
+      id: { in: idList },
+    },
+  });
+};

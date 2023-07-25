@@ -86,20 +86,6 @@
       </VueperSlide>
     </VueperSlides>
 
-    <!-- <div class="">
-      <div class="grid grid-cols-12 row-span-6 md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto gap-5">
-        <div class="col-span-7 col-start-6 row-span-4 row-start-1">
-          <div >
-            <h1>das</h1>
-            <img src="" alt="">
-          </div>
-        </div>
-        <div class="col-span-6 row-start-3">sad</div>
-        <div class="col-span-6">das</div>
-
-      </div>
-    </div> -->
-
     <!-- Product -->
     <div
       class="md:max-w-[960px] xl:max-w-[1170px] px-[15px] mx-auto my-[100px]"
@@ -204,56 +190,11 @@
       <div class="grid grid-cols-12 gap-[15px]">
         <div class="col-span-12 sm:col-span-12 md:col-span-8">
           <div class="grid grid-cols-12">
-            <div class="col-span-6 sm:col-span-4">
+            <div v-for="index in 6" class="col-span-6 sm:col-span-4">
               <div class="h-[261px]">
                 <img
                   class="w-full h-full"
-                  src="~/assets/images/instagram-1.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="col-span-6 sm:col-span-4">
-              <div class="h-[261px]">
-                <img
-                  class="w-full h-full"
-                  src="~/assets/images/instagram-2.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="col-span-6 sm:col-span-4">
-              <div class="h-[261px]">
-                <img
-                  class="w-full h-full"
-                  src="~/assets/images/instagram-3.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="col-span-6 sm:col-span-4">
-              <div class="h-[261px]">
-                <img
-                  class="w-full h-full"
-                  src="~/assets/images/instagram-4.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="col-span-6 sm:col-span-4">
-              <div class="h-[261px]">
-                <img
-                  class="w-full h-full"
-                  src="~/assets/images/instagram-5.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="col-span-6 sm:col-span-4">
-              <div class="h-[261px]">
-                <img
-                  class="w-full h-full"
-                  src="~/assets/images/instagram-6.jpg"
+                  :src="`/_nuxt/assets/images/instagram-${index}.jpg`"
                   alt=""
                 />
               </div>

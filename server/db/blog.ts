@@ -59,31 +59,3 @@ export const getPrevBlog = (id: string) => {
   });
 };
 
-// export const nextPrevBlog = (id: string) => {
-//   return prisma.blog.aggregateRaw({
-//     pipeline: [
-//       { $match: { _id: { $oid: id } } },
-//       {
-//         $facet: {
-//           prev: [
-//             {
-//               $sort: { _id: -1 },
-//             },
-//             {
-//               $limit: 1,
-//             },
-//           ],
-//           next: [
-//             {
-//               $sort: { _id: 1 },
-//             },
-
-//             {
-//               $limit: 1,
-//             },
-//           ],
-//         },
-//       },
-//     ],
-//   });
-// };

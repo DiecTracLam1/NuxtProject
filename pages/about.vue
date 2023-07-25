@@ -1,16 +1,6 @@
 <template>
   <div>
-    <div class="bg-[#f6f6f6] h-[140px]">
-      <div
-        class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] mx-auto h-full"
-      >
-        <div class="px-[15px]">
-          <div class="flex flex-col justify-center h-full">
-            <h4 class="text-2xl font-bold mb-2">About us</h4>
-          </div>
-        </div>
-      </div>
-    </div>
+    <BreadCrum title="About Us" />
     <div
       class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] mx-auto h-full"
     >
@@ -48,7 +38,9 @@
     <div class="grid grid-cols-12">
       <div class="col-span-12 md:col-span-6">
         <div class="bg-[#f3f2ee] flex items-center h-full">
-          <div class="sm:px-[45px] lg:px-[45px] xl:px-[150px] px-[150px] py-[100px]  h-full">
+          <div
+            class="sm:px-[45px] lg:px-[45px] xl:px-[150px] px-[150px] py-[100px] h-full"
+          >
             <div class="text-center h-full w-fit mx-auto">
               <Icon name="ri:double-quotes-r" class="text-6xl text-red-500" />
               <p class="text-xl mb-[30px] mt-3">
@@ -143,42 +135,15 @@
       </div>
 
       <div class="grid grid-cols-12 xs:gap-[30px] gap-y-[30px]">
-        <div class="xs:col-span-6 md:col-span-3 col-span-12">
+        <div
+          v-for="author in authorList"
+          class="xs:col-span-6 md:col-span-3 col-span-12"
+        >
           <div class="flex flex-col">
-            <img src="@/assets/images/author-1.jpg" alt="" />
+            <img :src="`/_nuxt/assets/images/${author.image}`" alt="" />
             <div class="mt-[25px]">
-              <p class="font-bold text-2xl mb-2">John Smith</p>
-              <p class="text-blur-grey m-0">Fashion Design</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="xs:col-span-6 md:col-span-3 col-span-12">
-          <div class="flex flex-col">
-            <img src="@/assets/images/author-2.jpg" alt="" />
-            <div class="mt-[25px]">
-              <p class="font-bold text-2xl mb-2">Christine Wise</p>
-              <p class="text-blur-grey m-0">C.E.O</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="xs:col-span-6 md:col-span-3 col-span-12">
-          <div class="flex flex-col">
-            <img src="@/assets/images/author-3.jpg" alt="" />
-            <div class="mt-[25px]">
-              <p class="font-bold text-2xl mb-2">Sean Robbins</p>
-              <p class="text-blur-grey m-0">Manager</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="xs:col-span-6 md:col-span-3 col-span-12">
-          <div class="flex flex-col">
-            <img src="@/assets/images/author-4.jpg" alt="" />
-            <div class="mt-[25px]">
-              <p class="font-bold text-2xl mb-2">Lucy Myers</p>
-              <p class="text-blur-grey m-0">Delivery</p>
+              <p class="font-bold text-2xl mb-2">{{ author.name }}</p>
+              <p class="text-blur-grey m-0">{{ author.position }}</p>
             </div>
           </div>
         </div>
@@ -207,3 +172,27 @@
     </div>
   </div>
 </template>
+<script lang="ts" setup>
+const authorList = [
+  {
+    name: "John Smith",
+    position: "Fashion Design",
+    image: "author-1.jpg",
+  },
+  {
+    name: "Christine Wise",
+    position: "C.E.O",
+    image: "author-2.jpg",
+  },
+  {
+    name: "Sean Robbins",
+    position: "Manager",
+    image: "author-3.jpg",
+  },
+  {
+    name: "Lucy Myers",
+    position: "Delivery",
+    image: "author-4.jpg",
+  },
+];
+</script>
