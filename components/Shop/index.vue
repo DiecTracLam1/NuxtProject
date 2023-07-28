@@ -1,15 +1,23 @@
 <template>
-  <ShopSort :products="products" />
+  <ShopSort :products="products ?? []" />
   <div class="grid grid-cols-12 sm:gap-7.5">
-    <div
-      v-for="product in products?.data?.products"
-      class="col-span-12 sm:col-span-6 md:col-span-4"
-    >
-      <ProductItem :product="product" />
+    <div v-if="!products?.data?.products.length" class="col-span-12">
+      <div class="mx-auto">
+        <a-empty />
+      </div>
     </div>
+    <template v-else>
+      <div
+        v-for="product in products?.data?.products"
+        class="col-span-12 sm:col-span-6 md:col-span-4"
+      >
+        <Skeleton v-if="pending" />
+        <ProductItem v-else :product="product" />
+      </div>
+    </template>
   </div>
 
-  <div class="my-8 text-center">
+  <div v-if="products?.data?.products.length" class="my-8 text-center">
     <a-pagination
       v-model:current="page"
       :total="products?.data?.total"
@@ -41,7 +49,7 @@ watch(queryState, () => {
   router.push({ query: queryState.value });
 });
 
-const { data: products } = await useFetch<ProductListApi>(
+const { data: products, pending } = await useFetch<ProductListApi>(
   () => `/api/product?${queryString.value}`
 );
 </script>

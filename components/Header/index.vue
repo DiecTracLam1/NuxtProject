@@ -28,7 +28,7 @@
 import { useUserStore } from "@/stores/user";
 
 const userStore = useUserStore();
-const cookie = useCookie("User");
+const cookie = useCookie<any>("User");
 
 onBeforeMount(async () => {
   try {

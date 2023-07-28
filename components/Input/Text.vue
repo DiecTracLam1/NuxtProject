@@ -4,7 +4,7 @@
       v-model="value"
       class="border-[#e3e5e9] border-[2px] w-full"
       :name="name"
-      :type="props.type"
+      :type="type"
       :class="classes"
       :placeholder="placeholder"
       

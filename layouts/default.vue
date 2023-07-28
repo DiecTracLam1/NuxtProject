@@ -1,8 +1,7 @@
 <template>
   <div>
     <Header />
-    <!-- <slot name="navLeftUser"  /> -->
     <slot />
-    <Footer />
+    <LazyFooter />
   </div>
 </template>

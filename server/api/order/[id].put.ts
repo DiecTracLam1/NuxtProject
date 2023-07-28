@@ -1,9 +1,9 @@
 import { getOrderById, updateOrder } from "../../db/order";
-import { getProuductsByProductIds } from "../../db/product";
+import { getProductById } from "../../db/product";
 import { updateStock } from "../../db/stock";
 import { sendError } from "h3";
 import { Order } from "../../types/order.types";
-import product from "../product";
+import { Product } from "../../types/product.types";
 
 export default defineEventHandler(async (event: any) => {
   const orderId = event.context.params.id;
@@ -12,31 +12,16 @@ export default defineEventHandler(async (event: any) => {
   let message = "";
 
   const order: Order = await getOrderById(orderId);
-  // const orderTamp = {...order , productId :order.productId.sort() }
-  // const productList = await getProuductsByProductIds(order.productId);
-  // productList.forEach((product, index) => {
-  //   console.log(product.stock[0].quantity);
-  //   console.log(orderTamp.quantities[index]);
-  //   if (
-  //     product.stock[0].quantity < orderTamp.quantities[index]
-  //   ) {
-  //     console.log("OutBuffer : ", product.id);
-  //   }
-  // });
-  const availableStock = async () => {
-    let i = 0;
-    for (const productId of order?.productId) {
-      const { count } = await updateStock(productId, order?.quantities[i]);
-      if (count === 0) {
-        error = true;
-        status = "5";
-        message = "Not enough stock for this order";
-      }
-      i++;
+  for (const [index, productId] of order?.productId.entries()) {
+    const product:Product = await getProductById(productId);
+    if (product.stock[0].quantity < order.quantities[index]) {
+      error = true;
+      status = "5";
+      message = "Not enough stock for this order";
+      break;
     }
-  };
-  await availableStock();
-  await updateOrder(orderId, status, message);
+  }
+
   if (error) {
     return sendError(
       event,
@@ -46,6 +31,13 @@ export default defineEventHandler(async (event: any) => {
       })
     );
   }
+
+  for (const [i, productId] of order?.productId.entries()) {
+    await updateStock(productId, order?.quantities[i]);
+  }
+
+  await updateOrder(orderId, status, message);
+
   return {
     data: {
       messsage: "success",

@@ -17,7 +17,6 @@
 <script setup>
 import { defineProps } from "vue";
 import { Field } from "vee-validate";
-import { boolean } from "yup";
 
 const props = defineProps({
   name: {
@@ -29,7 +28,7 @@ const props = defineProps({
     required: true,
   },
   isChecked: {
-    type: boolean,
+    type: Boolean,
     default: false,
   },
 });

@@ -2,7 +2,7 @@
   <a-spin :spinning="store.getLoading">
     <div class="p-6 text-center">
       <h1 class="text-2xl font-bold">Welcome to Male Fashion</h1>
-      <p class="text-blur-grey text-base">Create an accout</p>
+      <p class="text-blur-grey text-base">Login to your account!</p>
       <form @submit="onSubmit">
         <InputText
           name="username"
@@ -24,6 +24,15 @@
           text="Login"
           :disabled="isSubmitting"
         />
+        <div class="flex mt-4 text-base">
+          <p class="text-blur-grey">Already have an account?</p>
+          <span
+            class="cursor-pointer ml-1 hover:text-blue-400"
+            @click="onChangeModal"
+          >
+            Create an account
+          </span>
+        </div>
       </form>
     </div>
   </a-spin>
@@ -35,6 +44,11 @@ import { message } from "ant-design-vue";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 
+const emit = defineEmits(["changeModal"]);
+
+const onChangeModal = () => {
+  emit("changeModal", "Register");
+};
 // pinia user store
 const store = useUserStore();
 
@@ -58,6 +72,4 @@ const onSubmit = handleSubmit(async (values: any) => {
     return;
   }
 });
-
-
 </script>

@@ -57,7 +57,13 @@
           class="fixed top-0 left-0 bottom-0 right-0 bg-[#000000] hidden opacity-50 z-10 peer-checked:block"
           @click="handleChangeOpenLogin(false)"
         ></div>
-        <Login @closeLogin="handleChangeOpenLogin" />
+        <Modal @closeModal="handleChangeOpenLogin" :title="modalTitle">
+          <FormLogin @changeModal="changeModal" v-if="modalTitle === 'Login'" />
+          <FormRegister
+            @changeModal="changeModal"
+            v-else-if="modalTitle === 'Register'"
+          />
+        </Modal>
       </div>
     </li>
   </ul>
@@ -71,6 +77,11 @@ const openLogin = ref(false);
 const userStore = useUserStore();
 const cartStore = useCartStore();
 const { loggedIn, getImage } = storeToRefs(userStore);
+const modalTitle = ref("Login");
+
+const changeModal = (title: string) => {
+  modalTitle.value = title;
+};
 
 function handleChangeOpenLogin(value: boolean) {
   openLogin.value = value;

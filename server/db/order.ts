@@ -23,7 +23,11 @@ export const createOrder = (
   });
 };
 
-export const getOrderList = (user: User, status: object, _offset: number) => {
+export const getOrderList = (
+  user: User,
+  status: object,
+  _offset: number | null | string | Record<string, any>
+) => {
   return prisma.order.findMany({
     skip: Number(_offset),
     take: Number(6),
@@ -34,7 +38,7 @@ export const getOrderList = (user: User, status: object, _offset: number) => {
   });
 };
 
-export const getOrderById = (orderId: string):any => {
+export const getOrderById = (orderId: string): any => {
   return prisma.order.findFirst({
     where: {
       id: orderId,

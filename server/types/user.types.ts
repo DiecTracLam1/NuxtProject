@@ -8,7 +8,7 @@ export interface User {
   profileImage: string;
   createdAt: Date;
   updatedAt: Date;
-  sex: String
+  sex: String;
   role:String;
 }
    

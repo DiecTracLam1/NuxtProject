@@ -8,8 +8,10 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
-    'dayjs-nuxt'
+    'dayjs-nuxt',
+    'nuxt-lazy-load'
   ],
+
   tailwindcss: {
     configPath: "./tailwind.config",
   },

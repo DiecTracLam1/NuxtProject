@@ -36,12 +36,10 @@
 
     <!-- Amount  -->
     <div class="flex flex-col xs:flex-row justify-center items-baseline mb-2">
-      <InputNumber :maxQuantity="props.stock[0].quantity" name="quantity" />
+      <InputNumber :maxQuantity="stock[0].quantity" name="quantity" />
       <Button type="submit" text="+ADD TO CART" size="xl" />
     </div>
-    <p class="text-blur-grey mb-10">
-      {{ props.stock[0].quantity }} pieces available
-    </p>
+    <p class="text-blur-grey mb-10">{{ stock[0].quantity }} pieces available</p>
   </Form>
 </template>
 
@@ -50,18 +48,19 @@ import { Form, ErrorMessage } from "vee-validate";
 import { useUserStore } from "@/stores/user";
 import * as yup from "yup";
 import { message } from "ant-design-vue";
+import { Stock } from "model/product";
 
 const props = defineProps({
   sizeList: {
-    type: Array,
+    type: Array as PropType<string[]>,
     default: [],
   },
   colorList: {
-    type: Array,
+    type: Array as PropType<string[]>,
     default: [],
   },
   stock: {
-    type: Array,
+    type: Object as PropType<Stock[]>,
     required: true,
   },
 });
@@ -73,7 +72,8 @@ const schema = yup.object({
   size: yup.string().required("Please select a size"),
   quantity: yup
     .number()
-    .typeError("Amount must be a number")
+    .min(1, "Must be more than 1")
+    .typeError("Must be more than 1")
     .required("Please ")
     .max(
       props.stock[0].quantity,

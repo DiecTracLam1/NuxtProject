@@ -59,7 +59,7 @@ export const getRelatedProduct = (id: string, brandId: string) => {
   });
 };
 
-export const getBrandIdByProuductId = (id: string) => {
+export const getBrandIdByProuductId = (id: string):any => {
   return prisma.product.findUnique({
     where: {
       id,
@@ -69,6 +69,17 @@ export const getBrandIdByProuductId = (id: string) => {
     },
   });
 };
+
+export const getProductById = (id:string):any=>{
+  return prisma.product.findUnique({
+    include: {
+      stock: true,
+    },
+    where:{
+      id
+    }
+  })
+}
 
 export const getProuductsByProductIds = (idList: String[]) => {
   return prisma.product.findMany({

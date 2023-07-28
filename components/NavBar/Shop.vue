@@ -91,13 +91,12 @@
     </a-collapse-panel>
 
     <a-collapse-panel key="5" header="COLORS" class="font-bold">
-      <div class="border-b-[1px] border-[#e3e1e8]  pb-2">
+      <div class="border-b-[1px] border-[#e3e1e8] pb-2">
         <ul class="flex flex-wrap">
           <li
             class="my-2 mr-1 text-blur-grey hover:cursor-pointer"
             v-for="item in ColorList"
             @click="onClickAcollapse(item, 'color')"
-
           >
             <InputColor name="color" :value="item" />
           </li>
@@ -131,8 +130,7 @@ import { Brands } from "@/model/brands";
 const { queryState, setQuery, removeQuery } = useRouteState();
 
 const router = useRouter();
-const tagList = ref(Object.entries(queryState.value));
-
+const tagList = ref<unknown>(Object.entries(queryState.value));
 const listCategory = ref([{ text: "Men" }, { text: "Women" }]);
 const activeKey = ref(["1", "6"]);
 

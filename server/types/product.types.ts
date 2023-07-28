@@ -6,16 +6,14 @@ export interface Product {
   salePrice: number;
   isSale: boolean;
   description: string | null;
+  type: Array<string>;
+  orderId: Array<string>;
   createdAt: string;
   updatedAt: string;
   brandId: string;
-  quantity: number;
   sizeList: Array<string>;
   colorList: Array<string>;
-  thumbnail: string;
-  color?: string;
-  size?: string;
-  stock?: Stock[];
+  stock: Stock[];
 }
 
 export type Stock = {
@@ -25,16 +23,4 @@ export type Stock = {
   productId: string;
 };
 
-export type ProductListApi = {
-  data: {
-    products: Product[];
-    total?: number;
-  };
-};
 
-export type ProductApi = {
-  data: Product;
-  value: {
-    data: Product;
-  };
-};

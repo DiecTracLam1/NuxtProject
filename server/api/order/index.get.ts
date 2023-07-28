@@ -1,8 +1,7 @@
-import { Product } from "../../../model/product";
 import { getOrderList } from "../../db/order";
 import { getDetailProduct } from "../../db/product";
-import { getUserById } from "../../db/user";
 import { orderTransformer } from "../../transfomers/order";
+import { Order } from "../../types/order.types";
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
@@ -14,8 +13,8 @@ export default defineEventHandler(async (event) => {
 
   // const user = await getUserById("64ae0bd6651cb2955effe5cb");
 
-  const user = event.context.auth?.user
-  const orderList: any = await getOrderList(user, tamp, _offset);
+  const user = event.context.auth?.user;
+  const orderList: Order[] = await getOrderList(user, tamp, _offset);
   const orderRespone = [];
   for (const orderItem of orderList) {
     const productList = await Promise.all(

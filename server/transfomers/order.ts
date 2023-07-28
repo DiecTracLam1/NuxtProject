@@ -1,6 +1,4 @@
-import { Product } from "../../model/product";
-
-export const orderTransformer = (order: any, productList: Product[]) => {
+export const orderTransformer = (order: any, productList: any) => {
   return {
     id: order.id,
     userId: order.userId,

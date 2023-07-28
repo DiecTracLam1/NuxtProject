@@ -3,8 +3,6 @@
     <input
       type="number"
       class="border-blur-grey border-[1px] font-bold text-center py-[13px] px-[15px] mr-6 xs:mb-0 mb-[15px] outline-none"
-      min="1"
-      :max="maxQuantity"
       :class="classes"
       name="quantity"
       v-model="value"
@@ -40,7 +38,8 @@ watch(errorMessage, () => {
 });
 
 const onChangeInput = (e: any) => {
-  if (e.target.value > props.maxQuantity) value.value = props.maxQuantity;
+  if (e.target.value < 1) value.value = 1;
+  else if (e.target.value > props.maxQuantity) value.value = props.maxQuantity;
 };
 const classes = computed(() => `${errorMessage.value ? "border-red-500" : ""}`);
 </script>

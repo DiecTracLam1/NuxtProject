@@ -4,7 +4,7 @@
       <p class="m-0 text-lg">My Profile</p>
       <p class="m-0">Manage and protect your account</p>
     </div>
-    <FormAccount :user="user" />
+    <FormAccount v-if="user" :user="user" />
   </div>
 </template>
 <script setup lang="ts">

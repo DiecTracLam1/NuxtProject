@@ -38,6 +38,20 @@ export const useUserStore = defineStore("User", {
       }
     },
 
+    async registerUser(username: string, password: string ,repeatPassword:string , phoneNumber:number) {
+      this.loading = true;
+      try {
+        this.data = await $fetch("/api/auth/register", {
+          method: "POST",
+          body: { username, password ,repeatPassword , phoneNumber },
+        });
+      } catch (error: any) {
+        throw new Error(error.message);
+      } finally {
+        this.loading = false;
+      }
+    },
+
     async updateUser(values: any) {
       try {
         this.loading = true;
