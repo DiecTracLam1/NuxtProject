@@ -6,7 +6,7 @@
       >
         <div class="py-10">
           <div class="text-center">
-            <p class="text-sm mb-[30px]">Home > maha > detail</p>
+            <p class="text-sm mb-[30px]">Home > Shop > Product Details</p>
           </div>
 
           <div class="grid grid-cols-12 sm:gap-[30px]">
@@ -99,7 +99,7 @@
         <h2 class="font-bold text-3xl mx-auto mb-11 w-fit">Related Product</h2>
         <div class="grid grid-cols-12 xs:gap-[30px]">
           <div
-            v-for="product in productRelated?.data"
+            v-for="product in productRelated?.data.products"
             class="xs:col-span-6 sm:col-span-6 md:col-span-4 xl:col-span-3 col-span-12"
           >
             <ProductItem :product="product" />
@@ -128,16 +128,21 @@ const { data: productRelated } = await useAsyncData<ProductListApi>(
   () => $fetch(`/api/product/related/${route.params.id}`)
 );
 
-console.log(productRelated)
 // set big image
 
-const bigImage = ref(product.value.data.image[0]);
+const bigImage = ref(product?.value?.data.image[0]);
 function onChangeBigImg(value: string) {
   bigImage.value = value;
 }
 
 // form
 function submitFormToCart(value: any) {
-  store.addToCart(product.value.data, value.quantity, value.size, value.color);
+  if (product?.value)
+    store.addToCart(
+      product?.value.data,
+      value.quantity,
+      value.size,
+      value.color
+    );
 }
 </script>

@@ -42,6 +42,7 @@
     "pinia": "^2.1.4",
     "postcss": "^8.4.24",
     "url-pattern": "^1.0.3",
+    "vue-dompurify-html": "^4.1.4",
     "vueperslides": "^3.5.1",
     "yup": "^1.2.0"
   }

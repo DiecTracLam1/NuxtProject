@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BreadCrum title="Shop" />
+    <BreadCrum title="Shop" :pathList="['Shop']"/>
     <div
       class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] w-full px-[15px] mx-auto pt-[100px]"
     >

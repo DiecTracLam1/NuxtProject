@@ -5,7 +5,7 @@ export const getProducts = async (params = {}, query: any) => {
     prisma.product.aggregate({
       where: {
         brand: {
-          name: query?.brand,
+          name: query?.brand ?? "",
         },
         salePrice: { gte: Number(query.minPrice), lte: Number(query.maxPrice) },
         type: { hasEvery: [query.type] },
@@ -81,13 +81,13 @@ export const getProductById = (id:string):any=>{
   })
 }
 
-export const getProuductsByProductIds = (idList: String[]) => {
-  return prisma.product.findMany({
-    include: {
-      stock: true,
-    },
-    where: {
-      id: { in: idList },
-    },
-  });
-};
+// export const getProuductsByProductIds = (idList: String[]) => {
+//   return prisma.product.findMany({
+//     include: {
+//       stock: true,
+//     },
+//     where: {
+//       id: { in: idList },
+//     },
+//   });
+// };

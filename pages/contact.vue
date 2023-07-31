@@ -31,51 +31,24 @@
         </div>
       </div>
       <div class="col-span-12 sm:col-span-6">
-        <form action="">
-          <div class="grid grid-cols-12 gap-[30px]">
-            <div class="col-span-12 md:col-span-6">
-              <InputText placeholder="Name" />
-            </div>
-            <div class="col-span-12 md:col-span-6">
-              <InputText placeholder="Email" />
-            </div>
-            <div class="col-span-12">
-              <a-textarea :rows="6" placeholder="Message" />
-            </div>
-            <div class="col-span-12">
-              <Button size="xl" text="Send message" />
-            </div>
-          </div>
-        </form>
+        <FormContact />
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { Loader } from "@googlemaps/js-api-loader";
-const openedMarkerID = null;
-const center = { lat: 48.8773406, lng: 2.327774 };
-const markers = [
-  {
-    description: "Google France",
-    id: "1",
-    position: {
-      lat: 48.8773406,
-      lng: 2.327774,
-    },
-  },
-];
 
-const loader = new Loader({ apiKey: process.env.GOOGLE_MAP_API_KEY });
-const mapDiv = ref(null)
+const loader = new Loader({ apiKey: process.env.GOOGLE_MAP_API_KEY as string });
+const mapDiv = ref(null);
 onMounted(async () => {
   await loader.load();
-  new google.maps.Map(mapDiv.value,{
-    center:{
-      lat:0,
-      lng:0
+  new google.maps.Map(mapDiv.value, {
+    center: {
+      lat: 10.762622,
+      lng: 106.660172,
     },
-    zoom:7
+    zoom: 7,
   });
 });
 </script>

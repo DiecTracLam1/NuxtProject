@@ -99,9 +99,8 @@
           <div class="md:col-span-8 col-span-12">
             <div
               class="leading-[34px] text-lg text-normal-color"
-            >
-              {{ descriptiontamp }}
-            </div>
+              v-dompurify-html="description"
+            ></div>
 
             <div class="my-[50px] pt-[15px] border-t-[1px]">
               <div class="grid grid-cols-12 sm:gap-x-[30px] gap-y-[30px]">
@@ -195,28 +194,10 @@ const { data: blogDetail } = await useFetch<BlogDetailApi>(
 const description = ref<string>(
   blogDetail.value?.data.blog.description as string
 );
-const descriptiontamp = ref('')
-
-onMounted(() => {
-  var stringToHTML = function (str: string) {
-    var parser = new DOMParser();
-    var doc = parser.parseFromString(str, "text/html");
-    return doc.body;
-  };
-
-    descriptiontamp.value = stringToHTML(description.value)
-    console.log(descriptiontamp.value)
-
-});
 
 const onRedirect = (id: string) => {
   navigateTo({
     path: `/blog/${id}`,
   });
 };
-</script>
-
-
-<script lang="ts" >
-
 </script>
