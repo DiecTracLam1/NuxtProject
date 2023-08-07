@@ -5,7 +5,7 @@ export const getProducts = async (params = {}, query: any) => {
     prisma.product.aggregate({
       where: {
         brand: {
-          name: query?.brand ?? "",
+          name: query?.brand,
         },
         salePrice: { gte: Number(query.minPrice), lte: Number(query.maxPrice) },
         type: { hasEvery: [query.type] },

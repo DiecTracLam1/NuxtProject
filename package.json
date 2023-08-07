@@ -25,6 +25,7 @@
     "@ant-design/icons-vue": "^6.1.0",
     "@fawmi/vue-google-maps": "^0.9.79",
     "@googlemaps/js-api-loader": "^1.16.2",
+    "@nuxt/image": "^1.0.0-rc.1",
     "@pinia/nuxt": "^0.4.11",
     "@vee-validate/nuxt": "^4.9.6",
     "@vueform/slider": "^2.1.7",

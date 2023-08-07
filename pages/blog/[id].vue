@@ -201,3 +201,4 @@ const onRedirect = (id: string) => {
   });
 };
 </script>
+<style></style>

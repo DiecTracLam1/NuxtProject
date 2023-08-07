@@ -35,11 +35,24 @@
     </div>
 
     <!-- Amount  -->
-    <div class="flex flex-col xs:flex-row justify-center items-baseline mb-2">
-      <InputNumber :maxQuantity="stock[0].quantity" name="quantity" />
-      <Button type="submit" text="+ADD TO CART" size="xl" />
+    <div>
+      <div class="flex flex-col xs:flex-row justify-center items-baseline mb-2">
+        <InputNumber
+          @changeMsgQuantity="changeMsgQuantity"
+          :maxQuantity="stock[0].quantity"
+          name="quantity"
+        />
+        <Button type="submit" text="+ADD TO CART" size="xl" />
+      </div>
+
+      <p class="mr-auto" :class="errMsgQuantity && 'text-red-500'">
+        {{ errMsgQuantity }}
+      </p>
+
+      <p class="text-blur-grey mb-10">
+        {{ stock[0].quantity }} pieces available
+      </p>
     </div>
-    <p class="text-blur-grey mb-10">{{ stock[0].quantity }} pieces available</p>
   </Form>
 </template>
 
@@ -80,6 +93,11 @@ const schema = yup.object({
       "You have reached the maximum quantity available for this item"
     ),
 });
+
+const errMsgQuantity = ref("");
+const changeMsgQuantity = (msg: string) => {
+  errMsgQuantity.value = msg;
+};
 
 const formValues = {
   quantity: 1,

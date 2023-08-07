@@ -8,6 +8,14 @@
     <p v-if="order.cancelMsg" class="text-base text-red-400">
       Reason : {{ order.cancelMsg }}
     </p>
+
+    <Button
+      v-if="order.status === '3'"
+      @click="onChangeVisible(order.id)"
+      class="ml-auto normal-case tracking-normal"
+      text="Order received"
+    />
+
     <Button
       v-if="order.status === '1' || order.status === '2'"
       @click="onChangeVisible(order.id)"
@@ -32,12 +40,12 @@ defineProps({
     default: {},
   },
 });
-const emit = defineEmits(["openVisible"]);
+const emit = defineEmits(["openModal"]);
 
 const cartStore = useCartStore();
 
 const onChangeVisible = (id: string) => {
-  emit("openVisible", id);
+  emit("openModal", id);
 };
 const onClickBuyAgain = (productList: ProductOrder[]) => {
   productList.forEach((product) => {

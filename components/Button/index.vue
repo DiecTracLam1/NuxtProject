@@ -1,6 +1,6 @@
 <template>
   <button
-    class="block bg-black text-white w-fit tracking-[4px] uppercase font-bold hover:cursor-pointer hover:text-white"
+    class="block bg-black text-white w-fit tracking-[4px] uppercase font-bold hover:cursor-pointer"
     :class="classes"
   >
     {{ props.text }}
@@ -16,6 +16,10 @@ const props = defineProps({
   text: {
     type: String,
     default: "",
+  },
+  color: {
+    type: String,
+    default: "black",
   },
 });
 
@@ -34,7 +38,7 @@ const paddingClasses = computed(() => {
 
 const textFontSize = computed(() => {
   switch (props.size) {
-    case "xs" :
+    case "xs":
       return "text-xs";
     case "lg":
       return "text-md";
@@ -43,5 +47,10 @@ const textFontSize = computed(() => {
   }
 });
 
-const classes = computed(() => `${paddingClasses.value} ${textFontSize.value}`);
+const classes = computed(
+  () =>
+    `${paddingClasses.value} ${textFontSize.value} ${
+      props.color === "white" ? "bg-white text-black " : ""
+    }`
+);
 </script>

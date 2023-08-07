@@ -11,6 +11,7 @@
           :orders="orders || null"
           @changeSpinning="changeSpinning"
           @changeTabs="changeTabs"
+          @changeOpenModal="handleOpenModal"
         />
       </ul>
 
@@ -18,6 +19,20 @@
         <a-empty />
       </template>
     </div>
+
+    <Modal
+      :open="openModal"
+      @closeModal="handleOpenModal"
+      size="lg"
+      title="Select Cancellation Reason"
+    >
+      <FormCancelOrder
+        :orderId="orderId"
+        @changeSpinning="changeSpinning"
+        @changeTabs="changeTabs"
+        @changeOpenModal="handleOpenModal"
+      />
+    </Modal>
   </a-spin>
 </template>
 
@@ -33,8 +48,8 @@ const cookie = useCookie<any>("User");
 const query = ref(router.currentRoute.value.query);
 const activeKey = ref<any>(query.value?.status ?? "1");
 const spinning = ref<boolean>(false);
-
-console.log(typeof activeKey.value);
+const openModal = ref<boolean>(false);
+const orderId = ref<String>("");
 
 const changeSpinning = (check: boolean) => {
   spinning.value = check;
@@ -42,6 +57,11 @@ const changeSpinning = (check: boolean) => {
 
 const changeTabs = (key: string) => {
   activeKey.value = key;
+};
+
+const handleOpenModal = (id: String, value: boolean) => {
+  orderId.value = id;
+  openModal.value = value;
 };
 
 watch(activeKey, () => {

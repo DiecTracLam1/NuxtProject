@@ -1,4 +1,4 @@
-import { getProducts } from "../../db/product";
+ import { getProducts } from "../../db/product";
 import { productTransformer } from "../../transfomers/product";
 export default defineEventHandler(async (event) => {
   const {
@@ -15,7 +15,10 @@ export default defineEventHandler(async (event) => {
 
   const convertPrice = function () {
     if (!price) return [0, 1000];
-    const priceList = (price as string).split("-");
+    const priceList = (price as any).split("-");
+    for (const price of priceList) {
+      if(isNaN(price)) return [0, 1000];
+    }
     return priceList;
   };
 

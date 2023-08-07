@@ -28,7 +28,7 @@
         <InputText
           name="repeatPassword"
           type="password"
-          placeholder="Password"
+          placeholder="Retype Password"
           class="my-4"
           :widthFull="true"
         />

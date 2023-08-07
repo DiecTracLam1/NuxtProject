@@ -4,11 +4,13 @@
       type="number"
       class="border-blur-grey border-[1px] font-bold text-center py-[13px] px-[15px] mr-6 xs:mb-0 mb-[15px] outline-none"
       :class="classes"
+      :min="0"
+      :max="maxQuantity || ''"
       name="quantity"
       v-model="value"
       v-on:keyup="onChangeInput"
+      @change="onChangeInput"
     />
-    <p class="mr-auto" :class="errorMsg && 'text-red-500'">{{ errorMsg }}</p>
   </div>
 </template>
 
@@ -31,10 +33,11 @@ const props = defineProps({
 });
 
 const { value, errorMessage } = useField(props.name);
-const errorMsg = ref<String>("");
+const emit = defineEmits(["changeMsgQuantity"]);
 
 watch(errorMessage, () => {
-  if (errorMessage.value !== undefined) errorMsg.value = errorMessage.value;
+  if (errorMessage.value !== undefined)
+    emit("changeMsgQuantity", errorMessage.value);
 });
 
 const onChangeInput = (e: any) => {

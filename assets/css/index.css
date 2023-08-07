@@ -1,5 +1,5 @@
 @import "./antd.css";
 * {
   font-family: "Nunito Sans", sans-serif;
-  @apply box-border m-0 p-0;
+  @apply box-border m-0 p-0 list-none;
 }

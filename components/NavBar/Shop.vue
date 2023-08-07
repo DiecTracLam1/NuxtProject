@@ -14,12 +14,10 @@
   <a-collapse v-model:activeKey="activeKey" expand-icon-position="right" ghost>
     <a-collapse-panel key="1" header="CATEGORIES" class="font-bold">
       <div class="border-b-[1px] border-[#e3e1e8] pb-2">
-        <div
-          class="flex my-2 text-blur-grey hover:cursor-pointer hover:text-blue-400"
-          v-for="item in listCategory"
-        >
+        <div class="flex my-2 text-blur-grey" v-for="item in listCategory">
           <span
             @click="onClickAcollapse(item.text, 'category')"
+            class="hover:cursor-pointer hover:text-blue-400"
             :class="
               queryState?.category?.includes(item.text) && 'text-blue-400'
             "
@@ -27,7 +25,7 @@
           >
           <span
             v-if="queryState?.category?.includes(item.text)"
-            class="ml-auto mr-4 hover:text-blue-400"
+            class="ml-auto mr-4 hover:cursor-pointer hover:text-blue-400"
             @click="onCloseTag('category')"
             ><Icon name="typcn:times"
           /></span>
@@ -123,6 +121,7 @@
     </a-collapse-panel>
   </a-collapse>
 </template>
+
 <script setup lang="ts">
 import Slider from "@vueform/slider";
 import "@vueform/slider/themes/default.css";
@@ -137,16 +136,25 @@ const activeKey = ref(["1", "6"]);
 // Search
 const search = ref(queryState.value?.search);
 const onClickSearch = () => {
-  setQuery({ search: search });
+  if (search.value) setQuery({ search: search });
 };
 
 // Range Price
-const rangeValue = ref([
-  Number(queryState.value?.minPrice ?? 0),
-  Number(queryState.value?.maxPrice ?? 1000),
-]);
+const rangeValue = computed(() => {
+  let rangeList = queryState.value?.price?.split("-");
+  if (rangeList) {
+    for (const range of rangeList) {
+      if (isNaN(range)) {
+        return [0, 1000];
+      }
+    }
+  }
+  return rangeList ?? [0, 1000];
+});
+
 
 const format = { prefix: "$", decimals: 2 };
+
 const changeRange = (value: any) => {
   rangeValue.value[0] = value[0];
   rangeValue.value[1] = value[1];
@@ -157,7 +165,7 @@ const onButtonRange = () => {
 
 // Event select item in category
 const onClickAcollapse = (value: any, key: string) => {
-  setQuery({ [key]: value });
+  setQuery({ [key]: value, _offset: 0, page: 1 });
 };
 
 watch(queryState, () => {

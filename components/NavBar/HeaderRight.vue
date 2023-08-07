@@ -50,14 +50,15 @@
           class="text-2xl hover:cursor-pointer"
           name="uil:user-circle"
           color="black"
-          @click="handleChangeOpenLogin(true)"
+          @click="handleOpenModal(true)"
         />
-        <input type="checkbox" class="hidden peer" :checked="openLogin" />
-        <div
-          class="fixed top-0 left-0 bottom-0 right-0 bg-[#000000] hidden opacity-50 z-10 peer-checked:block"
-          @click="handleChangeOpenLogin(false)"
-        ></div>
-        <Modal @closeModal="handleChangeOpenLogin" :title="modalTitle">
+
+        <Modal
+          @closeModal="handleOpenModal"
+          :open="openModal"
+          :title="modalTitle"
+          size="xl"
+        >
           <FormLogin @changeModal="changeModal" v-if="modalTitle === 'Login'" />
           <FormRegister
             @changeModal="changeModal"
@@ -73,7 +74,7 @@ import { useUserStore } from "@/stores/user";
 import { useCartStore } from "@/stores/cart";
 import { storeToRefs } from "pinia";
 
-const openLogin = ref(false);
+const openModal = ref(false);
 const userStore = useUserStore();
 const cartStore = useCartStore();
 const { loggedIn, getImage } = storeToRefs(userStore);
@@ -83,7 +84,7 @@ const changeModal = (title: string) => {
   modalTitle.value = title;
 };
 
-function handleChangeOpenLogin(value: boolean) {
-  openLogin.value = value;
+function handleOpenModal(value: boolean) {
+  openModal.value = value;
 }
 </script>

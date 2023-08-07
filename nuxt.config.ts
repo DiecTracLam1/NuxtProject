@@ -8,8 +8,9 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
-    'dayjs-nuxt',
-    'nuxt-lazy-load',
+    "dayjs-nuxt",
+    "nuxt-lazy-load",
+    "@nuxt/image",   
   ],
   tailwindcss: {
     configPath: "./tailwind.config",
@@ -21,5 +22,4 @@ export default defineNuxtConfig({
     cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
     cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
   },
-  
 });

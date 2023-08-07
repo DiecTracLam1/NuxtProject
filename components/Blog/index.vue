@@ -11,7 +11,7 @@
           $dayjs(blog.updatedAt).format("D MMMM YYYY")
         }}</span
       >
-      <h5 class="text-lg font-bold mt-[6px] mb-4">
+      <h5 class="text-lg text-ellipsis line-clamp-2 font-bold mt-[6px] mb-4">
         {{ blog.title }}
       </h5>
       <p

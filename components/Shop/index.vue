@@ -1,15 +1,17 @@
 <template>
   <ShopSort :products="products ?? []" />
-  <div class="grid grid-cols-12 sm:gap-7.5">
+  <div class="grid grid-cols-12 sm:gap-x-7.5 gap-y-7.5 gap-x-0">
     <div v-if="!products?.data?.products.length" class="col-span-12">
       <div class="mx-auto">
         <a-empty />
       </div>
     </div>
+
     <template v-else>
       <div
         v-for="product in products?.data?.products"
-        class="col-span-12 sm:col-span-6 md:col-span-4"
+        class="col-span-12 sm:col-span-6 xl:col-span-4"
+        :key="product.id"
       >
         <Skeleton v-if="pending" />
         <ProductItem v-else :product="product" />
@@ -44,9 +46,10 @@ const onChangePage = async (current: number) => {
   setQuery({ _offset: _offset.value, page: current });
 };
 
-watch(queryState, () => {
+watch(queryState, async () => {
   queryString.value = new URLSearchParams(queryState.value).toString();
   router.push({ query: queryState.value });
+  // reloadNuxtApp()
 });
 
 const { data: products, pending } = await useFetch<ProductListApi>(

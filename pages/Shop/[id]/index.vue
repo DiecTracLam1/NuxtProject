@@ -26,7 +26,7 @@
             </div>
             <div class="sm:col-span-8 col-span-12">
               <div class="mx-auto sm:w-full w-fit h-[533px]">
-                <img class="h-full" :src="bigImage" alt="" />
+                <img class="h-full" :src="bigImage" alt="" data-not-lazy/>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@
       <!-- Related Product -->
       <div class="py-[60px]">
         <h2 class="font-bold text-3xl mx-auto mb-11 w-fit">Related Product</h2>
-        <div class="grid grid-cols-12 xs:gap-[30px]">
+        <div class="grid justify-items-center  grid-cols-12 xs:gap-[30px]">
           <div
             v-for="product in productRelated?.data.products"
             class="xs:col-span-6 sm:col-span-6 md:col-span-4 xl:col-span-3 col-span-12"
@@ -132,6 +132,7 @@ const { data: productRelated } = await useAsyncData<ProductListApi>(
 
 const bigImage = ref(product?.value?.data.image[0]);
 function onChangeBigImg(value: string) {
+  console.log(value)
   bigImage.value = value;
 }
 
