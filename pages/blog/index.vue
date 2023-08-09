@@ -11,7 +11,16 @@
     >
       <div class="grid grid-cols-12 gap-[30px]">
         <div
-          v-for="blog in blogs?.data"
+          v-if="loading"
+          v-for="index in 12"
+          class="col-span-12 sm:col-span-6 xl:col-span-4"
+          :key="index"
+        >
+          <Skeleton />
+        </div>
+        <div
+          v-else
+          v-for="blog in response?.data"
           class="col-span-12 sm:col-span-6 md:col-span-4"
         >
           <Blog :blog="blog" />
@@ -22,5 +31,14 @@
 </template>
 <script setup lang="ts">
 import { BlogApi } from "model/blog";
-const { data: blogs } = await useFetch<BlogApi>(`/api/blog?_limit=9`);
+const loading = ref(true);
+const { data: response, pending } = await useFetch<BlogApi>(
+  `/api/blog?_limit=9`
+);
+
+if (response.value?.data && response.value?.data.length > 0) {
+  setTimeout(() => {
+    loading.value = pending.value;
+  });
+}
 </script>

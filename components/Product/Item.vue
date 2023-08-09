@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col overflow-hidden hover:cursor-pointer group">
+  <NuxtLink
+    :to="`/shop/${product.id}`"
+    class="flex flex-col overflow-hidden text-black hover:cursor-pointer group"
+  >
     <div class="h-[320px] relative">
       <img
         class="h-full w-full"
@@ -15,7 +18,7 @@
         class="absolute top-5 right-[-100px] text-[11px] group-hover:right-5 transition-all duration-[700ms]"
       >
         <li class="bg-white mb-[10px] p-[10px] text-base leading-4">
-          <span><Icon class="" name="uil:heart" /></span>
+          <span><Icon @click.prevent="onFavorite" name="uil:heart" /></span>
         </li>
         <li
           @click="onNavigate(product.id)"
@@ -25,7 +28,7 @@
         </li>
       </ul>
     </div>
-    
+
     <div class="relative mt-6">
       <p class="text-ellipsis text-lg line-clamp-2 mb-[5px] min-h-[60px]">
         {{ product.name }}
@@ -39,6 +42,7 @@
           :class="i <= rating ? 'text-yellow-400' : ''"
           @mouseover="onRating(i)"
           @mouseleave="rating = 0"
+          @click.prevent="onRate(i)"
           name="material-symbols:star-rounded"
         />
       </div>
@@ -60,7 +64,7 @@
         <Icon name="bi:cart-plus-fill" class="text-lg" />
       </Button>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 <script setup>
 const props = defineProps({
@@ -74,6 +78,13 @@ const rating = ref(0);
 const onRating = (index) => {
   if (index !== rating.value) rating.value = index;
 };
+
+const onRate = (i) => {
+};
+
+const onFavorite = () =>{
+
+}
 
 const onNavigate = (id) => {
   navigateTo({

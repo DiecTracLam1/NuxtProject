@@ -5,8 +5,30 @@
         class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] px-[15px] w-full mx-auto"
       >
         <div class="py-10">
-          <div class="text-center">
-            <p class="text-sm mb-[30px]">Home > Shop > Product Details</p>
+          <div class="text-center mb-4">
+            <NuxtLink
+              class="text-black hover:text-blue-400 hover:underline"
+              to="/"
+              >Home</NuxtLink
+            >
+            <span
+              ><Icon
+                class="mx-1"
+                name="material-symbols:arrow-forward-ios-rounded"
+              />
+            </span>
+            <NuxtLink
+              class="text-black hover:text-blue-400 hover:underline"
+              to="/shop"
+              >Shop</NuxtLink
+            >
+            <span
+              ><Icon
+                class="mx-1"
+                name="material-symbols:arrow-forward-ios-rounded"
+              />
+            </span>
+            <span class="text-sm mb-[30px]">Product Details</span>
           </div>
 
           <div class="grid grid-cols-12 sm:gap-[30px]">
@@ -26,7 +48,7 @@
             </div>
             <div class="sm:col-span-8 col-span-12">
               <div class="mx-auto sm:w-full w-fit h-[533px]">
-                <img class="h-full" :src="bigImage" alt="" data-not-lazy/>
+                <img class="h-full" :src="bigImage" alt="" data-not-lazy />
               </div>
             </div>
           </div>
@@ -97,7 +119,7 @@
       <!-- Related Product -->
       <div class="py-[60px]">
         <h2 class="font-bold text-3xl mx-auto mb-11 w-fit">Related Product</h2>
-        <div class="grid justify-items-center  grid-cols-12 xs:gap-[30px]">
+        <div class="grid justify-items-center grid-cols-12 xs:gap-[30px]">
           <div
             v-for="product in productRelated?.data.products"
             class="xs:col-span-6 sm:col-span-6 md:col-span-4 xl:col-span-3 col-span-12"
@@ -132,7 +154,7 @@ const { data: productRelated } = await useAsyncData<ProductListApi>(
 
 const bigImage = ref(product?.value?.data.image[0]);
 function onChangeBigImg(value: string) {
-  console.log(value)
+  console.log(value);
   bigImage.value = value;
 }
 

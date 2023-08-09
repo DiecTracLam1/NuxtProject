@@ -1,28 +1,37 @@
 <template>
-  <ShopSort :products="products ?? []" />
+  <ShopSort :products="response ?? []" />
   <div class="grid grid-cols-12 sm:gap-x-7.5 gap-y-7.5 gap-x-0">
-    <div v-if="!products?.data?.products.length" class="col-span-12">
-      <div class="mx-auto">
-        <a-empty />
-      </div>
+    <div
+      v-if="loading"
+      v-for="index in 12"
+      class="col-span-12 sm:col-span-6 xl:col-span-4"
+      :key="index"
+    >
+      <Skeleton />
     </div>
 
     <template v-else>
+      <div v-if="!response?.data?.products.length" class="col-span-12">
+        <div class="mx-auto">
+          <a-empty />
+        </div>
+      </div>
+
       <div
-        v-for="product in products?.data?.products"
+        v-else
+        v-for="product in response?.data?.products || 12"
         class="col-span-12 sm:col-span-6 xl:col-span-4"
         :key="product.id"
       >
-        <Skeleton v-if="pending" />
-        <ProductItem v-else :product="product" />
+        <ProductItem :product="product" />
       </div>
     </template>
   </div>
 
-  <div v-if="products?.data?.products.length" class="my-8 text-center">
+  <div v-if="response?.data?.products.length" class="my-8 text-center">
     <a-pagination
       v-model:current="page"
-      :total="products?.data?.total"
+      :total="response?.data?.total"
       :defaultPageSize="defaultPageSize"
       @change="onChangePage"
     />
@@ -52,7 +61,20 @@ watch(queryState, async () => {
   // reloadNuxtApp()
 });
 
-const { data: products, pending } = await useFetch<ProductListApi>(
+const loading = ref(true);
+
+const { data: response, pending } = await useFetch<ProductListApi>(
   () => `/api/product?${queryString.value}`
 );
+
+if (response.value?.data.products && response.value?.data.products.length > 0) {
+  setTimeout(() => {
+    loading.value = pending.value;
+  });
+}
+
+watch(pending, () => {
+  console.log(pending);
+  loading.value = pending.value;
+});
 </script>
