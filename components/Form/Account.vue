@@ -48,10 +48,20 @@
                 class="ml-5"
                 name="sex"
                 title="Male"
-                v-model="user.user.sex"
+                :checked="user.user.sex === 'Male'"
               />
-              <InputRadio class="ml-5" name="sex" title="Female" />
-              <InputRadio class="ml-5" name="sex" title="Other" />
+              <InputRadio
+                class="ml-5"
+                name="sex"
+                title="Female"
+                :checked="user.user.sex === 'Female'"
+              />
+              <InputRadio
+                class="ml-5"
+                name="sex"
+                title="Other"
+                :checked="user.user.sex === 'Other'"
+              />
             </div>
 
             <div class="flex items-center mb-7">
@@ -72,29 +82,26 @@
             </div>
           </div>
         </div>
+
         <div class="col-span-12 md:col-span-4">
           <div class="flex flex-col items-center md:border-l-[1px]">
             <div class="h-[100px] my-5">
-              <img
-                class="w-full h-full rounded-full"
-                :src="props.user.user.profileImage"
-                alt=""
-              />
+              <img class="w-full h-full rounded-full" :src="image" alt="" />
             </div>
+            {{ image }}
             <div class="my-5">
               <label
                 for="image"
                 class="border-[1px] cursor-pointer px-4 p-3 hover:bg-slate-50"
                 >Choose image</label
               >
-              <Field name="profileImage" v-slot="{ handleChange }">
-                <input
-                  type="file"
-                  id="image"
-                  hidden
-                  @change="(e:any)=>handleChange(e.target.files[0].name)"
-                />
-              </Field>
+              <input
+                name="profileImage"
+                type="file"
+                id="image"
+                hidden
+                @change="handleChange"
+              />
             </div>
             <p class="m-0">File size: maximum 1 MB</p>
             <p class="m-0">File extension: .JPEG, .PNG</p>
@@ -116,6 +123,8 @@ const props = defineProps({
   },
 });
 
+const image = ref(props.user.user.profileImage);
+
 // pinia user store
 const store = useUserStore();
 
@@ -132,7 +141,12 @@ const { handleSubmit } = useForm({
   validationSchema: schema,
 });
 
+const handleChange = (e: any) => {
+  image.value = e.target.value;
+};
+
 const onSubmit = handleSubmit(async (values: any) => {
+  values.profileImage = image.value;
   try {
     await store.updateUser(values);
     message.success("Update user successfully");

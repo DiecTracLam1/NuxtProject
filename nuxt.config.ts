@@ -10,8 +10,12 @@ export default defineNuxtConfig({
     "@pinia-plugin-persistedstate/nuxt",
     "dayjs-nuxt",
     "nuxt-lazy-load",
-    "@nuxt/image",   
+    "@nuxt/image",
+    "nuxt-mapbox",
   ],
+  mapbox: {
+    accessToken: process.env.GOOGLE_MAP_API_KEY,
+  },
   tailwindcss: {
     configPath: "./tailwind.config",
   },
@@ -21,5 +25,6 @@ export default defineNuxtConfig({
     cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
     cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
     cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
+    mapAccessToken : process.env.GOOGLE_MAP_API_KEY,
   },
 });

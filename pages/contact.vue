@@ -1,7 +1,35 @@
 <template>
-  <div class="mb-20">
-    <div ref="mapDiv" class="h-[500px]"></div>
+  <div class="mb-20 relative h-[500px]">
+    <MapboxMap
+      map-id="location"
+      :options="{
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [106.660172, 10.762622],
+        zoom: 12,
+        essential: true,
+      }"
+    >
+      <MapboxSource
+        source-id="places"
+        :source="{
+          type: 'geojson',
+          data: stores,
+        }"
+      />
+
+      <MapboxLayer
+        :layer="{
+          source: 'places',
+          id: 'places',
+          type: 'circle',
+          paint: color,
+        }"
+      />
+
+      <MapboxGeolocateControl position="top-right" trackUserLocation />
+    </MapboxMap>
   </div>
+
   <div
     class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] mx-auto my-[100px]"
   >
@@ -36,19 +64,30 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { Loader } from "@googlemaps/js-api-loader";
+<script setup>
+import "mapbox-gl/dist/mapbox-gl.css";
 
-const loader = new Loader({ apiKey: process.env.GOOGLE_MAP_API_KEY as string });
-const mapDiv = ref(null);
-onMounted(async () => {
-  await loader.load();
-  new google.maps.Map(mapDiv.value, {
-    center: {
-      lat: 10.762622,
-      lng: 106.660172,
+const stores = {
+  type: "Feature",
+  features: [
+    {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [106.6257, 10.822],
+      },
+      properties: {
+        description:
+          "<strong>Capital Pride Parade</strong><p>The annual Capital Pride Parade makes its way through Dupont this Saturday. 4:30 p.m. Free.</p>",
+      },
     },
-    zoom: 7,
-  });
-});
+  ],
+};
+
+const color = {
+  "circle-color": "#4264fb",
+  "circle-radius": 6,
+  "circle-stroke-width": 2,
+  "circle-stroke-color": "#ffffff",
+};
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center text-sm">
-    <input type="radio" :id="title" :name="props.name" />
+    <input type="radio" :id="title" :name="props.name" :checked="checked" />
     <label class="ml-1" :for="title">{{ props.title }}</label>
   </div>
 </template>
@@ -8,11 +8,15 @@
 const props = defineProps({
   name: {
     type: String,
-    require:true,
+    require: true,
   },
-  title :{
+  title: {
     type: String,
-    default:""
-  }
+    default: "",
+  },
+  checked: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>

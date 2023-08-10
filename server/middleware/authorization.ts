@@ -4,7 +4,7 @@ import { getUserById } from "../db/user";
 
 export default defineEventHandler(async (event) => {
   const endpoints = [
-    "/api/order/*",
+    "/api/order",
     "/api/order?status=1",
     "/api/order?status=2",
     "/api/order?status=3",
@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     "/api/order?status=5",
     "/api/auth/update",
     "/api/auth/resetPassword",
-    "/api/auth/user"
+    "/api/auth/user",
   ];
 
   const isHandledByThisMiddleware = endpoints.some((endopoint) => {
@@ -26,6 +26,16 @@ export default defineEventHandler(async (event) => {
   // console.log(event.req);
   // console.log("Author : ", event.req.headers.authorization);
   const token = event.req.headers["authorization"]?.split(" ")[1];
+  
+  if (!token) {
+    return sendError(
+      event,
+      createError({
+        statusCode: 401,
+        statusMessage: "Token authorization was empty",
+      })
+    );
+  }
   const decoded = decodeAccessToken(token);
   if (!decoded) {
     return sendError(
