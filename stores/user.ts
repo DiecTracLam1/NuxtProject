@@ -38,12 +38,17 @@ export const useUserStore = defineStore("User", {
       }
     },
 
-    async registerUser(username: string, password: string ,repeatPassword:string , phoneNumber:number) {
+    async registerUser(
+      username: string,
+      password: string,
+      repeatPassword: string,
+      phoneNumber: number
+    ) {
       this.loading = true;
       try {
         this.data = await $fetch("/api/auth/register", {
           method: "POST",
-          body: { username, password ,repeatPassword , phoneNumber },
+          body: { username, password, repeatPassword, phoneNumber },
         });
       } catch (error: any) {
         throw new Error(error.message);
@@ -58,8 +63,9 @@ export const useUserStore = defineStore("User", {
         this.data = await $fetch("/api/auth/update", {
           headers: { Authorization: `Bearer ${this.$state.data.access_token}` },
           method: "PUT",
-          body: { values },
+          body: values,
         });
+        console.log(this.data);
       } catch (error: any) {
         console.log(error.message);
       } finally {

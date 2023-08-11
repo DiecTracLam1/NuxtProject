@@ -40,6 +40,7 @@
             class="border-black border-[px] rounded-full w-full h-full"
             :src="getImage"
             alt=""
+            data-not-lazy
           />
         </div>
       </a-popover>

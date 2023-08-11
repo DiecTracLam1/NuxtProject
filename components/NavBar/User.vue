@@ -6,6 +6,7 @@
           v-if="loggedIn"
           class="w-full h-full rounded-full"
           :src="getImage"
+          data-not-lazy
           alt=""
         />
       </NuxtLink>
@@ -71,7 +72,7 @@ const userStore = useUserStore();
 const { loggedIn, getImage } = storeToRefs(userStore);
 const router = useRouter();
 
-const activeKey = ref()
+const activeKey = ref();
 const accountList = [
   { title: "Profile", path: "profile" },
   { title: "Change Password", path: "password" },

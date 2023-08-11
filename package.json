@@ -35,7 +35,7 @@
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.37.2",
     "dayjs-nuxt": "^1.1.2",
-    "formidable": "^3.4.0",
+    "formidable": "^3.5.0",
     "jsonwebtoken": "^9.0.0",
     "nuxt-gmaps": "^1.2.10",
     "nuxt-icon": "^0.4.1",

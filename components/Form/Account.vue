@@ -85,10 +85,15 @@
 
         <div class="col-span-12 md:col-span-4">
           <div class="flex flex-col items-center md:border-l-[1px]">
-            <div class="h-[100px] my-5">
-              <img class="w-full h-full rounded-full" :src="image" alt="" />
+            <div class="h-[100px] w-[100px] my-5">
+              <img
+                class="w-full h-full rounded-full"
+                :src="selectedFile"
+                alt=""
+                data-not-lazy
+              />
             </div>
-            {{ image }}
+
             <div class="my-5">
               <label
                 for="image"
@@ -114,7 +119,7 @@
 <script setup lang="ts">
 import { useUserStore } from "@/stores/user";
 import { message } from "ant-design-vue";
-import { useForm, Field } from "vee-validate";
+import { useForm } from "vee-validate";
 import * as yup from "yup";
 const props = defineProps({
   user: {
@@ -124,6 +129,7 @@ const props = defineProps({
 });
 
 const image = ref(props.user.user.profileImage);
+const selectedFile = ref(props.user.user.profileImage);
 
 // pinia user store
 const store = useUserStore();
@@ -142,13 +148,21 @@ const { handleSubmit } = useForm({
 });
 
 const handleChange = (e: any) => {
-  image.value = e.target.value;
+  if (e.target.files[0] === undefined) return;
+  const reader = new FileReader();
+  reader.readAsDataURL(e.target.files[0]);
+  reader.onload = (event:any) => {
+    selectedFile.value = event.target.result;
+  };
+  image.value = e.target.files[0];
 };
 
 const onSubmit = handleSubmit(async (values: any) => {
-  values.profileImage = image.value;
+  const form = new FormData();
+  form.append("user", JSON.stringify(values));
+  form.append("profileImage", image.value);
   try {
-    await store.updateUser(values);
+    await store.updateUser(form);
     message.success("Update user successfully");
   } catch (error) {}
 });
