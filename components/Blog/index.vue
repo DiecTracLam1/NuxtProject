@@ -1,7 +1,12 @@
 <template>
   <div class="relative">
     <div class="h-[270px]">
-      <img class="h-full w-full" :src="blog.titleImage" alt="" />
+      <img
+        class="h-full w-full"
+        v-lazy="blog.titleImage"
+        :data-src="blog.titleImage"
+        alt=""
+      />
     </div>
     <div
       class="bg-white mt-[-15%] mx-auto p-[30px] w-[300px] shadow-md relative z-10"

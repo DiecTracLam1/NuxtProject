@@ -7,8 +7,7 @@
       <img
         class="h-full w-full"
         :data-src="product.image[0]"
-        :src="product.image[0]"
-        loading="lazy"
+        v-lazy="product.image[0]"
       />
       <span
         class="absolute bg-white font-bold top-5 text-[11px] px-[15px] py-1 inline-block"
@@ -79,12 +78,9 @@ const onRating = (index) => {
   if (index !== rating.value) rating.value = index;
 };
 
-const onRate = (i) => {
-};
+const onRate = (i) => {};
 
-const onFavorite = () =>{
-
-}
+const onFavorite = () => {};
 
 const onNavigate = (id) => {
   navigateTo({

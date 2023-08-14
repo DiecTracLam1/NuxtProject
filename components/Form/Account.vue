@@ -90,7 +90,6 @@
                 class="w-full h-full rounded-full"
                 :src="selectedFile"
                 alt=""
-                data-not-lazy
               />
             </div>
 

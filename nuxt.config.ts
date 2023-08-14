@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  plugins: ["@/plugins/antd"],
+  plugins: ["@/plugins/antd", "@/plugins/lazyload"],
   css: ["@/assets/css/index.css"],
   modules: [
     "nuxt-icon",
@@ -9,12 +9,11 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "dayjs-nuxt",
-    "nuxt-lazy-load",
     "@nuxt/image",
     "nuxt-mapbox",
   ],
   mapbox: {
-    accessToken: process.env.GOOGLE_MAP_API_KEY,
+    accessToken: process.env.MAP_API_TOKEN,
   },
   tailwindcss: {
     configPath: "./tailwind.config",
@@ -25,6 +24,5 @@ export default defineNuxtConfig({
     cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
     cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
     cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
-    mapAccessToken : process.env.GOOGLE_MAP_API_KEY,
   },
 });
