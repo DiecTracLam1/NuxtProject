@@ -3,3 +3,15 @@
   font-family: "Nunito Sans", sans-serif;
   @apply box-border m-0 p-0 list-none;
 }
+
+img[lazy="loading"] {
+  @apply blur-xl transition-all duration-75;
+}
+
+img[lazy="loaded"] {
+  @apply blur-none;
+}
+
+.vueperslides__arrow svg {
+  @apply text-black;
+}

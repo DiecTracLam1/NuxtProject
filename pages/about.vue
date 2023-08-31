@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BreadCrum title="About Us" :pathList="['About Us']"/>
+    <BreadCrum title="About Us" :pathList="['About Us']" />
     <div
       class="xs:max-w-[540px] sm:max-w-[720px] md:max-w-[960px] xl:max-w-[1170px] mx-auto h-full"
     >
@@ -50,7 +50,8 @@
               </p>
               <div class="flex justify-center mt-">
                 <img
-                  src="@/assets/images/testimonial-author.jpg"
+                  data-src="@/assets/images/testimonial-author.jpg"
+                  v-lazy="`/_nuxt/assets/images/testimonial-author.jpg`"
                   class="h-[60px] rounded-full"
                   alt=""
                 />
@@ -66,7 +67,8 @@
       <div class="col-span-12 md:col-span-6">
         <div class="h-[600px]">
           <img
-            src="@/assets/images/testimonial-pic.jpg"
+            data-src="@/assets/images/testimonial-pic.jpg"
+            v-lazy="`_nuxt/assets/images/testimonial-pic.jpg`"
             class="h-full w-full"
             alt=""
           />
@@ -140,7 +142,11 @@
           class="xs:col-span-6 md:col-span-3 col-span-12"
         >
           <div class="flex flex-col">
-            <img :src="`/_nuxt/assets/images/${author.image}`" alt="" />
+            <img
+              :data-src="`/_nuxt/assets/images/${author.image}`"
+              v-lazy="`/_nuxt/assets/images/${author.image}`"
+              alt=""
+            />
             <div class="mt-[25px]">
               <p class="font-bold text-2xl mb-2">{{ author.name }}</p>
               <p class="text-blur-grey m-0">{{ author.position }}</p>
@@ -165,7 +171,11 @@
       <div class="grid grid-cols-12 gap-[30px]">
         <div v-for="index in 8" class="xs:col-span-4 md:col-span-3 col-span-6">
           <div class="w-fit mx-auto mb-[75px]">
-            <img :src="`_nuxt/assets/images/client-${index}.jpg`" alt="" />
+            <img
+              :data-src="`_nuxt/assets/images/client-${index}.jpg`"
+              v-lazy="`_nuxt/assets/images/client-${index}.jpg`"
+              alt=""
+            />
           </div>
         </div>
       </div>

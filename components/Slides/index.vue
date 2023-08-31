@@ -1,13 +1,5 @@
 <template>
   <VueperSlides fixed-height="800px" fade>
-    <template #arrow-left>
-      <Icon name="octicon:arrow-right-24" color="black" />
-    </template>
-
-    <template #arrow-right>
-      <Icon name="octicon:arrow-right-24" color="black" />
-    </template>
-
     <VueperSlide v-for="(slide, i) in slides" :key="i" :image="slide.image">
       <template #content>
         <div
